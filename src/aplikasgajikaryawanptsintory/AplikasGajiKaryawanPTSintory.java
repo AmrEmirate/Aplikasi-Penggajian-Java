@@ -1,24 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package aplikasgajikaryawanptsintory;
 
-import view.FormUtama;
+// 1. Kita ganti import-nya menjadi FormLogin
+import view.FormLogin; 
 
-/**
- *
- * @author amrem
- */
 public class AplikasGajiKaryawanPTSintory {
-    private final static FormUtama formUtama = new FormUtama();
+    
+    // 2. Kita buat variabel formLogin
+    private final static FormLogin formLogin = new FormLogin();
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        formUtama.setVisible(true);
-        // TODO code application logic here
+        // 3. Kita tampilkan formLogin saat F6 ditekan
+        formLogin.setVisible(true);
     }
     
 }

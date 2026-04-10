@@ -14,9 +14,15 @@ public class FormLogin extends javax.swing.JDialog {
 
     /**
      * Creates new form FormLogin
+     * @param parent
+     * @param modal
      */
     public FormLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
+    }
+
+    public FormLogin() {
         initComponents();
     }
 
@@ -94,21 +100,21 @@ public class FormLogin extends javax.swing.JDialog {
     }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        // TODO add your handling code here:
-        // 1. Mengambil teks dari kotak isian
-    String username = usernameTextField.getText();
-    String password = new String(passwordField.getPassword());
-    
-    // 2. Memanggil controller untuk mengecek ke database
-    controller.LoginController loginController = new controller.LoginController();
-    boolean valid = loginController.validasiLogin(username, password);
-    
-    // 3. Jika benar, buka FormUtama dan tutup FormLogin
-    if (valid) {
-        FormUtama fu = new FormUtama();
-        fu.setVisible(true);
-        this.dispose(); // Menutup jendela login
-    }
+
+        String username = usernameTextField.getText();
+        String password = new String(passwordField.getPassword());
+        
+        // 2. Memanggil controller untuk mengecek ke database
+        controller.LoginController loginController = new controller.LoginController();
+        boolean valid = loginController.validasiLogin(username, password);
+        
+        // 3. Jika benar, buka FormUtama dan tutup FormLogin
+        if (valid) {
+            FormUtama fu = new FormUtama();
+            fu.setVisible(true);
+            this.dispose();
+        }
+
     }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
@@ -133,18 +139,15 @@ public class FormLogin extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                FormLogin dialog = new FormLogin(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            FormLogin dialog = new FormLogin(new javax.swing.JFrame(), true);
+            dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent e) {
+                    System.exit(0);
+                }
+            });
+            dialog.setVisible(true);
         });
     }
 
