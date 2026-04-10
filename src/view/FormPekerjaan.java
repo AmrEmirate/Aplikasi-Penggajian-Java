@@ -174,16 +174,18 @@ public class FormPekerjaan extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_kodeTextFieldActionPerformed
 
     private void simpanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanButtonActionPerformed
-        // 1. Mengambil data dari TextField
+// Memanggil Controller Pekerjaan (Gaji Pokok akan otomatis masuk ke kolom Jumlah Tugas di database)
+        controller.PekerjaanController pc = new controller.PekerjaanController();
+        pc.simpan(kodeTextField, namaPekerjaanTextField, gajiTextField);
+
+        // Memasukkan data ke tabel UI
         String kode = kodeTextField.getText();
         String nama = namaPekerjaanTextField.getText();
         String gaji = gajiTextField.getText();
-
-        // 2. Memasukkan data ke dalam tabel (jTable1)
         javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
         model.addRow(new Object[]{kode, nama, gaji});
 
-        // 3. Mengosongkan kembali form isian
+        // Mengosongkan form
         kodeTextField.setText("");
         namaPekerjaanTextField.setText("");
         gajiTextField.setText("");
@@ -199,9 +201,17 @@ public class FormPekerjaan extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_batalButtonActionPerformed
 
     private void hapusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusButtonActionPerformed
-int barisTerpilih = jTable1.getSelectedRow();
+        int barisTerpilih = jTable1.getSelectedRow();
         
         if (barisTerpilih != -1) {
+            String kode = jTable1.getValueAt(barisTerpilih, 0).toString();
+            javax.swing.JTextField dummyKode = new javax.swing.JTextField(kode);
+            
+            // Menghapus dari database
+            controller.PekerjaanController pc = new controller.PekerjaanController();
+            pc.hapus(dummyKode);
+            
+            // Menghapus dari UI
             javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
             model.removeRow(barisTerpilih);
         } else {

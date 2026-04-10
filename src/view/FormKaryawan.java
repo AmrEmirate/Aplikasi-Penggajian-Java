@@ -191,19 +191,23 @@ public class FormKaryawan extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_namaTextFieldActionPerformed
 
     private void hapusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusButtonActionPerformed
-        // TODO add your handling code here:
-        // 1. Memeriksa baris mana yang sedang diklik (dipilih) di tabel
-int barisTerpilih = karyawanTable.getSelectedRow();
-
-// 2. Jika ada baris yang dipilih (nilainya tidak -1)
-if (barisTerpilih != -1) {
-    // Maka hapus baris tersebut dari tabel
-    javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) karyawanTable.getModel();
-    model.removeRow(barisTerpilih);
-} else {
-    // Jika user mengeklik tombol Hapus tapi belum memilih baris di tabel, munculkan pesan
-    javax.swing.JOptionPane.showMessageDialog(this, "Silakan pilih data di tabel yang ingin dihapus terlebih dahulu.");
-}
+        int barisTerpilih = karyawanTable.getSelectedRow();
+        
+        if (barisTerpilih != -1) {
+            // Mengambil NIK dari tabel dan membuat kotak bayangan
+            String nik = karyawanTable.getValueAt(barisTerpilih, 0).toString();
+            javax.swing.JTextField dummyNik = new javax.swing.JTextField(nik);
+            
+            // Menghapus dari database
+            controller.KaryawanController kc = new controller.KaryawanController();
+            kc.hapus(dummyNik);
+            
+            // Menghapus dari UI
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) karyawanTable.getModel();
+            model.removeRow(barisTerpilih);
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Silakan pilih data di tabel yang ingin dihapus terlebih dahulu.");
+        }
     }//GEN-LAST:event_hapusButtonActionPerformed
 
     private void jabatanComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jabatanComboBoxActionPerformed
@@ -211,17 +215,27 @@ if (barisTerpilih != -1) {
     }//GEN-LAST:event_jabatanComboBoxActionPerformed
 
     private void simpanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanButtonActionPerformed
-        // TODO add your handling code here:
-        // 1. Mengambil data yang diketik/dipilih oleh user
+// Trik: Menerjemahkan Jabatan menjadi Angka (Ruang)
+        int ruangAngka = jabatanComboBox.getSelectedIndex() + 1; 
+        
+        // Memanggil Controller Karyawan
+        controller.KaryawanController kc = new controller.KaryawanController();
+        
+        // Trik: Membuat kotak isian bayangan untuk Ruang dan Password agar sesuai modul
+        javax.swing.JTextField dummyRuang = new javax.swing.JTextField(String.valueOf(ruangAngka));
+        javax.swing.JPasswordField dummyPassword = new javax.swing.JPasswordField("12345"); // Password default
+        
+        // Menyimpan ke database (NIK dianggap sebagai KTP)
+        kc.simpan(nikTextField, namaTextField, dummyRuang, dummyPassword);
+
+        // Memasukkan data ke tabel UI
         String nik = nikTextField.getText();
         String nama = namaTextField.getText();
         String jabatan = jabatanComboBox.getSelectedItem().toString();
-
-        // 2. Memasukkan data tersebut ke dalam tabel
         javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) karyawanTable.getModel();
         model.addRow(new Object[]{nik, nama, jabatan});
 
-        // 3. Mengosongkan form isian agar siap untuk data berikutnya
+        // Mengosongkan form
         nikTextField.setText("");
         namaTextField.setText("");
         jabatanComboBox.setSelectedIndex(0);
