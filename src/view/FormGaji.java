@@ -256,7 +256,7 @@ public class FormGaji extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
     gajiController.cariKaryawan(ktpTextField);
-        }
+}
     }//GEN-LAST:event_ktpTextFieldKeyPressed
 
 
