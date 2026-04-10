@@ -8,7 +8,7 @@ import view.FormUtama;
 
 /**
  *
- * @author amremirate
+ * @author amrem
  */
 public class AplikasGajiKaryawanPTSintory {
     private final static FormUtama formUtama = new FormUtama();
