@@ -1,0 +1,355 @@
+ 
+162 Pemrograman 2   
+ 
+ 
+BAB  VI 
+PENGGUNAAN DATABASE PADA APLIKASI  
+ 
+A. Capaian  Pembelajaran  
+Pada pertemuan ini akan dijelaskan mengenai cara 
+untuk melakukan editing data pada database.  
+ 
+B. Materi  
+1. Aplikasi Desktop (Form Karyawan)  
+a. Di bawah public class FormKaryawan … tambahkan 
+source code untuk membuat object 
+KaryawanController seperti gambar  
+b. Klik lampu indikator kesalahan, dan pilih Add import 
+for controller.KaryawanController  
+ 
+ 
+Gambar 3. Menambahkan Source Code  
+ 
+ 
+163 Pemrograman 2  c. Kembali ke mode Design, klik kanan pada 
+ktpTextField, pilih Events  Key keyPressed  
+d. Tambahkan source code seperti  pada gambar  
+e. Klik lampu indikator kesalahan, pilih Add import for 
+java.awt.event.KeyEvent  
+ 
+ 
+ 
+ 
+Gambar 4. Menambahkan Source Code  
+ 
+ 
+164 Pemrograman 2  f. Kembali ke mode Design, klik kanan pada 
+passwordField, pilih Events  Key keyPressed  
+g. Tambahkan source code seperti pada gambar  
+ 
+ 
+ 
+ 
+Gambar 5. Menambahkan Source Code  
+ 
+ 
+ 
+165 Pemrograman 2  h. Kembali ke mode Design, klik kanan pada button 
+Lihat, pi lih Events Action actionPerformed (atau 
+double klik)  
+i. Tambahkan source code seperti pada gambar  
+ 
+ 
+ 
+ 
+Gambar 6. Menambahkan Source Code  
+ 
+j. Kembali ke mode Design, klik kanan pada button 
+Simpan, pilih Events Action actionPerformed 
+(atau double klik)  
+k. Tambahkan source code seperti pada gambar  
+ 
+ 
+166 Pemrograman 2  
+ 
+ 
+Gambar 7. Menambahkan Source Code  
+ 
+l. Kembali ke mode Design, klik kanan pada button 
+Hapus, pilih Events Action actionPerformed 
+(atau double klik)  
+m. Tambahkan source code seperti pada gambar  
+ 
+ 
+167 Pemrograman 2  
+ 
+ 
+ 
+Gambar 8. Menambahkan Source Code  
+ 
+2. Aplikasi Desktop (Form Pekerjaan)  
+a. Di bawah public class FormPekerjaan … 
+tambahkan source code untuk membuat object 
+PekerjaanController seperti gambar  
+b. Klik lampu indikator  kesalahan, dan pilih Add import 
+for controller.PekerjaanController  
+ 
+ 
+168 Pemrograman 2  
+ 
+Gambar 9. Menambahkan Source Code  
+ 
+c. Kembali ke mode Design, klik kanan pada 
+kodePekerjaanTextField, pilih Events  Key 
+keyPressed  
+d. Tambahkan source code seperti p ada gambar  
+e. Klik lampu indikator kesalahan, pilih Add import for 
+java.awt.event.KeyEvent  
+ 
+ 
+ 
+ 
+169 Pemrograman 2  
+ 
+Gambar 10. Menambahkan Source Code  
+ 
+f. Kembali ke mode Design, klik kanan pada button 
+Lihat, pilih Events Action actionPerformed (atau 
+doub le klik)  
+g. Tambahkan source code seperti pada gambar  
+ 
+ 
+ 
+ 
+Gambar 11. Menambahkan Source Code  
+ 
+h. Kembali ke mode Design, klik kanan pada button 
+Simpan, pilih Events Action actionPerformed 
+(atau double klik)  
+i. Tambahkan source code seper ti pada gambar  
+ 
+170 Pemrograman 2  
+ 
+ 
+ 
+Gambar 12. Menambahkan Source Code  
+ 
+ 
+j. Kembali ke mode Design, klik kanan pada button 
+Hapus, pilih Events Action actionPerformed 
+(atau double klik)  
+k. Tambahkan source code seperti pada gambar  
+ 
+ 
+171 Pemrograman 2  
+ 
+ 
+ 
+Gambar 13. Menambahkan Source Code  
+ 
+3. Aplikasi Desktop (Form Utama)  
+a. Buka FormUtama, tampilkan source code -nya 
+b. Di bawah public class FormUtama … tambahkan 
+source code seperti pada gambar  
+ 
+ 
+172 Pemrograman 2  
+ 
+Gambar 14. Menambahkan Source Code  
+ 
+c. Agar ketika menu item Gaji di menu Transaksi diklik 
+dapat menampilkan Form Gaji, tambahkan source 
+code pada event actionPerformed dari menu item 
+Gaji 
+d. Caranya klik kanan pada menu item Gaji di menu 
+Transaksi, pilih Events ActionactionPerformed 
+seperti gam bar di bawah ini  
+ 
+ 
+Gambar 15. Menambahkan Action  
+ 
+e. Tambahkan source code di dalam metode 
+gajiMenuItemActionPerformed, sehingga seperti 
+gambar di bawah ini  
+ 
+173 Pemrograman 2  
+ 
+Gambar 16. Menambahkan Source Code  
+ 
+f. Agar ketika m enu item Deskripsi di menu Aplikasi 
+diklik dapat menampilkan Form Deskripsi, tambahkan 
+source code pada event actionPerformed dari menu 
+item Deskripsi  
+g. Caranya klik kanan pada menu item Deskripsi di 
+menu Aplikasi, pilih 
+EventsActionactionPerformed seperti  gambar di 
+bawah ini  
+ 
+ 
+Gambar 17. Menambahkan Action  
+ 
+174 Pemrograman 2  h. Tambahkan source code di dalam metode 
+deskripsiMenuItemActionPerformed, sehingga seperti 
+gambar di bawah ini  
+ 
+ 
+Gambar 18. Menambahkan Source Code  
+ 
+i. Agar  ketika menu item Login (aksesMenuItem) di 
+menu Aplikasi diklik dapat menampilkan Form Login, 
+tambahkan source code pada event actionPerformed 
+dari menu item Login (aksesMenuItem)  
+j. Caranya klik kanan pada menu item Login 
+(aksesMenuItem) di menu Aplikasi, pi lih 
+EventsActionactionPerformed seperti gambar di 
+bawah ini  
+ 
+ 
+Gambar 19. Menambahkan Action  
+ 
+175 Pemrograman 2  k. Tambahkan source code di dalam metode 
+deskripsiMenuItemActionPerformed, sehingga seperti 
+gambar di bawah  
+ 
+ 
+Gambar 20. Menambahkan Source Code  
+ 
+l. Tambahkan source code metode setEnableMenu di 
+bawah Generated Code seperti gambar  
+m. Di dalam konstruktor tambahkan 
+setEnableMenu(false)  
+ 
+ 
+176 Pemrograman 2  
+ 
+Gambar 21. Menambahkan Source Code  
+ 
+4. Aplikasi Desktop (Form L ogin)  
+a. Buka FormLogin, di Navigator/Inspector, klik kanan 
+pada Jdialog, pilih Events Window  
+windowActivated seperti gambar  
+ 
+ 
+177 Pemrograman 2  
+ 
+Gambar 22. Menambahkan Window  
+ 
+b. Tambahkan source code seperti pada gambar  
+ 
+ 
+178 Pemrograman 2  
+ 
+Gambar 23. Menambahkan Source Code  
+ 
+ 
+5. Menambahkan Library MySQL JDBC Driver  
+a. Agar bisa melakukan koneksi ke database MySQL, 
+maka perlu ditambahkan library MySQL JDBC Driver  
+b. Caranya klik kanan di Libraries, pilih Add Library…  
+c. Di Available Libraries pilih MySQL J DBC Driver, dan 
+akhiri dengan mengklik Add Library  
+ 
+ 
+179 Pemrograman 2  
+ 
+ 
+ 
+ 
+ 
+Gambar 24. Menambahkan Library MySQL JDBC Driver  
+ 
+ 
+180 Pemrograman 2  6. Membuat Database  
+a. Untuk membuat database perlu di -install MySQL  
+b. MySQL ada yg sudah dijadikan paket dalam XAMPP, 
+atau WAMP  
+c. Install xampp  
+d. Setelah Instalasi selesai, jalankan Apache, dan 
+MySQL dengan mengklik tombol Start, sehingga 
+berubah menjadi Stop  
+ 
+ 
+Gambar 25. Menambahkan XAMPP  
+ 
+e. Kemudian di browser buka 
+http://localhost/phpmyadmin/  
+f. Nilai awal (defau lt) untuk user name -nya root dan 
+passwordnya kosong  
+ 
+181 Pemrograman 2  g. Cara membuat database dipelajari di mata kuliah 
+basis data  
+h. Untuk mempercepat pembutan, klik menu import  
+i. Setelah mengklik menu Import, klik tombol Browse  
+j. Pilih file dbaplikasigajikaryawan.sql di materi, da n klik 
+open  
+k. Di bagian bawah klik tombol Go untuk memproses 
+import  
+l. Jika tidak ada kesalahan, di sebelah kiri akan ada 
+database dbaplikasigajikaryawan  
+m. Jika sudah ada tidak bisa diimport, yang lama harus 
+dihapus terlebih dulu  
+n. Klik tabel Karyawan (tbkaryawan)  
+o. Kemudian klik menu Structure, seperti pada gambar  
+p. Untuk menambahkan field baru, klik tombol Go, 
+pastikan Add 1 column(s) dipilih At End of Table  
+ 
+ 
+Gambar 26. Open Localhost  
+q. Isi Name dengan password, pilih Type -nya 
+VARCHAR, dan isi  Length/Values dengan nilai 32  
+r. Akhiri dengan mengklik tombol Save  
+ 
+182 Pemrograman 2  s. Supaya bisa login, harus ada user yang sudah 
+tersimpan  
+t. Buka tabel Karyawan (tbkaryawan), pilih menu Insert, 
+kemudian isi datanya, dan simpan (klik tombol Go)  
+u. Password dienkripsi (hash) mengg unakan MD5, 
+sehingga tidak bisa dilihat  
+ 
+ 
+Gambar 27. Isi Data Manual Di Local host  
+ 
+7. Mengeksekusi Aplikasi (Project)  
+a. Eksekusi aplikasi (project) dapat dilakukan dengan 
+cara:  
+b. Klik menu Run Run Project, atau tekan tombol F6  
+c. Klik tool bar Run Project  
+d. Klik kanan nama project, kemudian pilih Run  
+ 
+183 Pemrograman 2  
+ 
+Gambar 28. Run Project  
+ 
+e. Menu Master Data, Transaksi, dan Laporan tidak aktif  
+f. Untuk menggunakan harus Login terlebih dulu  
+ 
+ 
+Gambar 29. Tampilan setelah di Run  
+ 
+g. Untuk login, gunakan NIM yang tersimpan sebagai 
+User ID, dan passwordnya (bukan hasil hash MD5)  
+h. Untuk menambah user, bisa dengan menambah data 
+mahasiswa  
+ 
+184 Pemrograman 2  
+ 
+Gambar 30. Tampilan Login  
+ 
+i. Jika berhasil login, semua menu a kan aktif  
+j. Silahkan dicoba semua menu Master Data dan 
+Transaksi  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Gambar 31. Hasil Test Eksekusi  
+ 
+185 Pemrograman 2  C. Latihan  
+Input data yang akan dicari pada aplikasi sebelumnya yang 
+penjualan rumah (dapat berdasarkan Nama Pembeli atau 
+Nama Ar ea) tergantung dari data yang diinput.  
+ 
+D. Referensi  
+Budiharto, W. (2004). Pemrograman Web Mneggunakan 
+J2EE. Jakarta: Elexmedia Komputindo. JENI, T. P. 
+(2007). JENI 1 -6. 
+Wijono, S. H., Suharto, B. H., & Wijono, M. S. (2006). 
+Pemrograman Java  
+Servlet dan JSP de ngan Netbeans. Yogyakarta: C.V ANDI 
+OFFSET.  
+ 

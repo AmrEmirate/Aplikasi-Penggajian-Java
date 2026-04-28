@@ -1,0 +1,400 @@
+ 
+275 Pemrograman 2   
+ 
+ 
+BAB X  
+PENGENALAN SERVLET  DAN JSP  
+ 
+A. Capaian  Pemb elajaran  
+Pada pertemuan ini akan dijelaskan mengenai JSP 
+dan Servlet dan membuat sebuah tutorial File JSP.  
+ 
+B. Materi  
+1. Pengertian  
+ Java Enterprice Edition  
+ Platform Java Enterprice Edition, menyediakan 
+API dan lingkungan runtime untuk mengembangkan dan 
+menjala nkan aplikasi Enterpice grade, multi -tier, 
+scalable, aplikasi jaringan yang handal. Java Enterpice 
+Edition diperkanalkan tahun 1998 yang biasanya 
+disingkat jadi J2EE, J2EE dapat diexecute di 
+multiplatform seperti Windows, Linux, Mac dan lain -lain. 
+di mater i ini kita akan membahas beberapa komponent 
+web dari J2EE yaitu:  
+ 
+276 Pemrograman 2   Servlet, yaitu Program java yang biasanya untuk 
+meng -generate document HTML setelah di proses 
+Web Server / J2EE Container  
+ JavaServer Page (JSP), yaitu Web Page application 
+yang sintaxnya gabu ngan antara HTML dan Java.  
+ 
+ 
+Gambar 134. Teknologi Java EE  
+ 
+HTML  
+Internet yang kita akses itu berisi document media 
+type application/html, HTML (Hypertext Markup 
+Language) yaitu dokument web yang static yang berisi 
+text, image, vi deo dan media lain -nya. 
+Format HTML berbentuk XML contohnya seperti berikut:  
+ 
+ 
+ 
+ 
+ 
+277 Pemrograman 2  <!DOCTYPE html>  
+<html>  
+<head>  
+    <!-- Judul Page, akan muncul di tab browser --> 
+    <title>Halaman Web</title>  
+</title>  
+<body>  
+    <!-- Tulis semua element html disini, sep erti input, 
+table, list, image, dll --> 
+    Hallo World!  
+</body>  
+</html>  
+ 
+Pada dasarnya HTML terdiri dari berapa element:  
+ Tag / Closing Tag  
+ Attribute  
+ Value  
+ 
+ HTTP  
+Hypertext Transper Protocol atau yang sering di 
+singkat HTTP yaitu sebuah protocol untuk dist ributed, 
+collaboration, hypermedia information system. Http 
+biasanya digunakan untuk bertukar data melalui World 
+Wide Web. HTTP function terdiri dari request dan 
+response protocol di jaringan yang memiliki model 
+computasi client -server.  
+  
+ 
+278 Pemrograman 2  Request Methods  
+Http mendefinisikan method yang terdiri dari :  
+a. GET, request pada umumnya  
+b. HEAD, digunakan untuk meng -identfikasi response 
+selain data contohnya untuk menerima metadata  
+c. POST, method yang biasanya digunakan untuk 
+mengirimkan data secara private ke server  
+d. PUT, method yg bisanya digunakan untuk melakukan 
+update data ke server  
+e. DELETE, method yang biasanya digunakan untuk 
+menghapus data ke server  
+f. TRACE, method yang biasanya digunakan untuk 
+mengecheck server up atau istilah kerennya echo  
+g. OPTIONS, method ini biasanya  sebuah response 
+yang mengembailkan authetication session  
+h. CONNECT  
+i. PATCH, method ini biasanya digunakan untuk 
+melakukan update data sebagian ke server  
+ 
+Request Message  
+ Sebuah request, biasanya memiliki data atau 
+variable yang kita bisa kirim sesuai dengan specifikasi 
+server. Ada beberapa cara untuk mengirimkan data 
+seperti:  
+a. Path Variable, variable yang dynamic pada url 
+contohnya,  
+ 
+279 Pemrograman 2  host:port/context -
+path/0001/variable,host:port/context -
+path/0002/variable  
+b. Query Parameter, variable yang menggunakan 
+parameter UR L contohnya host:port/context -
+path/params?param1=value1&param2=value2.  
+c. Message Body, data yang dikirimkan disimpan dalam 
+body biasanya berbentuk json atau xml tergantung 
+dari spesifikasi server. contohnya seperti berikut:  
+ 
+{ 
+ "nama": "Rina Wulandari",  
+ "userId": "Rinaw23",  
+ "passwd": "123456"  
+} 
+ 
+Response Status  
+HTTP merespon dari server yang berisi headers 
+dan body pesan, seperti yang permintaan HTTP 
+lakukan. Mereka menggunakan kumpulan header yang 
+berbeda, meskipun demikian di sini kita tidak perlu 
+terlal u dalam membahasnya secara detail. Cukup 
+dengan mengatakan bahwa headers berisi informasi 
+tentang protokol HTTP yang digunakan pada server, 
+sebagaimana tipe dari isi yang dienkapsulasi ke dalam 
+body pesan. Nilai dari tipe isi adalah MIME -type. Ini 
+akan mem beritahu browser jika pesan berisi HTML, 
+gambar, atau tipe lainnya.  
+ 
+280 Pemrograman 2   
+Web Application/Aplikasi Web  
+Web Application/Aplikasi Web adalah sebuah 
+Website yang dimana halaman HTML berjalan secara 
+dinamis, jadi kita tidak perlu melalukan hard copy atau 
+melakukan codingan secara terus menerus untuk 
+membuat tampilan dari HTML nya berubah -ubah. 
+Contohnya seperti : traveloka. Seperti yang kita tau 
+sebuah aplikasi web dapat berjalan dengan baik ketika 
+kita mempunyai web browser, web server dan database, 
+jadi web browser  akan mengirimkan sebuah permintaan, 
+lalu diolah oleh web server dan kemudian diteruskan ke 
+database, kemudian dari database akan diberikan 
+respon atau hasil yang akan dikembalikan ke web server 
+dan kemudian diolah dan diterima oleh web browser.  
+ 
+Servlet  
+Servlet adalah bahasa pemograman java yang 
+khusus dibuat untuk Web, servlet ini akan menghasilkan 
+request dan response dari Web Server. Web Serve r 
+akan me -request dinamic web page dengan tujuan 
+(response) mengenerate page static berupa html ke 
+client (brows er). 
+ 
+JSP 
+JavaServer Page atau JSP yaitu Server -Side 
+Programing Technology yang digunakan untuk membuat 
+ 
+281 Pemrograman 2  Web Aplikasi berupa content HTML menjadi dynamis. 
+JSP ini berextensi .jsp bukan .html dan media internet 
+typenya yaitu application/jsp.  
+JSP component ad alah sejenis dengan Java 
+Servlet yang khusus di design supaya user membangun 
+user interface dengan mudah untuk aplikasi java web. 
+Dengan JSP kita bisa membuat halaman yang dinamis 
+seperti input data, mengambil data dari database dan 
+lain-lain.  
+ 
+<html>  
+<head><title>Belajar Web Pages dengan 
+JSP</title></head>  
+<body>  
+<!-- ini code java dalam html --> 
+  <%  out.println("Ini sintax JSP"); %>  
+</body>  
+</html>  
+ 
+Atau bisa menggunakan gaya bahasa XML seperti 
+berikut:  
+ 
+<html>  
+<head><title>Belajar Web Pages dengan 
+JSP</title></head>  
+<body>  
+<!-- ini syntax JSP dengan xml format --> 
+  <jsp:scriptlet>  
+ 
+282 Pemrograman 2      out.println("Ini sintax JSP lagi");  
+  </jsp:scriptlet>  
+</body>  
+</html>  
+ 
+Jika disederhanakan menggunakan bahasa kita 
+JSP dan Servlet Adalah sebuah kode java yang berjal an 
+didalam web server yang membaca user input seperti 
+form html biasanya, seperti jika kita memasukan data 
+atau menginput data kemudian diolah hasil inputan yang 
+telah kita input dan dikembalikan atau menghasilkan 
+sebuah halaman html yang berjalan secara d inamis, jika 
+di gambarkan lebih jelasnya seperti ini.  
+ 
+ 
+Gambar 135. Alur Web Browser  
+ 
+Sebuah web browser mengirimkan informasi 
+kedalam web server kemudian diolah oleh web server 
+dan dikirim ke database dan kemudian database 
+mengem balikan hasil kedalam web server yang 
+kemudian diolah dan dikembalikan ke web browser 
+ 
+283 Pemrograman 2  sebagai halaman html, jadi  servlet dan jsp ini berjalan di 
+web server.  Lalu aplikasi apa saja yang bisa dibuat, 
+contohnya yaitu :  
+a. E-Commerce : Tokopedia, Shopee, lazada , dan lain 
+sebagianya.  
+b. Student / Employe Tracking  
+c. Restaurant / Hotel Reservation  
+d. Social Media : Facebook, Twitter, Instagram  
+ 
+Keuntungan mempelajari JSP dan Servlet adalah :  
+a. JSP dan Servlet adalah komponen utama dari Java 
+Enterprise Edition (Java EE)  
+b. MVC Framework menggunakan JSP dan Servlet  
+- Spring  
+- JSF 
+- Struts  
+ 
+Tools dan Requaired Software  
+a. Java Development Kit (JDK)  
+Adalah sebuah kompiler dari Java, dimana source 
+code (kode sumber) dari Java akan dikompilasi 
+menjadi Byte Code. Kita bisa download dan install 
+JDK dari www.oracle.com  
+b. Java Integrated Development Environment (IDE)  
+- Netbeans : download di netbeans.apache.org  
+- Eclipse  
+- Dll 
+ 
+284 Pemrograman 2  JSP di Proses  
+JSP di proses dalam server, kemudian hasil kode 
+java yang disertakan dalam HTML dikembalikan ke 
+browser, dic ontohkan seperti ini :  
+ 
+ 
+Gambar 136. Alur Kode Java  
+ 
+Jadi kita punya sebuah web browser katakanlah 
+seperti Microsoft Edge/Chrome/Mozilla firefox, kemudian 
+sebuah web browser mengirimkan sebuah request atau 
+permintaan ke server ata u ke file JSP, file JSP ini berisi  
+sebuah HTML kode dan dicampur oleh kode java, dari 
+HMTL kode  dan java ini akan diproses sedemikian rupa 
+sehingga hanya akan menghasilkan sebuah HTML kode 
+saja kemudian HTML kode ini akan dikirim kembali ke 
+web browser y ang kalian gunakan.  
+ 
+Meletakan File JSP  
+Kita sebagai developer atau yang membuat 
+project harus tau dimana letak doc menaruh file JSP ini,  
+ 
+285 Pemrograman 2   File JSP berada pada folder Web Content (untuk IDE 
+Eclipse) dan Web Pages (untuk Netbeans).  
+ Harus memiliki ekstensi .jsp  
+ 
+ 
+Gambar 137.  Letak File JSP  
+ 
+Contoh kode nya sebagai berikut :  
+  
+<html>  
+ <head>  
+ <meta http -equiv=”Content -Type” 
+content=”text/html;  charset=UTF -S”> 
+ <title>JSP Page</title>  
+ </head>  
+ <body>  
+  <h1>Hello World!</h1>  
+  Waktu Saat Ini Adalah <%= new 
+java.util.Date() %>  
+ </body>  
+</html>  
+ 
+ 
+286 Pemrograman 2  Jadi struktur nya seperti file html pada biasanya 
+mempunyai tag html, tag head dan body, yang 
+membedakan disini adalah adanya kode java yang 
+ditutup oleh % dan (), itu adalah java expression akan 
+membuat halaman html nya menjadi tampil secara 
+dinamis  
+ 
+2. Membuat  Program JSP Hello World  
+Buka Netbeans IDE  
+ 
+ 
+Gambar 138. Netbeans IDE  
+ 
+Lalu buat project baru, pilih Categories Java Web dan 
+pada Projects pilih Web Application.  
+ 
+287 Pemrograman 2  
+ 
+Gambar 139. New Project  
+ 
+Lalu klik Next, beri nama project nya misalkan 
+“helloworld”  
+ 
+Gambar 140. New Web Application  
+ 
+288 Pemrograman 2  Kemudian  Next, pilih server yang kalian gunakan, 
+lalu pilih Java EE Version.  
+ 
+ 
+Gamba r 141. Memilih Server  
+ 
+Lalu Next, akan ada pilihan Frameworks tapi disini 
+kita akan lewati terlebi h dahulu jadi kita klik Finish.  
+ 
+ 
+289 Pemrograman 2  
+ 
+Gambar 142. Framework  
+ 
+Lalu kita bisa lihat bagian default dari project J SP 
+di Netbeans dan File projectnya.  
+ 
+ 
+ 
+290 Pemrograman 2  
+ 
+Gambar 143.  Halaman Default Project  
+ 
+Untuk halaman default index.html tidak akan kita 
+gunakan jadi kita hapus, klik kanan > delete.  
+ 
+ 
+291 Pemrograman 2  
+ 
+Gambar 144. Delete Index.html  
+ 
+ Lalu buatlah file JSP yang baru, klik kanan > 
+New > Other.  
+ 
+ 
+292 Pemrograman 2  
+ 
+Gambar 145. New File JSP  
+ 
+Lalu akan muncul gambar seperti dibawah.  
+ 
+ 
+293 Pemrograman 2  
+ 
+Gambar 146. New File  
+ 
+Pada Categoris pilih Web dan File Types JSP, lalu  
+klik Next. Berikan nama file helloworld, pada Options 
+pilih JSP File, lalu Finish.  
+ 
+ 
+294 Pemrograman 2  
+ 
+Gambar 147. Nama File JSP  
+ 
+Lalu muncul default halaman HTML.  
+ 
+ 
+295 Pemrograman 2  
+ 
+Gambar 148. Halaman Default Html  
+Masukkan kode java did alamnya, contoh Waktu 
+saat ini adalah <%= new java.util.Date() %>. Lalu Save  
+dan coba Run file.  
+ 
+Gambar 149. Permintaan Access  
+ 
+296 Pemrograman 2  Pilih Allow access, lalu kita akan diarahkan 
+langsung oleh Netbeans ke sebuah browser sesuai 
+pengaturan  default Netbeans kita. Jadi nanti web 
+browser nya otomatis akan terbuka.  
+ 
+ 
+Gambar 150. Tampilan File JSP  
+ 
+Pada Netbeans kita tidak menulis tulisan tanggal 
+tapi kita gunakan kode java itu untuk mengambil nilai 
+dari tanggal server dan yang akan ditampilkan waktu 
+sekarang.  
+ 
+ 
+297 Pemrograman 2  C.  Latihan  
+Buatlah aplikasi sederhana menggunakan jsp servlet!  
+ 
+D. Referensi  
+Khannedy, K. Eko  (2011). Membangun Aplikasi Client -
+Server Menggunakan  Java. Subang: StripBandunk,  
+Budiharto, W. (2004). Pemrograman  Web Mne ggunakan 
+J2EE. Jakarta:  Elexmedia Komputindo.  
+Wijono, S. H., Suharto, B. H., & Wijono, M. S. (2006). 
+Pemrograman Java  
+Servlet dan JSP dengan Netbeans. Yogyakarta: C.V ANDI  
+OFFSET.  
+ 

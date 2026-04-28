@@ -1,0 +1,313 @@
+ 
+214 Pemrograman 2   
+ 
+ 
+BAB  VIII 
+DEPLOYM ENT INSTALLER  JAVA  
+ 
+A. Capaian  Pembelajaran  
+Pada pertemuan ini akan dijelaskan mengenai cara 
+membuat file executable dan installer dari aplikasi yang 
+sudah dibuat, mengidentifikasi software pendukung untuk 
+membentuk Deployment – Installer, membuat Deployment  - 
+Installer menggunakan software pendukung Launch4j dan 
+NSIS.  
+ 
+B. Materi  
+1. Software pendukung Deployment - Installer  
+File executable adalah jenis file yang dapat 
+diterjemahkan dan dijalankan langsung oleh kernel 
+tanpa harus membutuhkan aplikasi tambahan. Insta ller 
+merupakan aplikasi yang dibuat bertujuan untuk 
+mengekstrak atau memasukan aplikasi baru ke 
+komputer dan menyiapkannya untuk eksekusi 
+selanjutnya.  
+ 
+215 Pemrograman 2  Beberapa contoh software aplikasi pendukung 
+yang digunakan untuk melakukan pembuatan installer, 
+adalah:  
+a. Freeware/Shareware  
+- Launch4j: http://launch4j.sourceforge.net/  
+- Janel: Java Native Executable/Launcher :  
+  http://sourceforge.net/projects/janel/  
+- JSmooth: http://jsmooth.sourceforge.net/  
+- Izpack: http://izpack.org/  
+b. Proprietary Software (Trialware)  
+- Advanced Installer: 
+http://www.advancedinstaller.com  
+- Excelsior JET: http://www.excelsiorjet.com  
+- Install4J: http://www.ej  
+  technologies.com/p roducts/install4j/overview.html  
+- InstallBuilder: 
+http://installbuilder.bitrock.com/index.html  
+Software  yang digunakan pada contoh membuat 
+paket deployment adalah:  
+a. Netbeans dapat didownload di http://netbeans.org/,  
+digunakan untuk      membuat file java archive (.jar) 
+dari project yang telah dibuat.  
+b. Launch4j dapat didownload di 
+http://launch4j.sourceforge.net/,  digunakan untuk 
+membuat file executable (.EXE).  
+c. WinZip/WinRar untuk mengkonversi ke format ZIP  
+ 
+216 Pemrograman 2  d. NSIS dapat didownload di 
+http://nsis.sourceforge.io/Main_Page  digunakan 
+untuk mengkonversi dari ZIP menjad i executable 
+(.EXE)  
+ 
+2. Membuat Deployment - Installer menggunakan 
+software pendukung Launch4j   dan NSIS  
+Langkah -langkah membentuk Deployment  
+Membuat Deployment menggunakan Launch4j 
+dan NSIS, terlebih dahulu kita harus menginstall 
+launch4j dan NSIS. Downloa d Launch4j dari 
+http://launch4j.sourceforge.net/,  lalu buka file yang 
+sudah didownload.  
+ 
+ 
+Gambar 60. Buka FIle Install Launch4j  
+ 
+217 Pemrograman 2  Klik Next > I Agree.  
+ 
+Gambar 61. Persetujuan Lisens i 
+ 
+Setelah itu akan muncul gambar berikut lalu klik Install.  
+ 
+ 
+Gambar 62. Install Launch4j  
+ 
+218 Pemrograman 2  Lalu akan muncul proses menginstall.  
+ 
+ 
+Gambar 63. Proses Menginstall  
+ 
+Lalu akan  muncul g ambar berikut, hilangkan tanda 
+ceklist dan klik Finish  
+ 
+ 
+219 Pemrograman 2  
+ 
+Gambar 64. Penyelesaian Install  
+Langkah  selanjutnya kita akan menginstall NSIS, 
+buka file NSIS > Next.  
+ 
+ 
+Gambar 65. Install NSIS  
+ 
+220 Pemrograman 2  Setelah itu akan m uncul per setujuan lisensi, klik I Agree.  
+ 
+Gambar 66. Persetujuan Lisensi  
+Pada tahap selanjutnya klik Next.  
+ 
+ 
+Gambar 67. Komponen NSIS  
+ 
+221 Pemrograman 2  Lalu klik Install.  
+ 
+ 
+Gambar 68. Install NSIS  
+ 
+Lalu akan muncul proses mengintall.  
+ 
+ 
+222 Pemrograman 2  
+ 
+Gambar 69. Proses Menginstall  
+ 
+Hilangkan tanda ceklist pada Run NSIS, Lalu klik Finish.  
+ 
+ 
+Gambar 70. Penyelesaian Install  
+ 
+223 Pemrograman 2  Lalu akan muncul gambar berikut.  
+ 
+Gambar 71. Komponen NSIS  
+ 
+3. Membentuk file executable dengan launch4j  
+Buka Project InputDataKaryawan di Netbeans 
+lalu Run untuk memastikan tidak ada kesalahan pada 
+project tersebut atau error, jika sudah klik kanan pada 
+project tersebut kem udian ke properties pilih Source dan 
+lihat di Source/Binary pastikan format JDK nya harus 
+versi yang terakhir.  
+ 
+ 
+224 Pemrograman 2  
+ 
+Gambar 72. Melihat versi JDK  
+Lalu klik Libraries pada Categories, pastikan pada 
+tab compile sudah terinstall MySQL JD BC Driver.  
+ 
+ 
+225 Pemrograman 2  
+ 
+Gambar 73. Isi Compile Libraries  
+ 
+Lalu pada tab Compile Tests Pastikan tidak ada 
+yang berwarna merah, kemudian klik OK.  
+ 
+ 
+226 Pemrograman 2  
+ 
+Gambar 74. Isi Compile Tests  
+ 
+Pilih project yang kita buat, lalu pada  Menu Bar, 
+pilih menu Run lalu pilih Clean and Build Project.  
+ 
+ 
+227 Pemrograman 2  
+ 
+Gambar 75. Menu Clean and Build  
+ 
+Jika tidak ada kesalahan atau error maka akan 
+muncul file berektensi jar pada folder dist.  
+ 
+ 
+228 Pemrograman 2  
+ 
+Gambar 76. File Jar  
+ 
+ 
+Selanjutnya  buka aplikasi Launch4j, maka akan 
+tampil gambar seperti berikut.  
+ 
+ 
+229 Pemrograman 2  
+ 
+Gambar 77. Aplikasi Launch4j  
+ 
+Pada tab Basic cari file jar dengan klik tombol/icon 
+browse untuk memilih file jar dari project kita. Pilih file jar 
+yang ada pada folder dist, lalu klik Open.  
+ 
+ 
+230 Pemrograman 2  
+ 
+Gambar 78. File Jar  
+ 
+Lalu pada Output file klik tombol/icon browse 
+untuk menentukan file keluarannya dan beri nama file 
+keluaran. Misalnya data.exe (harus berektensi exe).  
+ 
+ 
+231 Pemrograman 2  
+ 
+Gambar  79. File Output exe  
+ 
+Kemudian pada tab JRE kita tuliskan pada Min 
+JRE version sesuai yang terinstal di komputer kita, 
+misalnya 1.8.0, untuk mengecek versinya bisa lihat di 
+command prompt dengan cara ketik java –version maka 
+akan t ertulis java version nya.  
+ 
+ 
+232 Pemrograman 2  
+ 
+Gambar 80. Mengecek Versi Java  
+Jika sudah tinggal masukan datanya ke JRE.  
+ 
+ 
+Gambar 81. Mengisi JRE  
+ 
+233 Pemrograman 2  Klik icon Build Wrapper, lalu beri nama file untuk 
+menyimpan konfigurasi Laun ch4j, misalkan data.setup, 
+lalu Save.  
+ 
+ 
+Gambar 82. Menyimpan konfigurasi Launch4j  
+ 
+Maka akan terbentuk file setup seperti gambar 
+berikut.  
+ 
+ 
+ 
+234 Pemrograman 2  
+ 
+Gambar 83. Data Build Wrapper  
+ 
+Lalu buka folder project kita, p ilih folder lib dan file 
+project jar nya lalu jadikan sebuah archive.  
+ 
+ 
+ 
+235 Pemrograman 2  
+ 
+Gambar 84. Folder Archive  
+ 
+Lalu berikan nama data -installer, ganti Archive 
+format dengan file ZIP, klik OK.  
+ 
+ 
+236 Pemrograman 2  
+ 
+Gambar 85. Nama Archi ve 
+  
+Maka akan jadi file seperti gambar berikut.  
+ 
+ 
+ 
+ 
+Gambar 86. Data Archive  
+ 
+ 
+ 
+237 Pemrograman 2  4. Membuat Installer dengan NSIS  
+Buka aplikasi NSIS yang telah di install, lalu pilih 
+Installer based on ZIP file.  
+ 
+ 
+Gambar 87. NSIS Menu  
+ 
+Klik tombol Open dan cari file zip yang telah kita 
+buat, opsi keluaran installer bisa diubah sesuai 
+kebutuhan, untuk Default Folder adalah lokasi default 
+untuk instalasi, Compression adalah format kompresi 
+yang digunakan, lalu klik tombol Genera te. 
+ 
+ 
+238 Pemrograman 2  
+ 
+Gambar 88. Pengaturan Installer Zip  
+ 
+Akan muncul gambar seperti berikut pastikan tidak 
+ada error, lalu klik Close.  
+ 
+ 
+239 Pemrograman 2  
+ 
+Gambar 89. Penyelesaian Data NSIS  
+ 
+Setelah proses selesai maka akan dihasilkan fi le 
+installer dengan nama data -installer, cari di folder yang 
+telah kita pilih untuk menyimpannya tadi.  
+ 
+ 
+ 
+Gambar 90. Data Installer NSIS  
+ 
+ 
+240 Pemrograman 2  5. Test File Installer  
+Cara test menginstall melalui file installer, double 
+klik file data -installer, tentukan lokasi penyimpanannya, 
+lalu klik tombol Install.  
+ 
+ 
+Gambar 91. Install data  
+Kemudian tunggu proses hingga selesai dan klik 
+tombol Close, lalu jalankan hasil instalasinya.  
+ 
+ 
+241 Pemrograman 2  
+ 
+Gambar 92. Prose s Penyelesaian  
+ 
+C. Latihan  
+Buat file Installer untuk aplikasi Laundry!  
+ 
+D. Referensi  
+Budiharto, W. (2004). Pemrograman Web Mneggunakan 
+J2EE. Jakarta: Elexmedia Komputindo. JENI, T. P. 
+(2007). JENI 1 -6. 
+Wijono, S. H., Suharto, B. H., & Wijono, M. S. (2006). 
+Pemrogr aman Java  Servlet dan JSP dengan 
+Netbeans. Yogyakarta: C.V ANDI OFFSET.  

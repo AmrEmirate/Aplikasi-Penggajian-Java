@@ -1,0 +1,150 @@
+ 
+446 Pemrograman 2   
+ 
+ 
+BAB XVII  
+JSP DAN SERVLET  
+ 
+A. Tujuan Pembelajaran  
+Pada pertemuan ini akan dijelaskan mengenai proses 
+dari aplikasi web dengan JSP dan Servlet.  
+ 
+B. Materi  
+1. Membuat F orm Transaksi Aplikasi Web  
+Langkah -langkah membuat form transaksi pada 
+aplikasi web  
+Buatlah class baru dengan nama Gaji dan simpan 
+pada package com.unpam.model, klik kanan pada 
+package com.unpam.model pilih New > Java Class.  
+ 
+ 
+447 Pemrograman 2  
+ 
+Gambar 272. Membuat Java Class  
+ 
+Ubah nama Class Name menjadi Gaji, klik Finish.  
+ 
+Gambar 273. Mengubah Nama Class  
+ 
+448 Pemrograman 2  Maka akan seperti gambar dibawah ini.  
+ 
+ 
+Gambar 274. Tampilan Class Gaji  
+ 
+2. Menambahkan Library J asfer Report  
+Buka file Gaji.java maka akan terlihat terdapat 
+beberapa indikator kesalahan, ini adalah indikator 
+kesalahan library jasper report yang belum ditambahkan 
+kedalam Gaji.java.  
+ 
+ 
+449 Pemrograman 2  
+ 
+Gambar 275. Tampilan Indikator Kesalahan  
+ 
+Kemudian  klik kanan pada Libraries, pilih Add 
+JAR/Folder  
+ 
+ 
+Gambar 276. Pilih Libraries  
+ 
+Lalu pilih semua file yang ada pada folder Jasfer 
+Report/ lib jasper report, dan klik Open. Kemudian 
+tunggu sampai proses update selesai dan ti dak ada 
+indikator kesalahan lagi.  
+ 
+450 Pemrograman 2  
+ 
+Gambar 277. File Jasfer Report  
+ 
+3. Menambahkan Servlet GajiController  
+Buatlah servlet GajiController pada package 
+com.unpam.controller, klik kanan pada package 
+com.unpam.controller pilih New > Servl et. 
+ 
+ 
+Gambar 278. Menambahkan Servlet  
+ 
+451 Pemrograman 2  Ubah Class Name menjadi GajiController, klik Finish.  
+ 
+Gambar 279. Mengubah Class Name  
+ 
+Hapuslah source code berikut.  
+ 
+ 
+Gambar 280. Menghapus  Source Code  
+ 
+452 Pemrograman 2  Silahkan tambahkan source code berikut didalam 
+metode processRequest dibawah pernyataan 
+response.setContent  Type pada GajiController.   
+ 
+ 
+453 Pemrograman 2  
+ 
+ 
+454 Pemrograman 2  
+
+ 
+455 Pemrograman 2  
+ 
+ 
+456 Pemrograman 2  
+
+ 
+457 Pemrograman 2  
+ 
+ 
+ 
+458 Pemrograman 2  
+
+ 
+459 Pemrograman 2  
+ 
+ 
+ 
+460 Pemrograman 2  
+
+ 
+461 Pemrograman 2  
+ 
+ 
+ 
+462 Pemrograman 2  
+
+ 
+463 Pemrograman 2  
+ 
+ 
+ 
+ 
+464 Pemrograman 2  
+ 
+Gambar 281. Menambahkan Source Code  
+Klik semua lampu ind ikator kesalahan (lampu 
+merah), dan pilih dengan Add Import….  
+ 
+465 Pemrograman 2  
+ 
+ 
+Gambar 282. Memperbaiki Indikator Kesalahan  
+ 
+Silahkan coba untuk dieksekusi (run), Login dan 
+pilih menu Transaksi.  
+ 
+ 
+466 Pemrograman 2  
+ 
+Gambar 283. Tampila n Form Transaks i 
+ 
+C.  Latihan  
+Buatlah proses editing data (update dan delete) pada 
+penjualan barang!  
+ 
+D. Daftar Pustaka  
+Budiharto, W. (2004). Pemrograman Web Menggunakan 
+J2EE. Jakarta:Elexmedia Komputindo.JENI, T. P. 
+(2007). JENI 1 -6. 
+Wijono, S. H., Suharto , B. H., & Wijono, M. S. (2006) 
+Pemrograman Java  Servlet dan JSP dengan 
+Netbeans. Yogyakarta: C.V ANDI OFFSET.  
+ 

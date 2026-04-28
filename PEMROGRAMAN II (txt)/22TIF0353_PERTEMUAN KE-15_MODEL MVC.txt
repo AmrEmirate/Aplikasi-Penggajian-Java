@@ -1,0 +1,508 @@
+ 
+388 Pemrograman 2   
+ 
+ 
+BAB XV  
+MODEL MVC  
+ 
+A. Tujuan Pembelajaran  
+Pada pertemuan ini akan dijelaskan mengenai 
+pembuatan aplikasi web dan pengolahannya denga n 
+menggunakan model MVC (Model – View Controller).  
+ 
+B. Materi  
+Model MVC digunakan untuk mengatasi masalah 
+logika/proses aplikasi yang  kompleks. Dalam model ini 
+logika bisnis /proses dan presentasi/tampilan  dipisahkan. 
+Logika bisnis/proses dinyatakan oleh mode l, 
+presentasi/tampilan  dinyatakan oleh view. Sedangkan 
+pengo ntrolan aliran request dan data  dinyatakan oleh 
+controller.  
+Model MVC (Model, View, Controller) digunakan dalam 
+membangun website yang lebih dinamis dan Model MVC 
+digunakan untuk mengatasi masalah  logika/proses aplikasi 
+yang  kompleks. Dalam model ini merupakan teknik 
+pemrograman yang popular saat ini, yang mengharapkan 
+ 
+389 Pemrograman 2  pemrogram secara disiplin untuk membagi program menjadi 
+tiga bagian : model, view dan controller yaitu:  
+1. Model: Merupakan bagian da ri aplikasi yang 
+mengimplementasi logika untuk domain data aplikasi.  
+2. View: Merupakan komponen yang menampilkan 
+antarmuka untuk pengguna (user interface) aplikasi.  
+3. Controller: Merupakan komponen yang digunakan untuk 
+menangani interaksi pengguna, bekerja den gan model, 
+dan memilih view mana yang digunakan untuk merender 
+data.  
+ 
+Langkah -langkah membuat Form Master Aplikasi Web  
+ 
+1. Membuat Package  
+ Buatlah 3 package seperti dibawah ini :  
+a. com.unpam.model  
+b. com.unpam.view  
+c. com.unpam.controller  
+Caranya klik kanan pada Sou rce Package > New > pilih 
+Java Package.  
+ 
+ 
+390 Pemrograman 2  
+ 
+Gambar 225. Membuat Package  
+ 
+Ubah nama Package menjadi com.unpam.model, 
+lalu klik Finish.  
+ 
+ 
+391 Pemrograman 2  
+ 
+Gambar 226. Package Model  
+ 
+Lalu buatlah dengan cara yang sama 2 packag e 
+lain dengan nama com.unpam.view dan 
+com.unpam.controller, maka akan jadi seperti ini.  
+ 
+ 
+392 Pemrograman 2  
+ 
+Gambar 227. Membuat Package  
+ 
+2. Menuliskan Source Code Package Model  
+Tambahkan 4 file class java pada package 
+com.unpam.model, dengan nama Enkr ipsi.java, 
+Koneksi.java, Karyawan.java, Pekerjaan.java. Caranya 
+klik kanan pada package com.unpam.model, pilih New > 
+java class.  
+ 
+ 
+393 Pemrograman 2  
+ 
+ 
+Gambar 228. Membuat Class Java  
+ 
+Ubah nama class lalu klik Finish.  
+ 
+ 
+Gambar 229. Mengubah Class Java  
+ 
+394 Pemrograman 2  Lakukan hal yang sama, sehingga menjadi seperti 
+berikut.  
+ 
+ 
+Gambar 230. Class Java  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+395 Pemrograman 2  Source Code Enkripsi.java  
+ 
+ package model;  
+ import java.security.MessageDigest; public class 
+Enkripsi {  
+ public S tring hashMD5(String value) throws Exception{  
+ MessageDigest md =  
+ MessageDigest.getInstance(“MD5”); 
+md.update(value.getBytes());  
+ 
+ byte byteData[] = md.digest();  
+ 
+ StringBuilder hexString = new StringBuilder();  
+ for (int i=0;i<byteData.length;i++) {  
+ String hex=Integer.toHexString(0xff & byteData[i]); if 
+(hex.length()==1) {  
+ hexString.append(‘0’);  
+ } 
+ hexString.append(hex);  
+ } 
+ return hexString.toString();  
+ } 
+ } 
+ 
+ 
+ 
+ 
+ 
+ 
+396 Pemrograman 2  Source Code Koneksi.java  
+ 
+ package model;  
+ 
+ import java.sql.Connection;  
+ import java.sql .DriverManager;  
+ import java.sql.SQLException;  
+ 
+ public class Koneksi {  
+ private static final String driver = 
+“com.mysql.jdbc.Driver”;  
+ private static final String database = 
+ “jdbc:mysql://localhost:3306/dbaplikasigajikaryawan”;  
+ private static final Str ing user = “root”;  
+ private static final String password = “”;  
+ 
+ private Connection connection;  
+ private String pesanKesalahan;  
+ 
+ public String getPesanKesalahan()  
+ { return pesanKesalahan;  
+ } 
+ 
+ public Connection  
+ getConnection(){ connection =  
+ null; pesanKesalahan = “”;  
+ 
+ try{ 
+ 
+397 Pemrograman 2   Class.forName(driver);  
+ } catch (ClassNotFoundException ex){  
+ pesanKesalahan = “JDBC Driver tidak ditemukan atau 
+rusak \n”+ex;  
+ } 
+ 
+ if (pesanKesalahan.equals(“”)){ try {  
+ connection = 
+DriverManager.getConnection(database+”?user= ”+user+”  
+ &password=”+password+””);  
+ } catch (SQLException ex) {  
+ pesanKesalahan = “Koneksi ke 
+“+database+”gagal \n”+ex;  
+ } 
+ } 
+ return connection;  
+ } 
+ } 
+Source Code Karyawan.java  
+ 
+ package model;  
+ 
+ import java.sql.Connection;  
+ import java.sql.PreparedStatem ent; 
+ import java.sql.ResultSet;  
+ import java.sql.SQLException;  
+ import view.PesanDialog;  
+ 
+ 
+398 Pemrograman 2   public class Karyawan {  
+ private String ktp, nama, password;  
+ private int ruang;  
+ private String pesan;  
+ private Object[][] list;  
+ private final Koneksi koneksi = new Koneksi();  
+ private final PesanDialog pesanDialog = new 
+PesanDialog();  
+ 
+ public String getKtp() {  
+ return ktp;  
+ } 
+ 
+ public void setKtp(String ktp) {  
+  this.ktp = ktp;  
+ } 
+ 
+ public String getNama() {  
+ return nama;  
+ } 
+ 
+ public void setNama(String nama ) {  
+ this.nama = nama;  
+ } 
+ 
+ public int getRuang() {  
+ return ruang;  
+ } 
+ 
+399 Pemrograman 2   
+ public void setRuang(int ruang) {  
+ this.ruang = ruang;  
+ } 
+ public String getPesan() {  
+ return pesan;  
+ } 
+ 
+ public String getPassword() {  
+ return password;  
+ } 
+ 
+ public void setPassw ord(String password) {  
+ this.password = password;  
+ } 
+ 
+ public Object[][] getList() {  
+ return list;  
+ } 
+ 
+ public void setList(Object[][] list) { this.list = list;  
+ } 
+ 
+ public boolean simpan(){  
+ boolean adaKesalahan = false;  
+ Connection connection;  
+ 
+ if ((co nnection = koneksi.getConnection()) !=  
+ 
+400 Pemrograman 2   null){ int jumlahSimpan=0;  
+ boolean simpan = false;  
+ String SQLStatemen=””;  
+ PreparedStatement preparedStatement;  
+ ResultSet rset;  
+ 
+ try { 
+ simpan = true;  
+ SQLStatemen = “insert into tbkaryawan(ktp, nama, 
+ruang, p assword)  
+ values  (?,?,?,?)”;  
+ 
+ preparedStatement =  
+ connection.prepareStatement(SQLStatemen);  
+ preparedStatement.setString(1, ktp);  
+ preparedStatement.setString(2, nama);  
+ preparedStatement.setInt(3, ruang);  
+ preparedStatement.setString(4, password);  
+ 
+ jumlahSimpan = preparedStatement.executeUpdate();  
+ } 
+ 
+ if (simpan) {  
+ if (jumlahSimpan < 1){ adaKesalahan = true;  
+ pesan = “Gagal menyimpan data karyawan”;  
+ } 
+ } 
+ preparedStatement.close();  
+ 
+401 Pemrograman 2   preparedStatement.close();  
+ rset.close();  
+ connection.close( ) 
+ } catch (SQLException ex){  
+ adaKesalahan = true;  
+ pesan = “Tidak dapat membuka tabel 
+tbkaryawan \n”+ex+” \n”+SQLStatemen;  
+ } 
+ } else {  
+ adaKesalahan = true;  
+ pesan = “Tidak dapat melakukan koneksi ke server \n”+ 
+ koneksi.getPesanKesalahan();  
+ } 
+ 
+ return ! adaKesalahan;  
+ } 
+ 
+Source Code Pekerjaan.java  
+  
+ package model;  
+ 
+ import java.sql.Connection;  
+ import java.sql.ResultSet;  
+ import java.sql.SQLException;  
+ import java.sql.Statement;  
+ import view.PesanDialog;  
+ public class Pekerjaan {  
+ private String kode Pekerjaan, namaPekerjaan;  
+ 
+402 Pemrograman 2   private int jumlahTugas;  
+ private String pesan;  
+ private Object[][] list;  
+ private final Koneksi koneksi = new Koneksi();  
+ private final PesanDialog pesanDialog = new  
+ PesanDialog();  
+ public String getKodePekerjaan() {  
+ return  kodePekerjaan;  
+ } 
+ 
+ public void setKodePekerjaan(String kodePekerjaan) {  
+ this.kodePekerjaan = kodePekerjaan;  
+ } 
+ 
+ public String getNamaPekerjaan() {  
+ return namaPekerjaan;  
+ } 
+ 
+ public void setNamaPekerjaan(String namaPekerjaan) {  
+ this.namaPekerjaan =  namaPekerjaan;  
+ } 
+ 
+ public int getJumlahTugas() {  
+ return jumlahTugas;  
+ } 
+ 
+ public void setJumlahTugas(int jumlahTugas) {  
+ this.jumlahTugas = jumlahTugas;  
+ 
+403 Pemrograman 2   } 
+ 
+ public String getPesan() {  
+ return pesan;  
+ } 
+ 
+ public Object[][] getList() {  
+ return list;  
+ } 
+ 
+ public void setList(Object[][] list) {  
+ this.list = list;  
+ } 
+  
+public boolean simpan(){  
+ boolean adaKesalahan = false;  
+ Connection connection;  
+ 
+ if ((connection = koneksi.getConnection()) !=  
+ null){ int jumlahSimpan=0;  
+ boolean simpan = false;  
+ Statement sta;  
+ ResultSet rset;  
+ 
+ try { 
+ simpan = true;  
+ SQLStatemen = "insert into tbpekerjaan values  
+ 
+404 Pemrograman 2   ('"+ kodePekerjaan +"','"+ namaPekerjaan+"','"+ 
+jumlahTugas +"')";  
+ sta = connection.createStatement();  
+ jumlahSimpan = sta.executeUpdate(SQLStatemen);  
+ } 
+ 
+ if (simpan) {  
+ if (jumlahSimpan < 1){  
+ adaKesalahan = true;  
+ pesan = "Gagal menyimpan data pekerjaan";  
+ } 
+ } 
+ 
+ } else {  
+ adaKesalahan = true;  
+ pesan = "Tidak dapat melakukan koneksi ke server \n" 
+ +koneksi.getPesanKesalahan();  
+ } 
+ 
+ return !adaKesalah an; 
+ } 
+ 
+Buka file Enkripsi.java, pastikan nama Package 
+nya com.unpam.model, dan pastikan juga untuk file 
+lainnya yang ada di package com.unpam.model.  
+ 
+ 
+405 Pemrograman 2  
+ 
+ 
+Gambar 231. Isi Package  
+ 
+ Buka File karyawan.java, ubah import dari 
+view.Pesa nDialog menjadi 
+ com.unpam.view.PesanDialog. begitu pula dengan file 
+Pekerjaan.java.  
+ 
+ 
+Gambar 232. Isi Package  
+ 
+ 
+406 Pemrograman 2  Karena mengimport class PesanDialog dari 
+package com.unpam.view, maka harus dibuat class nya, 
+diaplikasi desktop digun akan untuk konfirmasi 
+memperbaharui data yang sudah tersimpan, diaplikasi 
+web ini tidak dibuat konfirmasi, tapi langsung 
+diperbaharui. Agar tidak banyak perubahan source code 
+maka perlu penyesuaian, tambahkan class PesanDialog 
+dipackage com.unpam.view.  
+ 
+ 
+Gambar 233. Java Class  
+ 
+Silahkan klik kanan pada package 
+com.unpam.view, pilih New > java class, lalu ubah nama 
+class menjadi PesanDialog, klik Finish.  
+ 
+ 
+ 
+407 Pemrograman 2  
+ 
+Gambar 234. Java Class  
+ 
+Tambahkan source code agar  menjadi seperti berikut.  
+ 
+ 
+Gambar 235. Menambahkan Source Code  
+ 
+ 
+408 Pemrograman 2  Buka file Karyawan.java, lalu tambahkan source 
+code berikut.  
+ 
+ 
+Gambar 236. Menambahkan Source Code  
+ 
+Buka file Pekerjaan.java, lalu tambahka n source 
+code berikut.  
+ 
+ 
+Gambar 237. Menambahkan Source Code  
+ 
+Klik kanan pada package com.unpam.view, pilih 
+New > Servlet.  
+ 
+409 Pemrograman 2  
+ 
+Gambar 238. Servlet  
+ 
+Ubah namanya menjadi MainForm, lalu klik Finish.  
+ 
+ 
+Gambar 239. Nama Servlet  
+ 
+410 Pemrograman 2  Hapuslah source code berikut.  
+ 
+ 
+Gambar 240. Menghapus Source Code  
+ 
+Ubah Metode processRequest menjadi tampilan, 
+lalu ubah akses modifier dari protected menjadi public, 
+dan tambahkan param eter konten bertipe String seperti 
+berikut.  
+ 
+ 
+411 Pemrograman 2  
+ 
+Gambar 241. Mengubah Metode  
+ 
+Lalu tambahkan source code dibawah pernyataan 
+response.setContentType seperti berikut.  
+ 
+ 
+412 Pemrograman 2  
+ 
+ 
+ 
+413 Pemrograman 2  
+ 
+ 
+ 
+414 Pemrograman 2  
+ 
+Gambar 242. Menambahkan Source C ode MainForm  
+ 
+Klik lampu indikator kesalahan pada HttpSession, 
+lalu pilih ”Add import for javax.servlet.http.HttpSession”.  
+ 
+ 
+Gambar 243. Memperbaiki Indikator Kesalahan  
+ 
+ 
+ 
+415 Pemrograman 2  C. Latihan  
+Buat file -file yang dibutuhkan untuk form data bara ng, 
+customer, transaksi penjualan!  
+ 
+D. Referensi  
+Budiharto, W. (2004). Pemrograman Web Menggunakan 
+J2EE. Jakarta: Elexmedia Komputindo.  
+JENI, T. P. (2007). JENI 1 -6. 
+Wijono, S. H., Suharto, B. H., & Wijono, M. S. (2006) 
+Pemrograman Java Servlet dan JSP dengan  
+Netbeans. Yogyakarta: C.V ANDI OFFSET.  
+Susanna Dwi Yulianti K, Sartika Lina Mulani Sitio, 
+Hidayatullah Al Islami, Bima Guntara, 
+SOCIALISATION AND TRAINING OF 
+CODELGNITER FRAMEWORK FOR SYEKH YUSUF 
+TANGERANG HIGH SCHOOL, 2020  
+ 

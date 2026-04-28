@@ -1,0 +1,124 @@
+ 
+467 Pemrograman 2   
+ 
+ 
+BAB XVIII  
+PEMBUATAN LAPORAN  
+ 
+A. Tujuan Pembelajaran  
+Pada pertemuan ini akan dijelaskan mengenai cara 
+pembuatan laporan data pada database di aplika si web 
+menggunakan model MVC.  
+ 
+B. Materi  
+1. Pembuatan Laporan Pada Aplikasi Web  
+ Langkah -langkah Pembuatan Laporan  
+Buatlah servlet LaporanGajiController pada pada 
+package com.unpam.controller, klik kanan pada 
+package com.unpam.controller, pilih New > Servlet.  
+ 
+ 
+468 Pemrograman 2  
+ 
+Gambar 284.  Membuat Servlet  
+ 
+Ubahlah Class Name menjadi 
+LaporanGajiController, lalu klik Finish.  
+ 
+ 
+Gambar 285. Mengubah Class Name  
+ 
+469 Pemrograman 2  Hapuslah source code berikut.  
+ 
+ 
+Gambar 286. Menghapus Source Code  
+ 
+Silahkan tambahkan source code berikut didalam 
+metode processRequest dibawah pernyataan 
+response.setContentType pada LaporanGajiController.  
+ 
+ 
+470 Pemrograman 2  
+ 
+ 
+471 Pemrograman 2  
+ 
+ 
+472 Pemrograman 2  
+ 
+ 
+473 Pemrograman 2  
+ 
+ 
+ 
+474 Pemrograman 2  
+ 
+Gambar 287. Menambahkan Source Code  
+ 
+Klik semua lampu indi kator kesalahan (lampu 
+merah), dan pilih dengan Add Import….  
+ 
+475 Pemrograman 2  
+ 
+ 
+ 
+Gambar 288. Memperbaiki Indikator Kesalahan  
+ 
+Jika pada try (OutputStream…. masih ada yang 
+salah, maka pindahkan OutputStream diatas try seperti 
+berikut:  
+ 
+ 
+ 
+476 Pemrograman 2  
+ 
+Gambar 289. Menambahkan Source Code  
+ 
+Klik lampu indikator kesalahan, pilih Add Import….  
+ 
+ 
+Gambar 290. Memperbaiki Indikator Kesalahan  
+ 
+477 Pemrograman 2  2. Menambahkan Folder Reports  
+Tambahkan folder Reports di Web Pages, klik 
+kanan p ada Web Pages, pilih New > Folder, jika tidak 
+ada pilihan Folder maka pilih Other, lalu pada 
+Categories pilih Other dan File Types pilih Folder.  
+ 
+ 
+Gambar 291. Membuat Folder Report  
+Ubah nama folder menjadi reports, klik Finish.  
+ 
+Gambar 292. Mengubah Folder Name  
+ 
+478 Pemrograman 2  Buka folder reports di dalam folder Source 
+Desktop (file akan diberikan) di materi Copy file 
+GajiReport.jrxml, Paste ke folder reports.  
+ 
+Gambar 293. File Reports  
+ 
+Kemudian Eksekusi (run) aplikasi, coba masuk 
+(login), dan pilih menu Laporan lalu pilih Gaji.  
+ 
+Gambar 294. Menu Laporan  
+ 
+479 Pemrograman 2  Maka hasilnya akan seperti berikut.  
+ 
+ 
+Gambar 295. Hasil Laporan  
+ 
+ 
+C. Latihan  
+Buat report untuk p enjualan barang dagang!  
+- Data stock barang  
+- Data transaksi penjualan  
+ 
+ 
+ 
+480 Pemrograman 2  D. Referensi  
+Budiharto, W. (2004). Pemrograman  Web Menggunakan 
+J2EE. Jakarta: Elexmedia Kom putindo. JENI, T. P. 
+(2007). JENI 1 -6. 
+Wijono, S. H., Suharto, B. H., & Wijono, M. S. (2006) 
+Pemrograman Java  Servlet dan JSP dengan 
+Netbeans. Yogyakarta: C.V ANDI OFFSET.  

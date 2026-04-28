@@ -1,0 +1,336 @@
+ 
+327 Pemrograman 2   
+ 
+ 
+BAB XII  
+PENGENAL AN JSF DAN AJAX  
+ 
+A. Capaian  Pembelajaran  
+Pada pertemuan ini akan dijelaskan mengenai 
+pengenalan MVC dan Ajax dan membuat aplikasi sederhana 
+dengan menggunakan Ajax.  
+ 
+B. Materi  
+1. Pengenalan JSF  
+Java Server Faces (JSF) adalah kerangka kerja 
+aplikasi web berbasis Ja va yang dimaksudkan untuk 
+menyederhanakan integrasi pengembangan antarmuka 
+pengguna berbasis web. JavaServer Faces adalah 
+teknologi tampilan standar, yang diformalkan dalam 
+spesifikasi melalui Java Community Process.  
+ 
+ 
+328 Pemrograman 2  
+ 
+Gambar 173. JavaServerFaces Framework  
+ 
+Keuntungan :  
+JSF mengurangi upaya dalam membuat dan 
+memelihara aplikasi, yang akan berjalan di server 
+aplikasi Java dan akan membuat user interface aplikasi 
+ke klien target. JSF memfasilitasi pengembangan 
+aplikasi Web dengan :  
+ Menyediakan komponen user interface yang dapat 
+digunakan kembali  
+ 
+329 Pemrograman 2   Memudahkan transfer data antar komponen user 
+interface  
+ Mengelola status user interface di beberapa 
+permintaan server  
+ Mengaktifkan implementasi komponen khusus  
+ Menghubungkan acara sisi klien ke  kode aplikasi sisi 
+server  
+ 
+Model komponen user interface JSF  
+JSF memberi para pengembang kemampuan 
+untuk membuat aplikasi Web dari kumpulan komponen 
+user interface yang dapat merender sendiri dengan cara 
+yang berbeda untuk beberapa jenis klien (misalnya - 
+browser HTML, nirkabel, atau perangkat WAP). JSF 
+menyediakan :  
+ Perpustakaan inti  
+ Satu set komponen user inetrface dasar - elemen 
+input HTML standar  
+ Perpanjangan komponen user interface dasar untuk 
+membuat pustaka komponen Uuser interface 
+tambahan atau unt uk memperluas komponen yang 
+ada 
+ Beberapa kemampuan rendering yang 
+memungkinkan komponen user interface JSF untuk 
+ 
+330 Pemrograman 2  merender sendiri secara berbeda tergantung pada 
+jenis klien.  
+Siklus hidup aplikasi JSF terdiri dari enam fase 
+yaitu sebagai berikut:  
+a. Restore vi ew phase  
+JSF memulai fase tampilan pemulihan segera 
+setelah tautan atau tombol diklik dan JSF menerima 
+permintaan. Selama fase ini, JSF membangun 
+tampilan, menghubungkan event handler dan 
+validator ke komponen UI dan menyimpan tampilan 
+dalam instance Faces Context. Instance 
+FacesContext sekarang akan berisi semua informasi 
+yang diperlukan untuk memproses permintaan.  
+b. Apply request values  
+Setelah pohon komponen dibuat/dipulihkan, 
+setiap komponen dalam pohon komponen 
+menggunakan metode decode untuk mengekstrak 
+nilai barunya dari parameter permintaan. Komponen 
+menyimpan nilai ini. Jika konversi gagal, pesan 
+kesalahan dibuat dan diantrekan di FacesContext. 
+Pesan ini akan ditampilkan selama fase respons 
+render, bersama dengan kesalahan validasi apa pun. 
+Jika ada me tode dekode event listener yang disebut 
+renderResponse pada instance FacesContext saat 
+ini, JSF berpindah ke fase respons render.  
+ 
+ 
+331 Pemrograman 2  c. Process validations  
+Selama fase ini, JSF memproses semua 
+validator yang terdaftar di pohon komponen. Ini 
+memeriksa aturan at ribut komponen untuk validasi 
+dan membandingkan aturan ini dengan nilai lokal 
+yang disimpan untuk komponen. Jika nilai lokal tidak 
+valid, JSF menambahkan pesan kesalahan ke 
+instance FacesContext, dan siklus hidup maju ke 
+fase respons render dan menampilkan  halaman yang 
+sama lagi dengan pesan kesalahan.  
+d. Update model values  
+Setelah JSF memeriksa bahwa data valid, JSF 
+berjalan di atas pohon komponen dan menetapkan 
+properti objek sisi server yang sesuai ke nilai lokal 
+komponen. JSF akan memperbarui properti ya ng 
+sesuai dengan atribut nilai komponen input. Jika ada 
+metode updateModels yang disebut renderResponse 
+pada instance FacesContext saat ini, JSF berpindah 
+ke fase respons render.  
+e. Invoke application phase; process events  
+Selama fase ini, JSF menangani peris tiwa 
+tingkat aplikasi apa pun, seperti mengirimkan 
+formulir/menautkan ke halaman lain.  
+f. Render response  
+Selama fase ini, JSF meminta container/server 
+aplikasi untuk merender halaman jika aplikasi 
+ 
+332 Pemrograman 2  menggunakan halaman JSP. Untuk permintaan awal, 
+komponen yan g diwakili pada halaman akan 
+ditambahkan ke pohon komponen saat wadah JSF 
+mengeksekusi halaman. Jika ini bukan permintaan 
+awal, pohon komponen sudah dibangun sehingga 
+komponen tidak perlu ditambahkan lagi. Dalam 
+kedua kasus tersebut, komponen akan merender  
+dirinya sendiri saat penampung JSF/server Aplikasi 
+melintasi tag di halaman. Setelah konten tampilan 
+dirender, status respons disimpan sehingga 
+permintaan berikutnya dapat mengaksesnya dan 
+tersedia untuk fase tampilan pemulihan.  
+ 
+ 
+Gambar 174. Siklus hidup JSF  
+ 
+ 
+333 Pemrograman 2  2. Pengenalan Ajax  
+AJAX adalah singkatan dari Asynchronous 
+JavaScript dan Xml. Ajax adalah teknik menggunakan 
+HTTPXMLObject dari JavaScript untuk mengirim data 
+ke server dan menerima data dari server secara 
+asinkron. Jadi meng gunakan teknik Ajax, kode 
+javascript bertukar data dengan server, memperbarui 
+bagian dari halaman web tanpa memuat ulang seluruh 
+halaman. JSF memberikan dukungan yang sangat baik 
+untuk melakukan panggilan ajax. Ini menyediakan tag 
+f:ajax untuk menangani pa nggilan ajax.  
+ <f:ajax execute = "input -component -name" render = 
+"output -component -name" />  
+Cara kerja Ajax :  
+.
+ 
+Gambar 175. Cara Kerja Ajax  
+ 
+334 Pemrograman 2  Jadi saat kita membuat halaman web di render di 
+browser contohnya menggunakan html, CSS, J ava 
+Script, untuk memuat data produk kita tinggal mengirim 
+request dari ajax ke server, nanti server akan memuat 
+data produk lalu akan mengembalikan ke ajjax tersebut, 
+selanjutnya dari proses ajax akan di render ke web.  
+ Langkah -langkah :  
+Buka Netbeans IDE , lalu buat project baru, pilih 
+pada Categories Java Web dan pada Project pilih Web 
+Application.  
+ 
+ 
+Gambar 176. Project Baru  
+ 
+ 
+335 Pemrograman 2  Klik Next.  
+ 
+Gambar 177. Membuat Nama Project  
+ 
+Ubah project name “JSFAjax” lalu klik Next.  
+ 
+336 Pemrograman 2  
+ 
+Gambar 178. Pengaturan Server  
+ 
+Pilih Server yang digunakan dan pilih Java EE 
+Version. Lalu klik Next.  
+ 
+ 
+ 
+337 Pemrograman 2  
+ 
+Gambar 179. Pengaturan Framework (JSF)  
+ 
+Ceklis Framework yang akan kita buat pada 
+“Java Server Faces” , Lalu klik Finish.  Ubah nama title 
+menjadi JSF Ajax, lalu Masukkan script seperti berikut :  
+ 
+  
+ <h:form>  
+            <h:outputLabel value="Insert Temperature"/>  
+            <h:inputText id="" value=""/>  
+            <h:commandButton value="" > 
+                 <f:ajax execute="" render=""/>  
+ 
+338 Pemrograman 2              </h:commandButton>  
+            <br/>  
+            <h:outputText value=""/>  
+        </h:form>  
+ 
+ 
+Gambar 180. Memasukkan Kode Script  
+ 
+Pada project “JSFAjax” klik kanan > N ew > JSF 
+Managed Bean.  
+ 
+ 
+ 
+339 Pemrograman 2  
+ 
+ 
+Gambar 181. File JSF  
+ 
+Ubah nama Class Name menjadi “TemperatureBean” 
+lalu pilih nama Package sesuai yang kalian inginkan 
+seperti com.rina.bean, lalu ubah Scope menjadi 
+“request”,  
+ 
+ 
+340 Pemrograman 2  
+ 
+Gambar 182. Nama File JSF  
+Klik Finish , Masukkan kode script dibawah ini.  
+ 
+  private int temp;  
+   
+  public String getResult()}  
+ 
+ 
+ 
+341 Pemrograman 2  
+ 
+Gambar 183. Memasukkan Kode Script  
+ 
+Klik kanan pilih Insert Code.  
+ 
+ 
+342 Pemrograman 2  
+ 
+ 
+Gambar 184. Insert Code  
+ 
+Pada Default loginbean klin kanan pilih Insert 
+Code lalu pilih Getters and Setters.  
+ 
+ 
+343 Pemrograman 2  
+ 
+Gambar 185. Getter and Setter  
+ 
+Lalu ceklist semua file yang ad a di Generate Getter and 
+Setter  
+ 
+ 
+344 Pemrograman 2  
+ 
+Gambar 186. Memilih File  
+ 
+Klik Generate. Maka akan muncul seperti ini.  
+ 
+ 
+Gambar 187. Hasil Getter and Setter  
+ 
+Pada source TemperatureBean.java masukkan kode 
+script berikut.  
+ 
+ 
+345 Pemrograman 2    String result = "";  
+         if (temp == 0){  
+              result = "";  
+          }else if (temp < 30){  
+              result = "it's cold";  
+          }else if (temp > 40){  
+              result = "it's hot";  
+        }else{  
+              result = "it's normal";  
+          } 
+         return result;  
+       } 
+ 
+346 Pemrograman 2  
+ 
+Gambar 188. Memasukkan Kode Script  
+ 
+Ubah kode script seperti berikut.  
+ 
+ 
+347 Pemrograman 2  
+ 
+Gambar 189. Memasukkan Kode Script  
+Save lalu Run File. Maka akan keluar tampilan 
+seperti berikut.  
+ 
+ 
+ 
+Gambar 190. Hasil Run  
+ 
+Jika di masukkan angka <30 maka pada saat 
+Check Temperature hasil akan menunjukan it’s cold  
+ 
+ 
+348 Pemrograman 2   
+ 
+Gambar 191. Check Temperature  
+ 
+Jika di masukkan angka >40 maka pada saat 
+Check Temperature hasil akan menunjukan it’s hot. 
+ 
+ 
+ 
+Gambar 192. Check Temperature  
+ 
+Jika di masukkan angka antara 30 -40 maka pada 
+saat Check Temperature hasil akan menunjukan it’s 
+normal.  
+ 
+ 
+349 Pemrograman 2  
+ 
+Gambar 193. Check Temperature  
+ 
+C. Latihan  
+Buat aplikasi sederh ana menggunakan JSF Ajax seperti 
+contoh dibawah ini!  
+ 
+ 
+Gambar 194. Latihan  
+ 
+350 Pemrograman 2  D. Referensi  
+Budiharto, W. (2004). Pemrograman  Web Mneggunakan 
+J2EE. Jakarta: Elexmedia Komputindo. JENI, T. P. 
+(2007). JENI 1 -6. 
+Wijono, S. H., Suharto, B. H.,  & Wijono,  M. S. (2006). 
+Pemrograman Java Servlet dan JSP dengan 
+Netbeans. Yogyakarta: C.V ANDI 
+OFFSET.www.tutorialspoint.com/jsf  
+ 

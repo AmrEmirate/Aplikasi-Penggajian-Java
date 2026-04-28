@@ -1,0 +1,193 @@
+ 
+351 Pemrograman 2   
+ 
+ 
+BAB XIII  
+SESSION DAN COOKIES  
+ 
+A. Tujuan Pembelajaran  
+Pada pertemuan ini akan dijelaskan mengenai 
+pembuatan aplikasi web meng gunakan Netbeans dengan 
+menggunakan Session dan Cookies.  
+ 
+B. Materi  
+1. Pengenalan Session dan Cookies pada Web  
+Session  
+Session digunakan untuk melakukan ident ifikasi 
+client, misalnya untuk menyimpan data user dan 
+password ketika mengakses suatu halaman web dan 
+menyimpannya sebagai data sementara  didalam 
+memori browser selama mengakses alamat web 
+tertentu.  
+Cookies  
+Cookies adalah sekumpulan data yang di simpan 
+di dalam file teks yang digunakan selama mengakses 
+ 
+352 Pemrograman 2  alamat web tertentu. Server hanya membaca apa yang 
+tertera di dalam cookies yang berasal dari server itu 
+sendiri. Misalnya untuk menyimpan data kapan terakhir 
+mengakses suatu halaman web. Cookies akan terhapus 
+jika masa berlaku sudah habis.  
+ 
+2. Pembuatan Session dan Cookies pada Java  
+Session  
+Session merupakan inst ance (objek) dari kelas 
+javax.servlet.http.HttpSession.  
+Beberapa method yang digunakan:  
+ Mengaktifkan session baru adalah getSession() 
+Untuk JSP method ini tidak perlu dipanggil secara 
+ekplisit, karena sudah dipanggil secara implisit.  
+ Menyimpan data ke dala m session:  
+Sintaks: session.setAttribute(String id, Object value).  
+Contoh: session.setAttribute("userLogin", 
+"Administrator");  
+ Menentukan masa berlakunya session (satuan detik)  
+Sintaks: session.setMaxInactiveInterval(int durasi);  
+Contoh: session.setMaxInac tiveInterval(60*60*24); 
+//umur session 1 hari Jika tidak melakukan request 
+ke server selama nilai durasi, maka session diakhiri 
+(nilai yang sudah diset dihapus).  
+ 
+Cookies  
+ 
+353 Pemrograman 2  Cookie merupakan instance (objek) dari kelas 
+javax.servlet.http.Cookie.  
+Beberapa kons truktor dan method yang digunakan:  
+ Membuat instance (objek) Cookie, menggunakan 
+konstruktor Cookie()  
+Cookies (String id, String value)  
+Contoh:  Cookie nmId = new Cookie (“user”, 
+username);  
+ Menentukan masa berlakunya cookie (satuan detik), 
+menggunakan metho d setMaxAge() 
+nmcookie.setMaxAge(durasi);  
+contoh: cookie.setMaxAge(15); 
+nmId.setMaxAge(60*60*24); // cookie diset berumur 1 
+hari 
+ menambahkan cookie ke response, digunakan 
+metode addCookie () response.addCookie(Cookie 
+cookie);  
+contoh: response.addCookie(nmI d); 
+ 
+ Langkah -langkah  
+Buka Netbeans IDE, lalu buat project baru, pilih 
+pada categories Java Web  dan pada Project pilih Web 
+Application.  
+ 
+ 
+354 Pemrograman 2  
+ 
+Gambar 195. Membuat Project Baru  
+ 
+Silahkan ubah nama project nya menjadi 
+MateriSessionCooki es, lalu tentukan lokasi 
+penyimpanan project (Project Location), untuk 
+melanjutkan klik Next.  
+ 
+ 
+355 Pemrograman 2  
+ 
+Gambar 196. Mengubah Nama  
+ 
+Pilih server yang terinstal atau yang kita gunakan, 
+lalu pilih java EE Version, misalnya Java EE 7 Web, lal u 
+klik Finish.  
+ 
+ 
+ 
+356 Pemrograman 2  
+ 
+Gambar 197. Mengatur Server  
+ 
+Hapus file Index.html, lalu buatlah file JSP, klik 
+kanan pada Web Pages, pilih New > JSP.  
+ 
+ 
+Gambar 198. Membuat File JSP  
+ 
+357 Pemrograman 2  Ubah File Name menjadi index, kemudi an klik Finish.  
+ 
+Gambar 199. Mengubah Nama  
+ 
+Maka akan jadi seperti ini.  
+ 
+ 
+Gambar 200. File Index.jsp  
+ 
+358 Pemrograman 2  Ubah source code nya menjadi seperti berikut.  
+ 
+ 
+359 Pemrograman 2  
+ 
+Gambar 201. Mengubah Source Code  
+ 
+Kemudian buatlah file Jsp lagi, klik kanan pada 
+Web Pager, lalu pilih New > JSP.  
+ 
+ 
+360 Pemrograman 2  
+ 
+Gambar 202. Membuat File JSP  
+ 
+Ubahlah File Name menjadi validasi, kemudian klik 
+Finish.  
+ 
+Gambar 203. Mengubah Nama  
+ 
+361 Pemrograman 2  Maka akan jadi seperti ini.  
+ 
+ 
+Gambar 204. File Validasi.jsp  
+ 
+Ubah source code nya menjadi seperti berikut.  
+ 
+ 
+ 
+362 Pemrograman 2  
+  
+ 
+363 Pemrograman 2  
+ 
+Gambar 205. Mengubah Source Code  
+ 
+Kemudian eksekusi aplikasi (project) dapat 
+dilakukan deng an cara, klik menu Run > Run Project, 
+atau tekan tombol F6 atau bisa juga dengan cara klik 
+toolbar Run Project, Klik kanan nama project, kemudian 
+pilih Run.  
+ 
+ 
+364 Pemrograman 2  
+ 
+ 
+ 
+Gambar 206. Proses Run  
+ 
+Tunggu sampai proses eksekusi selesai, jika  
+muncul security alert, pilih Allow Access.  
+ 
+365 Pemrograman 2  
+ 
+Gambar 207. Security Alert  
+ 
+Kemudian hasil eksekusi akan tampil di browser 
+seperti pada gambar dibawah ini.  
+ 
+ 
+Gambar 208. Tampilan Hasil Akhir  
+ 
+366 Pemrograman 2  C. Latihan  
+Buatlah aplikasi web dengan tampilan seperti di bawah ini!   
+ 
+ 
+ 
+Gambar 209. Latihan Soal  
+ 
+D. Referensi  
+Budiharto, W. (2004). Pemrograman Web Menggunakan 
+J2EE. Jakart a:Elexmedia Komputindo. JENI, T. P. 
+(2007). JENI 1 -6. 
+Wijono, S. H., Suharto, B. H., & Wijono , M. S. (2006) 
+Pemrograman Java Servlet dan JSP dengan 
+Netbeans. Yogyakarta: C.V ANDI OFFSET.  
+ 

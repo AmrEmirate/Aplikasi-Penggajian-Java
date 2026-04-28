@@ -1,0 +1,1864 @@
+ 
+84 Pemrograman 2   
+ 
+ 
+BAB  V  
+MEMBUAT LOGIN CONTROLLER  
+ 
+A. Capaian Pembelajaran  
+Pada pertemuan ini akan dijelaskan mengenai cara 
+Login Controller.  
+ 
+B. Materi  
+1. Membuat Login Controller  
+Untuk menambahkan Login Controller dapat 
+dilakukan dengan cara:  
+a. Mengklik package controller, pilih New Java 
+Class…  
+b. Mengklik package controller, pilih New Other…, 
+pada Categories pilih Java, pada File Types pilih 
+Java Class, dan klik tombol Next  
+c. Ubah nama class m enjadi LoginController  
+d. Pastikan package -nya controller  
+e. Akhiri dengan mengklik tombol Finish 
+ 
+ 
+85 Pemrograman 2  
+ 
+Gambar 5. 1 Membuat Class  
+ 
+ 
+Gambar 5. 2 Membuat Login Controller  
+ 
+86 Pemrograman 2  ss. Setelah itu masukan source ini :  
+ 
+/* 
+ * To change this license header, choose License 
+Headers in Project Properties.  
+ * To change this template file, choose Tools | 
+Templates  
+ * and open the template in the editor.  
+ */ 
+ 
+package controller;  
+ 
+import javax.swing.JOptionPane;  
+import model.Enkripsi ; 
+import model.Karyawan;  
+import view.FormLogin;  
+ 
+/** 
+ * 
+ * @author Guci  
+ */ 
+public class LoginController {  
+    private final Karyawan karyawan = new 
+Karyawan();  
+    private final Enkripsi enkripsi = new Enkripsi();  
+ 
+ 
+ 
+ 
+87 Pemrograman 2      
+    public boolean validasi(javax .swing.JTextField 
+userIdTextField, javax.swing.JPasswordField 
+passwordField){  
+        boolean valid = false, userIdSalah=false;  
+        String hashedInputPassword = "";  
+         
+        if (!userIdTextField.getText().equals("")){  
+ 
+           if (!valid){  
+                if 
+(karyawan.baca(userIdTextField.getText())){  
+                    try { 
+                        hashedInputPassword = 
+enkripsi.hashMD5(new 
+String(passwordField.getPassword()));  
+                    } catch (Exception ex){}  
+                     
+                    if 
+(karyawan.getPassword().equalsIgnoreCase(hashed
+InputPassword)){  
+                        valid = true;  
+                        FormLogin.tipe = "Karyawan";  
+                    } else {  
+                        userIdSalah = true;  
+                    } 
+                } else {  
+ 
+88 Pemrograman 2                      if (karyawan.getPesan().substring(0, 
+3).equalsIgnoreCase("KTP")){  
+                        userIdSalah = true;  
+                    } 
+                } 
+                 
+                if (!val id){ 
+                    if (userIdSalah){  
+                        
+JOptionPane.showMessageDialog(null, "User Id 
+atau password salah", "Kesalahan", 
+JOptionPane.ERROR_MESSAGE);  
+                    } else {  
+                        
+JOptionPane.showMessageDialo g(null, 
+karyawan.getPesan(), "Kesalahan", 
+JOptionPane.ERROR_MESSAGE);  
+                    } 
+                } 
+            } 
+        } else {  
+            JOptionPane.showMessageDialog(null, 
+"User Id (KTP) tidak boleh kosong", "Kesalahan", 
+JOptionPane.ERROR _MESSAGE);  
+        } 
+           return valid;  
+    } 
+} 
+ 
+89 Pemrograman 2  2. Membuat Karyawan Controller  
+Untuk menambahkan Karyawan Controller dapat 
+dilakukan dengan cara:  
+a. Mengklik package controller, pilih New Java 
+Class…  
+b. Mengklik package controller, pilih New Other…, 
+pada Cate gories pilih Java, pada File Types pilih 
+Java Class, dan klik tombol Next  
+c. Ubah nama class menjadi KaryawanController  
+d. Pastikan package -nya controller  
+e. Akhiri dengan mengklik tombol Finish 
+ 
+ 
+Gambar 5. 3 Membuat Karyawan Controller  
+ 
+90 Pemrograman 2  
+ 
+Gambar 5. 4 Membuat Karyawan Controller  
+ 
+f. Setelah itu masukan source ini :  
+ 
+/* 
+ * To change this template, choose Tools | 
+Templates  
+ * and open the template in the editor.  
+ */ 
+package controller;  
+ 
+import javax.swing.JOptionPa ne; 
+import model.Enkripsi;  
+import model.Karyawan;  
+import view.FormLihatKaryawan;   
+import view.FormUtama;  
+ 
+/** 
+ 
+91 Pemrograman 2   * 
+ * @author Guci  
+ */ 
+public class KaryawanController {  
+    private final Karyawan karyawan = new 
+Karyawan();  
+    private FormLihatKaryawan form LihatKaryawan;  
+    private final Enkripsi enkripsi = new Enkripsi();  
+    private boolean hashed = false;  
+ 
+    public void setHashed(boolean hashed) {  
+        this.hashed = hashed;  
+    } 
+     
+    public void simpan(javax.swing.JTextField 
+ktpTextField, javax .swing.JTextField namaTextField,  
+            javax.swing.JComboBox ruangComboBox, 
+javax.swing.JPasswordField passwordField){  
+        if (!ktpTextField.getText().equals("")){  
+            karyawan.setKtp(ktpTextField.getText());  
+            
+karyawan.setNama( namaTextField.getText());  
+            
+karyawan.setRuang(Integer.parseInt(ruangComboB
+ox.getSelectedItem().toString()));  
+             
+            if (hashed){  
+ 
+92 Pemrograman 2                  karyawan.setPassword(new 
+String(passwordField.getPassword()));  
+            } else { 
+                try { 
+                    
+karyawan.setPassword(enkripsi.hashMD5(new 
+String(passwordField.getPassword())));  
+                } catch (Exception ex){  
+                    karyawan.setPassword("");  
+                } 
+            } 
+             
+            if (karyawan.simpan()){  
+                FormUtama.formKaryawan.setKtp("");  
+                FormUtama.formKaryawan.setNama("");  
+                FormUtama.formKaryawan.setRuang(1);  
+                
+FormUtama.formKaryawan.setPassword("");  
+            }  else {  
+                if (karyawan.getPesan().length() > 0){  
+                    JOptionPane.showMessageDialog(null, 
+karyawan.getPesan(), "Kesalahan", 
+JOptionPane.ERROR_MESSAGE);  
+                } 
+            } 
+        } else {  
+ 
+93 Pemrograman 2              JOptionP ane.showMessageDialog(null, "KTP 
+tidak boleh kosong", "Kesalahan", 
+JOptionPane.ERROR_MESSAGE);  
+        } 
+    } 
+     
+    public void hapus(javax.swing.JTextField 
+ktpTextField){  
+        if (!ktpTextField.getText().equals("")){  
+            if (karyawan.hapus( ktpTextField.getText())){  
+                FormUtama.formKaryawan.setKtp("");  
+                FormUtama.formKaryawan.setNama("");  
+                FormUtama.formKaryawan.setRuang(1);  
+                
+FormUtama.formKaryawan.setPassword("");  
+            }else {  
+                JOptionPane.showMessageDialog(null, 
+karyawan.getPesan(), "Kesalahan", 
+JOptionPane.ERROR_MESSAGE);  
+            } 
+        } else {  
+            JOptionPane.showMessageDialog(null, "KTP 
+tidak boleh kosong", "Kesalahan", 
+JOptionPane.ERROR_MESSA GE); 
+        } 
+    } 
+     
+ 
+94 Pemrograman 2      public void cari(javax.swing.JTextField 
+ktpTextField){  
+        if (!ktpTextField.getText().equals("")){  
+            if (karyawan.baca(ktpTextField.getText())){  
+                
+FormUtama.formKaryawan.setNama(karyawan.getN
+ama()) ; 
+                
+FormUtama.formKaryawan.setRuang(karyawan.get
+Ruang());  
+                
+FormUtama.formKaryawan.setPassword(karyawan.
+getPassword());  
+                hashed = true;  
+            } else {  
+                FormUtama.formKaryawan.setNama("");  
+                FormUtama.formKaryawan.setRuang(1);  
+                
+FormUtama.formKaryawan.setPassword("");  
+                 
+                JOptionPane.showMessageDialog(null, 
+karyawan.getPesan(), "Kesalahan", 
+JOptionPane.ERROR_MESSAGE);  
+            } 
+        } else {  
+            JOptionPane.showMessageDialog(null, "KTP 
+tidak boleh kosong", "Kesalahan", 
+JOptionPane.ERROR_MESSAGE);  
+ 
+95 Pemrograman 2          } 
+    } 
+     
+    public void tampilkanFormLihatKaryawan(){  
+        formLihatKaryawan = new 
+FormLihatKaryawan(null,true);  
+         
+        if (karyawan.bacaData()){  
+            
+formLihatKaryawan.tampilkanData(karyawan.getList
+()); 
+             
+            formLihatKaryawan.setVisible(true);  
+            if 
+(!formLihatKaryawan.getKtpDipilih().equals("")){  
+                
+FormUtam a.formKaryawan.setKtp(formLihatKaryaw
+an.getKtpDipilih());  
+                if 
+(karyawan.baca(formLihatKaryawan.getKtpDipilih()))
+{ 
+                    
+FormUtama.formKaryawan.setNama(karyawan.getN
+ama());  
+                    
+FormUtama.formKaryawan.setRuang(kar yawan.get
+Ruang());  
+ 
+96 Pemrograman 2                      
+FormUtama.formKaryawan.setPassword(karyawan.
+getPassword());  
+                    hashed = true;  
+                } else {  
+                    
+FormUtama.formKaryawan.setNama("");  
+                    
+FormUtama.formKaryaw an.setRuang(1);  
+                    
+FormUtama.formKaryawan.setPassword("");  
+                } 
+            } 
+        } else {  
+            JOptionPane.showMessageDialog(null, 
+karyawan.getPesan());  
+        } 
+    } 
+} 
+ 
+3. Membuat Pekerjaan Controller  
+Untuk menamba hkan Pekerjaan Controller dapat 
+dilakukan dengan cara:  
+a. Mengklik package controller, pilih New Java 
+Class…  
+ 
+97 Pemrograman 2  b. Mengklik package controller, pilih New Other…, 
+pada Categories pilih Java, pada File Types pilih 
+Java Class, dan klik tombol Next  
+c. Ubah nama class menj adi PekerjaanController  
+d. Pastikan package -nya controller  
+e. Akhiri dengan mengklik tombol Finish 
+ 
+ 
+ 
+Gambar 5. 5 Membuat Pekerjaan Controller  
+ 
+98 Pemrograman 2  f. Setelah itu masukan source ini :  
+ 
+/* 
+ * To change this template, choose Tools | 
+Template s 
+ * and open the template in the editor.  
+ */ 
+package controller;  
+import javax.swing.JOptionPane;  
+import model.Pekerjaan;  
+import view.FormLihatPekerjaan;  
+import view.FormUtama;  
+ 
+/** 
+ * 
+ * @author Guci  
+ */ 
+public class PekerjaanController {  
+    private fina l Pekerjaan pekerjaan = new 
+Pekerjaan();  
+    private FormLihatPekerjaan formLihatPekerjaan;  
+     
+    public void simpan(javax.swing.JTextField 
+kodePekerjaanTextField,  
+            javax.swing.JTextField 
+namaPekerjaanTextField,  
+            javax.swing.JComb oBox 
+jumlahTugasComboBox){  
+ 
+99 Pemrograman 2          if 
+(!kodePekerjaanTextField.getText().equals("")){  
+            
+pekerjaan.setKodePekerjaan(kodePekerjaanTextFiel
+d.getText());  
+            
+pekerjaan.setNamaPekerjaan(namaPekerjaanTextFi
+eld.getText());  
+            pekerjaan .setJumlahTugas(Integer.parseInt(  
+                    
+jumlahTugasComboBox.getSelectedItem().toString()
+)); 
+             
+            if (pekerjaan.simpan()){  
+                
+FormUtama.formPekerjaan.setKodePekerjaan("");  
+                
+FormUtama.formPekerjaa n.setNamaPekerjaan("");  
+                
+FormUtama.formPekerjaan.setJumlahTugas(1);  
+            }  else {  
+                if (pekerjaan.getPesan().length() > 0){  
+                    JOptionPane.showMessageDialog(null, 
+pekerjaan.getPesan(), "Kesalahan", 
+JOpt ionPane.ERROR_MESSAGE);  
+                } 
+            } 
+        } else {  
+ 
+100 Pemrograman 2              JOptionPane.showMessageDialog(null, 
+"Kode pekerjaan tidak boleh kosong", "Kesalahan", 
+JOptionPane.ERROR_MESSAGE);  
+        } 
+    } 
+     
+    public void hapus(javax.swing.J TextField 
+kodePekerjaanTextField){  
+        if 
+(!kodePekerjaanTextField.getText().equals("")){  
+            if 
+(pekerjaan.hapus(kodePekerjaanTextField.getText()
+)){ 
+                
+FormUtama.formPekerjaan.setKodePekerjaan("");  
+                
+FormUtama.formPe kerjaan.setNamaPekerjaan("");  
+                
+FormUtama.formPekerjaan.setJumlahTugas(1);  
+            }  else {  
+                JOptionPane.showMessageDialog(null, 
+pekerjaan.getPesan(), "Kesalahan", 
+JOptionPane.ERROR_MESSAGE);  
+            } 
+        } else {  
+            JOptionPane.showMessageDialog(null, 
+"Kode pekerjaan tidak boleh kosong", "Kesalahan", 
+JOptionPane.ERROR_MESSAGE);  
+ 
+101 Pemrograman 2          } 
+    } 
+     
+    public void cari(javax.swing.JTextField 
+kodePekerjaanTextField){  
+        if 
+(!kodePekerjaanTextField.ge tText().equals("")){  
+            if 
+(pekerjaan.baca(kodePekerjaanTextField.getText()))
+{ 
+                
+FormUtama.formPekerjaan.setNamaPekerjaan(peke
+rjaan.getNamaPekerjaan());  
+                
+FormUtama.formPekerjaan.setJumlahTugas(pekerja
+an.getJumlahTugas( )); 
+            } else {  
+                
+FormUtama.formPekerjaan.setNamaPekerjaan("");  
+                
+FormUtama.formPekerjaan.setJumlahTugas(1);  
+                 
+                JOptionPane.showMessageDialog(null, 
+pekerjaan.getPesan(), "Kesalahan", 
+JOptio nPane.ERROR_MESSAGE);  
+            } 
+        } else {  
+ 
+102 Pemrograman 2              JOptionPane.showMessageDialog(null, 
+"Kode pekerjaan tidak boleh kosong", "Kesalahan", 
+JOptionPane.ERROR_MESSAGE);  
+        } 
+    } 
+     
+    public void tampilkanDaftar(){  
+        formLihatPeke rjaan = new 
+FormLihatPekerjaan(null,true);  
+        if (pekerjaan.bacaData()){  
+            
+formLihatPekerjaan.tampilkanData(pekerjaan.getList
+()); 
+             
+            formLihatPekerjaan.setVisible(true);  
+            if 
+(!formLihatPekerjaan.getKodePekerj aanDipilih().equ
+als("")){  
+                
+FormUtama.formPekerjaan.setKodePekerjaan(formL
+ihatPekerjaan.getKodePekerjaanDipilih());  
+                if 
+(pekerjaan.baca(formLihatPekerjaan.getKodePekerj
+aanDipilih())){  
+                    
+FormUtama.formPekerjaan .setNamaPekerjaan(peke
+rjaan.getNamaPekerjaan());  
+ 
+103 Pemrograman 2                      
+FormUtama.formPekerjaan.setJumlahTugas(pekerja
+an.getJumlahTugas());  
+                } else {  
+                    
+FormUtama.formPekerjaan.setNamaPekerjaan("");  
+                    
+FormUta ma.formPekerjaan.setJumlahTugas(1);  
+                } 
+            } 
+        }  else {  
+            JOptionPane.showMessageDialog(null, 
+pekerjaan.getPesan());  
+        } 
+    } 
+} 
+ 
+ 
+4. Membuat Gaji Controller  
+Untuk menambahkan Gaji Controller dapat 
+dilakukan denga n cara:  
+a. Mengklik package controller, pilih New Java 
+Class…  
+b. Mengklik package controller, pilih New Other…, 
+pada Categories pilih Java, pada File Types pilih 
+Java Class, dan klik tombol Next  
+c. Ubah nama class menjadi GajiController  
+ 
+104 Pemrograman 2  d. Pastikan package -nya control ler 
+e. Akhiri dengan mengklik tombol Finish 
+ 
+ 
+ 
+ 
+Gambar 5. 6 Membuat Gaji Controller  
+ 
+105 Pemrograman 2  f. Setelah itu masukan source ini :  
+ 
+/* 
+ * To change this template, choose Tools | 
+Templates  
+ * and open the template in the editor.  
+ */ 
+package co ntroller;  
+ 
+import javax.swing.JOptionPane;  
+import model.Karyawan;  
+import model.Pekerjaan;  
+import model.Gaji;  
+import view.FormLihatKaryawan;  
+import view.FormLihatPekerjaan;  
+import view.FormUtama;  
+ 
+/** 
+ * 
+ * @author Guci  
+ */ 
+public class GajiController {  
+    private final Karyawan karyawan = new 
+Karyawan();  
+    private final Pekerjaan pekerjaan = new 
+Pekerjaan();  
+    private final Gaji gaji = new Gaji();  
+    private FormLihatKaryawan formLihatKaryawan;  
+ 
+106 Pemrograman 2      private FormLihatPekerjaan formLihatPekerjaan;  
+     
+    public void cariKaryawan(javax.swing.JTextField 
+ktp){ 
+        if (!ktp.getText().equals("")){  
+            if (karyawan.baca(ktp.getText())){  
+                
+FormUtama.formGaji.setNama(karyawan.getNama()
+); 
+                FormUtama.formGaji.setRuang( 
+Integer.toString( karyawan.getRuang()));  
+                FormUtama.formGaji.clearGajiTable();  
+                 
+                int jumlahGaji=0;  
+                if (gaji.baca(ktp.getText())){  
+                    Object[][] listGaji = gaji.getListGaji();  
+                    FormUtama.formGaji.clearGajiTable();  
+                     
+                    if (listGaji.length>0){  
+                       for (int i=0; i<listGaji.length;i++){  
+                            if (!((String)listGaji[i][0]).equals("")){  
+                                String namaPekerjaan="";  
+                                if (pekerjaan.baca((String) 
+listGaji[i][0])){  
+                                    namaPekerjaan = 
+pekerjaan.getNamaPekerjaan();                       
+                                } 
+ 
+107 Pemrograman 2                              
+FormUtama.formGaji.setTambahGaji(new 
+Object[]{listGaji[i][0],namaPekerjaan,listGaji[i][1],listG
+aji[i][2],listGaji[i][3]});  
+                                jumlahGaji++;  
+                            } 
+                        } 
+                    } 
+                }  
+                 
+                if (jumlahGaji==0) {  
+                    
+FormUtama.formGaji.setTambahGaji(new 
+Object[]{});  
+                } 
+            } else {  
+                FormUtama.formGaji.setNama( ""); 
+                FormUtama.formGaji.setRuang("");  
+                FormUtama.formGaji.clearGajiTable();  
+                FormUtama.formGaji.setTambahGaji(new 
+Object[]{});  
+                 
+                JOptionPane.showMessageDialog(null, 
+karyawan.getPe san(), "Kesalahan", 
+JOptionPane.ERROR_MESSAGE);  
+            } 
+        } else {  
+ 
+108 Pemrograman 2              JOptionPane.showMessageDialog(null,"ktp 
+tidak boleh 
+kosong \n","Kesalahan",JOptionPane.ERROR_MES
+SAGE);  
+        }  
+    } 
+     
+    public void tampilkanFormLihatKaryaw an(){  
+        formLihatKaryawan = new 
+FormLihatKaryawan(null, true);  
+        if (karyawan.bacaData()){  
+            
+formLihatKaryawan.tampilkanData(karyawan.getList
+()); 
+            formLihatKaryawan.setVisible(true);  
+             
+            if 
+(!formLihatK aryawan.getKtpDipilih().equals("")) {  
+                if 
+(karyawan.baca(formLihatKaryawan.getKtpDipilih()))
+{ 
+                    
+FormUtama.formGaji.setKtp(karyawan.getKtp());  
+                    
+FormUtama.formGaji.setNama(karyawan.getNama()
+); 
+                    FormUtama.formGaji.setRuang( 
+Integer.toString(karyawan.getRuang()));  
+ 
+109 Pemrograman 2                      FormUtama.formGaji.clearGajiTable();  
+                     
+                    int jumlahGaji=0;  
+                    if 
+(gaji.baca(formLihatKaryawan.getKtpDipili h())){  
+                        Object[][] listGaji = gaji.getListGaji();  
+                        
+FormUtama.formGaji.clearGajiTable();  
+                         
+                        if (listGaji.length>0){  
+                            for (int i=0; i<listG aji.length;i++){  
+                                if 
+(!((String)listGaji[i][0]).equals("")){  
+                                    String namaPekerjaan="";  
+                                    if 
+(pekerjaan.baca((String)listGaji[i][0])){  
+                                        namaPekerjaan = 
+pekerjaan.getNamaPekerjaan();  
+                                    } 
+                                    
+FormUtama.formGaji.setTambahGaji(new 
+Object[]{listGaji[i][0],namaPekerjaan,listGaji[i][1],listG
+aji[i][2],listGaji[i][3 ]}); 
+                                    jumlahGaji++;  
+                                } 
+                            } 
+                        } 
+                    } 
+ 
+110 Pemrograman 2                       
+                    if (jumlahGaji==0) {  
+FormUtama.formGaji.setTamb ahGaji(new 
+Object[]{});  
+                    } 
+                }  else {  
+                    JOptionPane.showMessageDialog(null, 
+karyawan.getPesan());  
+                } 
+            } 
+        } else {  
+            JOptionPane.showMessageDialog(null, 
+karyawan. getPesan());  
+        } 
+    } 
+     
+    public void tampilkanFormLihatPekerjaan(){  
+        formLihatPekerjaan = new 
+FormLihatPekerjaan(null,true);  
+        if (pekerjaan.bacaData()){  
+            
+formLihatPekerjaan.tampilkanData(pekerjaan.getList
+()); 
+             
+            formLihatPekerjaan.setVisible(true);  
+            if 
+(!formLihatPekerjaan.getKodePekerjaanDipilih().equ
+als("")){  
+ 
+111 Pemrograman 2                        if 
+(pekerjaan.baca(formLihatPekerjaan.getKodePekerj
+aanDipilih())){  
+                    
+FormUtama.formGaji .setTambahGaji(new 
+Object[]{pekerjaan.getKodePekerjaan(),pekerjaan.ge
+tNamaPekerjaan(),"","",""});  
+                } else {  
+                    
+FormUtama.formGaji.setTambahGaji(new 
+Object[]{formLihatPekerjaan.getKodePekerjaanDipili
+h(),"","","",""});  
+                } 
+            } 
+        }  else {  
+            JOptionPane.showMessageDialog(null, 
+pekerjaan.getPesan());  
+        } 
+    } 
+     
+    public void cariPekerjaan(String kodePekerjaan){  
+        if (pekerjaan.baca(kodePekerjaan)){  
+            FormUtama.fo rmGaji.setNamaPekerjaan( 
+pekerjaan.getNamaPekerjaan());                       
+        } else {  
+            FormUtama.formGaji.setNamaPekerjaan("");         
+            FormUtama.formGaji.hapusGaji();  
+             
+ 
+112 Pemrograman 2              JOptionPane.showMessageDialog( null, 
+pekerjaan.getPesan(), "Kesalahan", 
+JOptionPane.ERROR_MESSAGE);  
+        }     
+    } 
+     
+    public void simpan(javax.swing.JTextField ktp, 
+javax.swing.JTable gajiTable){  
+ if (!ktp.getText().equals("")){  
+            gaji.setKtp(ktp.getText());  
+            Object[][] listGaji = new 
+Object[gajiTable.getRowCount()][4];  
+             
+            for (int i=0; i <gajiTable.getRowCount();i++){  
+                listGaji[i][0] = gajiTable.getValueAt(i, 0);  
+                listGaji[i][1] = gajiTable.getValueAt(i,  2); 
+                listGaji[i][2] = gajiTable.getValueAt(i, 3);  
+                listGaji[i][3] = gajiTable.getValueAt(i, 4);  
+            } 
+             
+            gaji.setListGaji(listGaji);             
+             
+            if (gaji.simpan()){  
+                FormUtama.formGaji.setKtp("");  
+                FormUtama.formGaji.setNama("");  
+                FormUtama.formGaji.setRuang("");  
+                FormUtama.formGaji.clearGajiTable();  
+ 
+113 Pemrograman 2                  FormUtama.formGaji.setTambahGaji(new 
+Object[]{}) ; 
+            }  else {  
+                JOptionPane.showMessageDialog(null, 
+gaji.getPesan());  
+            } 
+        } else {  
+            JOptionPane.showMessageDialog(null,"ktp 
+tidak boleh 
+kosong \n","Kesalahan",JOptionPane.ERROR_MES
+SAGE);  
+        } 
+    }     
+     
+    public void cetakLaporan(javax.swing.JComboBox 
+ruangComboBox){  
+        int ruang=0;  
+        if (ruangComboBox.getSelectedIndex()>0){  
+            ruang = 
+Integer.parseInt(ruangComboBox.getSelectedItem().
+toString());  
+        } 
+         
+        if (!gaji.cetakLaporan(ruang)) {  
+            
+JOptionPane.showMessageDialog(null,gaji.getPesa
+n(),"Kesalahan",JOptionPane.ERROR_MESSAGE);  
+        } 
+ 
+114 Pemrograman 2      } 
+} 
+ 
+5. Membuat Enkripsi  
+Untuk menambahkan Enkripsi dapat dilakukan 
+dengan cara:  
+a. Mengklik package model, pili h NewJava Class…  
+b. Mengklik package model, pilih New Other…, pada 
+Categories pilih Java, pada File Types pilih Java 
+Class, dan klik tombol Next  
+c. Ubah nama class menjadi Enkripsi  
+d. Pastikan package -nya model  
+e. Akhiri dengan mengklik tombol Finish 
+ 
+ 
+
+ 
+115 Pemrograman 2  
+ 
+Gambar 5. 7 Membuat Enkripsi  
+ 
+f. Masukan source ini :  
+ 
+/* 
+ * To change this template, choose Tools | 
+Templates  
+ * and open the template in the editor.  
+ 
+ */ 
+package model;  
+ 
+import java.security.MessageDigest;  
+ 
+/** 
+ * 
+ 
+116 Pemrograman 2   * @author Guci  
+ */ 
+public class Enkripsi {  
+    public String hashMD5(String value) throws 
+Exception{  
+        MessageDigest md = 
+MessageDigest.getInstance("MD5");  
+        md.update(value.getBytes());  
+  
+        byte byteData[] = md.digest();  
+         
+        StringBuilder hexString = new StringBuilder();  
+     for (int i=0;i<byteData.length;i++) {  
+      String hex=Integer.toHexString(0xff & 
+byteData[i]);  
+          if (hex.length()==1) {  
+                    hexString.append('0');  
+                } 
+          hexString.append(hex);  
+     } 
+      
+        return hexString.toString();  
+    } 
+} 
+ 
+ 
+ 
+ 
+117 Pemrograman 2  6. Membuat Koneksi  
+Untuk menambahkan Koneksi dapat dilakukan 
+dengan cara:  
+a. Mengklik package model, pilih New Java Class…  
+b. Mengklik package model, pilih New Other…, pada 
+Categor ies pilih Java, pada File Types pilih Java 
+Class, dan klik tombol Next  
+c. Ubah nama class menjadi Koneksi  
+d. Pastikan package -nya model  
+e. Akhiri dengan mengklik tombol Finish 
+ 
+ 
+ 
+118 Pemrograman 2  
+ 
+Gambar 6. 1 Membuat Koneksi  
+ 
+f. Masukan source ini :  
+ 
+/* 
+ * To change this template, choose Tools | 
+Templates  
+ * and open the template in the editor.  
+ */ 
+package model;  
+ 
+import java.sql.Connection;  
+import java.sql.DriverManager;  
+import java.sql.  SQLException;  
+ 
+/** 
+ 
+119 Pemrograman 2   * 
+ * @author Guci  
+ */ 
+public class Koneksi {  
+    private static final String driver = 
+"com.mysql.jdbc.Driver";  
+    private static final String database = 
+"jdbc:mysql://localhost/dbaplikasigajikaryawan";  
+    private static final String user = "root";  
+    private static final String password = "";  
+     
+    private Connection connection;         
+    private String pesanKesalahan;  
+ 
+    public String getPesanKesalahan() {  
+        return pesanKesalahan;  
+    } 
+     
+    public Connection getConnection(){  
+        connection = null;         
+        pesanKesalahan =  ""; 
+         
+        try{  
+            Class.forName(driver);  
+        } catch (ClassNotFoundException ex){  
+            pesanKesalahan = "JDBC Driver tidak 
+ditemukan atau rusak \n"+ex;  
+        }       
+ 
+120 Pemrograman 2          if (pesanKesalahan.equals("")){  
+            try {  
+                connection = 
+DriverManager.getConnection(database+"?user="+u
+ser+"&password="+password+"");  
+            } catch (SQLException ex) {  
+                pesanKesalahan = "Koneksi ke 
+"+database+" gagal \n"+ex;  
+            } 
+        } 
+         
+        return connection;  
+    } 
+} 
+ 
+ 
+7. Membuat Karyawan  
+Untuk menambahkan Karyawan dapat dilakukan dengan cara:  
+a. Mengklik package model, pilih New Java Class…  
+b. Mengklik package model, pilih New Other…, pada 
+Categories pilih Java, pada File Types pilih Java  
+Class, dan klik tombol Next  
+c. Ubah nama class menjadi Karyawan  
+d. Pastikan package -nya model  
+e. Akhiri dengan mengklik tombol Finish 
+ 
+ 
+121 Pemrograman 2  
+ 
+ 
+ 
+Gambar 7. 1 Membuat Class Karyawan  
+ 
+ 
+122 Pemrograman 2   
+f. Masukan source ini :  
+ 
+/* 
+ * To change this template, choos e Tools | 
+Templates  
+ * and open the template in the editor.  
+ */ 
+package model;  
+ 
+import java.sql.Connection;  
+import java.sql.PreparedStatement;  
+import java.sql.ResultSet;  
+import java.sql.SQLException;  
+import view.PesanDialog;  
+ 
+/** 
+ * 
+ * @author Guci  
+ */ 
+public class Karyawan {  
+    private String ktp, nama, password;  
+    private int ruang;  
+    private String pesan;  
+    private Object[][] list;  
+    private final Koneksi koneksi = new Koneksi();  
+    private final PesanDialog pesanDialog = new 
+PesanDialog();  
+ 
+123 Pemrograman 2   
+    public String getKtp() {  
+        return ktp;  
+    } 
+ 
+    public void setKtp(String ktp) {  
+        this.ktp = ktp;  
+    } 
+ 
+    public String getNama() {  
+        return nama;  
+    } 
+ 
+    public void setNama(String nama) {  
+        this.nama = nama;  
+    } 
+ 
+    public int getRuang() {  
+        return ruang;  
+    } 
+ 
+    public void setRuang(int ruang) {  
+        this.ruang = ruang;  
+    } 
+ 
+    public String getPesan() {  
+        return pesan;  
+    } 
+ 
+124 Pemrograman 2   
+    public String getPassword() {  
+        return password;  
+    } 
+ 
+    public void setPassword(String password) {  
+        this.password = password;  
+    } 
+ 
+    public Object[][] getList() {  
+        return list;  
+    } 
+ 
+    public void setList(Object[][] list) {  
+        this.list = list;  
+    } 
+     
+    public boolean simpan(){  
+        boolean adaKesalahan = false;  
+        Connection connection;  
+         
+        if ((connection = koneksi.getConnection()) != 
+null){  
+            int jumlahSimpan=0;  
+            boolean simpan = false;  
+            String SQLStatemen="";  
+            PreparedStatement preparedStatement;  
+            ResultSet rset;  
+ 
+125 Pemrograman 2               
+            try { 
+                SQLStatemen = "select * from tbkaryawan 
+where ktp=?";  
+                 
+                preparedStatement = 
+connection.prepareStatement(SQLStat emen);  
+                preparedStatement.setString(1, ktp);  
+                rset = preparedStatement.executeQuery();  
+                 
+                rset.next();  
+                if (rset.getRow()>0){  
+                    if (pesanDialog.tampilkanPilihan("K TP 
+sudah ada \nApakah data 
+diperbaharui?","Konfirmasi", new 
+Object[]{"Ya","Tidak"}) == 0){  
+                        simpan = true;  
+                        SQLStatemen = "update tbkaryawan 
+set nama=?, ruang=?, password=? where ktp=?";  
+                         
+                        preparedStatement = 
+connection.prepareStatement(SQLStatemen);    
+                        preparedStatement.setString(1, 
+nama);  
+                        preparedStatement.setInt(2, ruang);  
+                        preparedStatement.se tString(3, 
+password);  
+                        preparedStatement.setString(4, ktp);  
+ 
+126 Pemrograman 2                           
+                        jumlahSimpan = 
+preparedStatement.executeUpdate();  
+                    } 
+                } else {  
+                    simpan  = true;  
+                    SQLStatemen = "insert into 
+tbkaryawan(ktp, nama, ruang, password) values 
+(?,?,?,?)";  
+                     
+                    preparedStatement = 
+connection.prepareStatement(SQLStatemen);    
+                    preparedStateme nt.setString(1, ktp);  
+                    preparedStatement.setString(2, nama);  
+                    preparedStatement.setInt(3, ruang);  
+                    preparedStatement.setString(4, 
+password);  
+                     
+                    jumlahSimpan = 
+preparedStatement.executeUpdate();  
+                } 
+                 
+                if (simpan) {  
+                    if (jumlahSimpan < 1){  
+                        adaKesalahan = true;  
+                        pesan = "Gagal menyimpan data 
+karyawan";  
+                    } 
+ 
+127 Pemrograman 2                  } 
+                 
+                preparedStatement.close();  
+                rset.close();  
+                connection.close();                 
+            } catch (SQLException ex){  
+                adaKesalahan = true;  
+                pesan = "Tidak dapat membuka tabel 
+tbkaryawan \n"+ex+" \n"+SQLStatemen;  
+            }             
+        } else {  
+            adaKesalahan = true;  
+            pesan = "Tidak dapat melakukan koneksi ke 
+server \n"+koneksi.getPesanKesalahan();  
+        } 
+         
+        return !adaKesalahan;  
+    } 
+   
+    public boolean baca(String ktp){  
+        boolean adaKesalahan = false;   
+        Connection connection;  
+         
+        this.ktp = "";  
+        this.nama = "";  
+        this.ruang = 0;  
+        this.password = "";  
+         
+ 
+128 Pemrograman 2          if ((connection = koneksi.getConnection()) != 
+null){  
+            PreparedStatement preparedStatement;  
+            ResultSet rset;  
+                     
+            try { 
+                String SQLStatemen = "select * from 
+tbkaryawan where ktp=?";  
+                preparedStatement = 
+connection.prepareStatement(SQLStatemen);  
+                preparedStatement.setString(1, ktp);  
+                rset = preparedStatement.executeQuery();  
+                 
+                rset.next() ; 
+                if (rset.getRow()>0){  
+                    this.ktp = rset.getString("ktp");  
+                    this.nama = rset.getString("nama");  
+                    this.ruang = rset.getInt("ruang");  
+                    this.password = 
+rset.getString( "password");  
+                } else {  
+                    adaKesalahan = true;  
+                    pesan = "KTP \""+ktp+" \" tidak 
+ditemukan";  
+                } 
+                 
+                preparedStatement.close();  
+                rset.close();  
+ 
+129 Pemrograman 2                  connection.close();  
+            } catch (SQLException ex){  
+                adaKesalahan = true;  
+                pesan = "Tidak dapat membuka tabel 
+tbkaryawan \n"+ex;  
+            } 
+        } else {  
+            adaKesalahan = true;  
+            pesa n = "Tidak dapat melakukan koneksi ke 
+server \n"+koneksi.getPesanKesalahan();  
+        } 
+         
+        return !adaKesalahan;  
+    } 
+     
+    public boolean bacaData(){  
+        boolean adaKesalahan = false;  
+        Connection connection;  
+        list = new Object[0][0];  
+         
+        if ((connection = koneksi.getConnection()) != 
+null){  
+            String SQLStatemen;  
+            PreparedStatement preparedStatement;  
+            ResultSet rset;  
+             
+            try { 
+ 
+130 Pemrograman 2                  SQLStatemen = "s elect ktp, nama from 
+tbkaryawan";  
+                preparedStatement = 
+connection.prepareStatement(SQLStatemen);  
+                rset = preparedStatement.executeQuery();  
+                 
+                rset.next();  
+                rset.last();  
+                list = new Object[rset.getRow()][2];  
+                 
+                if (rset.getRow()>0){  
+                    rset.first();  
+                    int i=0;  
+                    do { 
+                        list[i] = new 
+Object[]{rset.getString("ktp"), rs et.getString("nama")};  
+                        i++; 
+                    } while (rset.next());  
+                } 
+                 
+                preparedStatement.close();  
+                rset.close();  
+                connection.close();  
+            } catch (SQLException ex){  
+                adaKesalahan = true;  
+                pesan = "Tidak dapat membaca 
+data\n"+ex.getMessage();  
+            } 
+ 
+131 Pemrograman 2          } else {  
+            adaKesalahan = true;  
+            pesan = "Tidak dapat melakukan koneksi ke 
+server \n"+koneksi.getPesanKesalahan();  
+        } 
+         
+        return !adaKesalahan;  
+    } 
+     
+    public boolean hapus(String ktp){  
+        boolean adaKesalahan = false;   
+        Connection connection;  
+         
+        if ((connection = koneksi.getConnection ()) != 
+null){  
+            int jumlahHapus;  
+            String SQLStatemen;  
+            PreparedStatement preparedStatement;  
+             
+            try { 
+                SQLStatemen = "delete from tbkaryawan 
+where ktp=?";  
+                preparedStatement  = 
+connection.prepareStatement(SQLStatemen);  
+                preparedStatement.setString(1, ktp);  
+                jumlahHapus = 
+preparedStatement.executeUpdate();  
+                 
+ 
+132 Pemrograman 2                  if (jumlahHapus < 1){  
+                    pesan = "Data kary awan dengan KTP 
+"+ktp+" tidak ditemukan";  
+                    adaKesalahan = true;  
+                } 
+                 
+                preparedStatement.close();  
+                connection.close();  
+            } catch (SQLException ex){  
+                adaK esalahan = true;  
+                pesan = "Tidak dapat membuka tabel 
+tbkaryawan \n"+ex;  
+            } 
+        } else {  
+            adaKesalahan = true;  
+            pesan = "Tidak dapat melakukan koneksi ke 
+server \n"+koneksi.getPesanKesalahan();  
+        } 
+         
+        return !adaKesalahan;  
+    } 
+} 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+133 Pemrograman 2  8. Membuat Pekerjaan  
+Untuk menambahkan Pekerjaan dapat dilakukan 
+dengan cara:  
+a. Mengklik package model, pilih New Java Class…  
+b. Mengklik package model, pilih New Other…, pada 
+Categories pilih Java, pada File Type s pilih Java 
+Class, dan klik tombol Next  
+c. Ubah nama class menjadi Pekerjaan  
+d. Pastikan package -nya model  
+e. Akhiri dengan mengklik tombol Finish 
+ 
+ 
+ 
+ 
+134 Pemrograman 2  
+ 
+Gambar 8. 1 Membuat Class Pekerjaan  
+ 
+f. Masukan source ini :  
+ 
+/* 
+ * To change this tem plate, choose Tools | 
+Templates  
+ * and open the template in the editor.  
+ */ 
+package model;  
+ 
+import java.sql.Connection;  
+ 
+135 Pemrograman 2  import java.sql.ResultSet;  
+import java.sql.SQLException;  
+import java.sql.Statement;  
+import view.PesanDialog;  
+/** 
+ * 
+ * @author Guci  
+ */ 
+public class Pekerjaan {  
+    private String kodePekerjaan, namaPekerjaan;  
+    private int jumlahTugas;  
+    private String pesan;  
+    private Object[][] list;  
+    private final Koneksi koneksi = new Koneksi();  
+    private final PesanDialog pesanDialog = ne w 
+PesanDialog();  
+ 
+    public String getKodePekerjaan() {  
+        return kodePekerjaan;  
+    } 
+ 
+ 
+136 Pemrograman 2      public void setKodePekerjaan(String 
+kodePekerjaan) {  
+        this.kodePekerjaan = kodePekerjaan;  
+    } 
+ 
+    public String getNamaPekerjaan() {  
+        return  namaPekerjaan;  
+    } 
+ 
+    public void setNamaPekerjaan(String 
+namaPekerjaan) {  
+        this.namaPekerjaan = namaPekerjaan;  
+    } 
+ 
+    public int getJumlahTugas() {  
+        return jumlahTugas;  
+    } 
+ 
+    public void setJumlahTugas(int jumlahTugas) {  
+        this.jumlahTugas = jumlahTugas;  
+    } 
+ 
+ 
+137 Pemrograman 2      public String getPesan() {  
+        return pesan;  
+    } 
+ 
+    public Object[][] getList() {  
+        return list;  
+    } 
+ 
+    public void setList(Object[][] list) {  
+        this.list = list;  
+    } 
+     
+    public b oolean simpan(){  
+        boolean adaKesalahan = false;   
+ Connection connection;  
+  
+ if ((connection = koneksi.getConnection()) != 
+null){  
+            int jumlahSimpan=0;  
+            boolean simpan = false;  
+            Statement sta;  
+            ResultSet r set; 
+ 
+138 Pemrograman 2                           
+            try { 
+                String SQLStatemen = "select * from 
+tbpekerjaan where 
+kodepekerjaan='"+kodePekerjaan+"'";  
+                sta = connection.createStatement();  
+                rset = sta.executeQuery(SQLStateme n); 
+                 
+                rset.next();  
+                if (rset.getRow()>0){  
+                    if (pesanDialog.tampilkanPilihan("Kode 
+pekerjaan sudah ada \nApakah data 
+diperbaharui?","Konfirmasi", new 
+Object[]{"Ya","Tidak"}) == 0){  
+                        simpan = true;  
+                        SQLStatemen = "update tbpekerjaan 
+set namapekerjaan='"+namaPekerjaan+  
+                                "', 
+jumlahtugas='"+jumlahTugas+"' where 
+kodepekerjaan='"+kodePekerjaan+"'";  
+                        sta = connection.createStatement();  
+                        jumlahSimpan = 
+sta.executeUpdate(SQLStatemen);  
+                    } 
+ 
+139 Pemrograman 2                  } else {  
+                    simpan = true;  
+                    SQLStatemen = "insert into tbpekerjaan 
+values ('" + kodePekerjaan +"','"+  
+                            namaPekerjaan+"','"+ jumlahTugas 
++"')";  
+                    sta = connection.createStatement();  
+                    jumlahSimpan = 
+sta.executeUpdate(SQLStatemen);  
+                } 
+                 
+                if (simpan) {  
+                    if (jumlahSimpan < 1){  
+                        adaKesalahan = true;  
+                        pesan = "Gagal menyimpan data 
+pekerjaan";  
+                    } 
+                } 
+                 
+                sta.c lose();  
+                rset.close();  
+                connection.close();  
+ 
+140 Pemrograman 2              } catch (SQLException ex){  
+                adaKesalahan = true;  
+                pesan = "Tidak dapat membuka tabel 
+tbpekerjaan \n"+ex;  
+            } 
+        } else {  
+            adaKesalahan = true;  
+            pesan = "Tidak dapat melakukan koneksi ke 
+server \n"+koneksi.getPesanKesalahan();  
+        } 
+         
+        return !adaKesalahan;  
+    } 
+     
+    public boolean baca(String kodePekerjaan){  
+        boolean adaKesalaha n = false;  
+        Connection connection;  
+         
+        if ((connection = koneksi.getConnection()) != 
+null){  
+            Statement sta;  
+            ResultSet rset;  
+ 
+141 Pemrograman 2               
+            try { 
+                String SQLStatemen = "select * from 
+tbpek erjaan where 
+kodepekerjaan='"+kodePekerjaan+"'";  
+                sta = connection.createStatement();  
+                rset = sta.executeQuery(SQLStatemen);  
+                 
+                rset.next();  
+                if (rset.getRow()>0){  
+                    this.kodePekerjaan = 
+rset.getString("kodepekerjaan");  
+                    this.namaPekerjaan = 
+rset.getString("namapekerjaan");  
+                    this.jumlahTugas = 
+rset.getInt("jumlahtugas");                     
+                } else {  
+                    adaKesalahan = true;  
+                    pesan = "Kode pekerjaan 
+\""+kodePekerjaan+" \" tidak ditemukan";  
+                } 
+                 
+                sta.close();  
+ 
+142 Pemrograman 2                  rset.close();  
+                connection.close();  
+            } catch (SQLException ex){  
+                adaKesalahan = true;  
+                pesan = "Tidak dapat membuka tabel 
+tbpekerjaan \n"+ex;  
+            } 
+        } else {  
+            adaKesalahan = true;   
+            pesan = "Tidak dapat melakukan koneksi ke 
+server\n"+koneksi.getPesanKesalahan();  
+        } 
+         
+        return !adaKesalahan;  
+    } 
+   
+    public boolean bacaData(){  
+        boolean adaKesalahan = false;  
+        Connection connection;  
+        list = new Object[0][0] ;  
+         
+ 
+143 Pemrograman 2          if ((conne ction = koneksi.getConnection()) != 
+null){  
+            String SQLStatemen;  
+            Statement sta;  
+            ResultSet rset;  
+             
+            try {  
+                SQLStatemen = "select 
+kodepekerjaan,namapekerjaan from tbpekerjaan";  
+                sta = connection.createStatement();  
+                rset = sta.executeQuery(SQLStatemen);  
+                 
+                rset.next();  
+                rset.last();  
+                list = new Object[rset.getRow()][2];  
+                if (rset.getR ow()>0){  
+                    rset.first();  
+                    int i=0;  
+                    do {  
+                        list[i] = new 
+Object[]{rset.getString("kodepekerjaan"), 
+rset.getString("namapekerjaan")};  
+ 
+144 Pemrograman 2                          i++; 
+                    } while (rset.next());  
+                } 
+                 
+                sta.close();  
+                rset.close();  
+                connection.close();  
+            } catch (SQLException ex){  
+                adaKesalahan = true;  
+                pesan  = "Tidak dapat membuka tabel 
+tbpekerjaan \n"+ex;  
+            } 
+        } else {  
+            adaKesalahan = true;  
+            pesan = "Tidak dapat melakukan koneksi ke 
+server \n"+koneksi.getPesanKesalahan();  
+        } 
+         
+        return !adaKesalahan;  
+    } 
+     
+    public boolean hapus(String kodePekerjaan){  
+ 
+145 Pemrograman 2          boolean adaKesalahan = false;  
+        Connection connection;  
+         
+        if ((connection = koneksi.getConnection()) != 
+null){  
+            int jumlahHapus;  
+            Statement sta;  
+             
+            try {  
+                String SQLStatemen = "delete from 
+tbpekerjaan where 
+kodepekerjaan='"+kodePekerjaan+"'";  
+                sta = connection.createStatement();  
+                jumlahHapus = 
+sta.executeUpdate(SQLStatemen);                     
+                 
+                if (jumlahHapus < 1){  
+                    pesan = "Kode pekerjaan tidak 
+ditemukan";  
+                    adaKesalahan = true;  
+                } 
+                 
+ 
+ 
+146 Pemrograman 2                  sta.close();  
+                connection.close();  
+            } catch (SQLException ex){  
+                adaKesalahan = true;  
+                pesan = "Tidak dapat membuka tabel 
+tbpekerjaan \n"+ex;  
+            } 
+        } else {  
+            adaKesalahan = true;  
+            pesan = "Tidak  dapat melakukan koneksi ke 
+server \n"+koneksi.getPesanKesalahan();  
+        } 
+         
+        return !adaKesalahan;  
+    } 
+} 
+ 
+ 
+ 
+147 Pemrograman 2  9. Membuat Gaji  
+Untuk menambahkan Gaji dapat dilakukan dengan 
+cara:  
+a. Mengklik package model, pilih New Java Class…  
+b. Mengklik package m odel, pilih New Other…, pada 
+Categories pilih Java, pada File Types pilih Java 
+Class, dan klik tombol Next  
+c. Ubah nama class menjadi Gaji  
+d. Pastikan package -nya model  
+e. Akhiri dengan mengklik tombol Finish 
+ 
+ 
+ 
+148 Pemrograman 2  
+ 
+Gambar 2. Membuat Class Ga ji 
+ 
+f. Masukan source ini :  
+ 
+/* 
+ * To change this template, choose Tools | 
+Templates  
+ * and open the template in the editor.  
+ */ 
+package model;  
+ 
+import java.sql.Connection;  
+import java.sql.PreparedStatement;  
+import java.sql.ResultSet;  
+ 
+149 Pemrograman 2  import java.sql.SQLExc eption;  
+import java.sql.Statement;  
+import java.util.HashMap;  
+import net.sf.jasperreports.engine.JRException;  
+import 
+net.sf.jasperreports.engine.JRResultSetDataSource;  
+import 
+net.sf.jasperreports.engine.JasperCompileManager;  
+import 
+net.sf.jasperreports.engi ne.JasperFillManager;  
+import net.sf.jasperreports.engine.JasperPrint;  
+import net.sf.jasperreports.engine.JasperReport;  
+import 
+net.sf.jasperreports.engine.design.JasperDesign;  
+import net.sf.jasperreports.engine.xml.JRXmlLoader;  
+import net.sf.jasperreports.v iew.JasperViewer;  
+ 
+/** 
+ * 
+ * @author Guci  
+ */ 
+public class Gaji {  
+ 
+150 Pemrograman 2      private String ktp;  
+    private String pesan;  
+    private Object[][] listGaji;  
+    private final Koneksi koneksi = new Koneksi();  
+ 
+    public String getKtp() {  
+        return ktp;  
+    } 
+ 
+    public void setKtp(String ktp) {  
+        this.ktp = ktp;  
+    } 
+ 
+    public String getPesan() {  
+        return pesan;  
+    } 
+ 
+    public void setPesan(String pesan) {  
+        this.pesan = pesan;  
+    } 
+ 
+ 
+151 Pemrograman 2      public Object[][] getListGaji() {  
+        return listGaji;  
+    } 
+ 
+    public void setListGaji(Object[][] listGaji) {  
+        this.listGaji = listGaji;  
+    } 
+     
+    public boolean simpan(){  
+        boolean adaKesalahan = false;   
+ Connection connection;  
+  
+ if ((connection = koneksi.getConnection()) != 
+null){  
+            int jumlahSimpan = 0;  
+            String SQLStatemen;  
+            PreparedStatement preparedStatement;  
+             
+            try{ 
+                SQLStatemen = "delete from tbgaji where 
+ktp=?";  
+ 
+152 Pemrograman 2                  preparedStatement =  
+connection.prepareStatement(SQLStatemen);  
+                preparedStatement.setString(1, ktp);  
+                preparedStatement.executeUpdate();  
+            } catch (SQLException ex){}  
+             
+          
+   for (Object[] recGaji: listGaji){  
+                try { 
+                    SQLStatemen = "insert into tbgaji(ktp, 
+kodepekerjaan, gajibersih, gajikotor, tunjangan) 
+values (?,?,?,?,?)";  
+                    preparedStatement = 
+connection.prepareStatement(SQLStatemen);  
+                    preparedStat ement.setString(1, ktp);  
+                    for (int i=0; i<4; i++){  
+                        preparedStatement.setString(2+i, 
+recGaji[i].toString());  
+                    } 
+                    jumlahSimpan += 
+preparedStatement.executeUpdate();  
+                } catch (SQLException ex){}  
+            } 
+ 
+153 Pemrograman 2               
+            if (jumlahSimpan>0) {  
+                adaKesalahan = false;  
+            } 
+        } else {  
+            adaKesalahan = true;  
+            pesan = "Tidak dapat melakukan koneksi ke 
+server \n"+koneksi.getPesanKesalahan();  
+        } 
+         
+        return !adaKesalahan;  
+    } 
+     
+    public boolean baca(String ktp){  
+        boolean adaKesalahan = false;   
+ Connection connection;  
+         
+ this.ktp = ktp;  
+ listGaji = null;  
+  
+ if ((connection  = koneksi.getConnection()) != 
+null){  
+ 
+154 Pemrograman 2              String SQLStatemen;  
+            PreparedStatement preparedStatement;  
+            ResultSet rset;  
+             
+            try { 
+                SQLStatemen = "select * from tbgaji 
+where ktp=?";  
+                preparedStatement = 
+connection.prepareStatement(SQLStatemen);  
+                preparedStatement.setString(1, ktp);  
+                rset = preparedStatement.executeQuery();  
+                 
+                rset.next();  
+                rset.last();  
+                listGaji = new Object[rset.getRow()][4];  
+                 
+                rset.first();  
+                int i=0;  
+                do { 
+ 
+                    if 
+(!rset.getString("kodepekerjaan").equals("")){  
+ 
+155 Pemrograman 2                          listGaji[i] = new Object[]{ 
+rset.getString("kodepekerjaan"),  
+                            rset.getObject("gajibersih"), 
+rset.getObject("gajikotor"), 
+rset.getObject("tunjangan")};        
+                    } 
+                    i++; 
+                } while (rset.next()) ; 
+                 
+                if (listGaji.length > 0) {  
+                    adaKesalahan = false;  
+                } 
+                preparedStatement.close();  
+                rset.close();  
+                connection.close();  
+            } catch (SQLE xception ex){  
+                adaKesalahan = true;  
+                pesan = "Tidak dapat membaca data gaji 
+karyawan \n"+ex.getMessage();  
+            } 
+        } else {  
+            adaKesalahan = true;  
+ 
+156 Pemrograman 2              pesan = "Tidak dapat melakukan koneksi ke 
+server\n"+koneksi.getPesanKesalahan();  
+        } 
+        return !adaKesalahan;  
+    } 
+     
+    public boolean cetakLaporan(int ruang){  
+        boolean adaKesalahan = false;  
+        Connection connection;  
+         
+        if ((connection = koneksi.getConnectio n()) != 
+null){  
+            String SQLStatement;  
+            Statement statement;  
+            ResultSet resultSet  = null;  
+            try { 
+                SQLStatement = " SELECT 
+tbkaryawan.`ktp` AS tbkaryawan_ktp, "  
+                        + " tbkaryawan. `nama` AS 
+tbkaryawan_nama, "  
+                        + " tbkaryawan.`ruang` AS 
+tbkaryawan_ruang, "  
+ 
+157 Pemrograman 2                          + " tbpekerjaan.`kodepekerjaan` AS 
+tbpekerjaan_kodepekerjaan, "  
+                        + " tbpekerjaan.`namapekerjaan` AS 
+tbpekerja an_namapekerjaan, "  
+                        + " tbpekerjaan.`jumlahtugas` AS 
+tbpekerjaan_jumlahtugas, "  
+                        + " tbgaji.`ktp` AS tbgaji_ktp, "  
+                        + " tbgaji.`kodepekerjaan` AS 
+tbgaji_kodepekerjaan, "  
+                        + " tbgaji.`gajibersih` AS 
+tbgaji_gajibersih, "  
+                        + " tbgaji.`gajikotor` AS 
+tbgaji_gajikotor, "  
+                        + " tbgaji.`tunjangan` AS 
+tbgaji_tunjangan, "  
+                        + " 
+round((tbgaji.`gajibersih`+tbgaj i.`gajikotor`+tbgaji.`tu
+njangan`)/3, 2) AS tbgaji_gajipokok, "  
+                        + " 
+(if((tbgaji.`gajibersih`+tbgaji.`gajikotor`+tbgaji.`tunjan
+gan`)/3>=5000000,'A', "  
+                        + " 
+if((tbgaji.`gajibersih`+tbgaji.`gajikotor`+tbgaji.`tunj ang
+an`)/3>=4000000,'B', "  
+ 
+158 Pemrograman 2                          + " 
+if((tbgaji.`gajibersih`+tbgaji.`gajikotor`+tbgaji.`tunjang
+an`)/3>=3000000,'C', "  
+                        + " 
+if((tbgaji.`gajibersih`+tbgaji.`gajikotor`+tbgaji.`tunjang
+an`)/3>=2000000,'D','E'))))) AS tbg aji_gajihuruf, "  
+                        + " 
+(if((tbgaji.`gajibersih`+tbgaji.`gajikotor`+tbgaji.`tunjan
+gan`)/3>=1000000,'UMR','Tidak UMR')) AS 
+tbgaji_status "  
+                        + " FROM "  
+                        + " `tbkaryawan` tbkaryawan INNER 
+JOIN  `tbgaji` tbgaji ON tbkaryawan.`ktp` = 
+tbgaji.`ktp` "  
+                        + " INNER JOIN `tbpekerjaan` 
+tbpekerjaan ON tbgaji.`kodepekerjaan` = 
+tbpekerjaan.`kodepekerjaan` ";  
+                if (ruang!=0){  
+                    SQLStatement = SQLStatement  + " 
+where tbkaryawan.`ruang`="+ruang;  
+                } 
+                SQLStatement = SQLStatement +" 
+ORDER BY "  
+                        + " tbkaryawan.`ruang` ASC, "  
+                        + " tbkaryawan.`nama` ASC, "  
+ 
+159 Pemrograman 2                          + " tbkar yawan.`ktp` ASC";  
+                statement = connection.createStatement();  
+                resultSet = 
+statement.executeQuery(SQLStatement);  
+            } catch (SQLException ex) {  
+                adaKesalahan = true;  
+                pesan = "Tidak dapat membaca 
+data\n"+ex;  
+            } 
+            if (resultSet != null){  
+                try { 
+                    JasperDesign disain = 
+JRXmlLoader.load("src/reports/GajiReport.jrxml");  
+                    JasperReport gajiLaporan = 
+JasperCompileManager.comp ileReport(disain);  
+                    JRResultSetDataSource 
+resultSetDataSource = new 
+JRResultSetDataSource(resultSet);  
+                    String Laporan;  
+                    JasperPrint cetak = 
+JasperFillManager.fillReport(gajiLaporan,new 
+HashMap(),resu ltSetDataSource);  
+                    JasperViewer.viewReport(cetak,false);  
+ 
+160 Pemrograman 2                  } catch (JRException ex) {  
+                    adaKesalahan = true;  
+                    pesan = "Tidak dapat mencetak 
+laporan \n"+ex;  
+                } 
+            } 
+        }  else {  
+            adaKesalahan = true;  
+            pesan = "Tidak dapat melakukan koneksi ke 
+server \n"+koneksi.getPesanKesalahan();  
+        } 
+        return !adaKesalahan;  
+    } 
+} 
+ 
+161 Pemrograman 2  C. Latihan  
+Buat Form Utama yang berisi form -form menu:  
+Pilihan :  Penjualan Rumah, Tampil data  
+ 
+ 
+ 
+D. Referensi  
+Budiharto, W. (2004). Pemrograman Web Mneggunakan 
+J2EE. Jakarta: Elexmedia Komputindo.  JENI, T. P. 
+(2007). JENI 1 -6. 
+Wijono, S. H., Suharto, B. H., & Wijono, M. S. (2006). 
+Pemrograman Java  Servlet dan JSP dengan 
+Netbeans. Yogyakarta: C.V ANDI OFFSET.  

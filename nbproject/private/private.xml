@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Akedemik/AplikasGajiKaryawanPTSintory/src/aplikasgajikaryawanptsintory/AplikasGajiKaryawanPTSintory.java</file>
+            <file>file:/C:/Akedemik/AplikasGajiKaryawanPTSintory/src/view/FormUtama.java</file>
+            <file>file:/C:/Akedemik/AplikasGajiKaryawanPTSintory/src/view/FormKaryawan.java</file>
+            <file>file:/C:/Akedemik/AplikasGajiKaryawanPTSintory/src/view/FormPekerjaan.java</file>
+            <file>file:/C:/Akedemik/AplikasGajiKaryawanPTSintory/src/view/FormGaji.java</file>
+            <file>file:/C:/Akedemik/AplikasGajiKaryawanPTSintory/src/controller/GajiController.java</file>
+            <file>file:/C:/Akedemik/AplikasGajiKaryawanPTSintory/src/model/Enkripsi.java</file>
+            <file>file:/C:/Akedemik/AplikasGajiKaryawanPTSintory/src/model/Koneksi.java</file>
+            <file>file:/C:/Akedemik/AplikasGajiKaryawanPTSintory/src/controller/LoginController.java</file>
+            <file>file:/C:/Akedemik/AplikasGajiKaryawanPTSintory/src/view/FormLogin.java</file>
+            <file>file:/C:/Akedemik/AplikasGajiKaryawanPTSintory/src/model/Karyawan.java</file>
+            <file>file:/C:/Akedemik/AplikasGajiKaryawanPTSintory/src/model/Pekerjaan.java</file>
+            <file>file:/C:/Akedemik/AplikasGajiKaryawanPTSintory/src/controller/KaryawanController.java</file>
+            <file>file:/C:/Akedemik/AplikasGajiKaryawanPTSintory/src/controller/PekerjaanController.java</file>
+            <file>file:/C:/Akedemik/AplikasGajiKaryawanPTSintory/src/model/Gaji.java</file>
+        </group>
+    </open-files>
+</project-private>

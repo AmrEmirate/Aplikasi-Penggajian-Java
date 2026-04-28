@@ -1,0 +1,454 @@
+ 
+298 Pemrograman 2   
+ 
+ 
+BAB  XI 
+MVC STRUTS  
+ 
+A. Capaian  Pembelajaran  
+Pada pertemuan ini akan dijel askan mengenai MVC 
+dan Struts dan cara membuat aplikasi dengan Struts  
+ 
+B. Materi  
+1. Apa itu MVC?  
+MVC adalah sebuah arsitektur perancangan kode 
+program, tujuannya untuk memecah kode program 
+utama menjadi 3 komponen terpisah dengan tugas yang 
+spesipik. MVC adalah kepanjangan dari Model -View -
+Controller yang merupakan suatu metode atau konsep 
+yang sangat populer dalam membangun sebuah aplikasi 
+web yang awalnya menggunakan bahasa pemrograman 
+smalltalk yang mengisahkan bisnis logic atau alur piker 
+datalogic atau penyim panan data dan presentation logic 
+atau antarmuka aplikasi atau secara sederhana adalah 
+misalkan proses data dan desain.  
+ 
+ 
+299 Pemrograman 2  Kenapa kita perlu memisahkan menjadi 3 komponen,  
+Aplikasi apapun baik itu web atau dekstop yang 
+paling sering mengalami perubahan adala h bagian user 
+interface nya, penggabungan antara user interface 
+dengan business logic akan menyebabkan terjadinya 
+refactor atau perubahan aplikasi menjadi sangat 
+kompleks, perubahan yang terjadi pada salah satu 
+bagian akan memiliki potensi mempengaruhi bag ian 
+yang lain.  
+Arsitektur MVC ini menjawab permasalan tersebut 
+dengan membagi bagian -bagian ap;ilasi menjadi Model, 
+View dan Controller, memisahkan bagian tersebut dan 
+mebuat interaksinya, perubahan yang terjadi antar 
+bagian tidak akan terlalu saling memp engaruhi, kecuali 
+memang terjadi perubahan yang krusial. Jika 
+digambarkan interaksinya seperti ini.  
+ 
+ 
+300 Pemrograman 2  
+ 
+Gambar 151. Interaksi MVC  
+ 
+2. Komponen MVC  
+Dalam komponen MVC terdapat 3 komponen, yaitu  
+a. Model, sesuai dengan namanya komponen yan g 
+pertama adalah model, model biasanya berkaitan 
+dengan data dan interaksi ke database atau 
+webservice, model juga mempresentasikan struktur 
+data dari aplikasi yang berupa basis data atau pun 
+berupa data lain. Misalnya dalam bentuk file xml, file 
+teks, ata upun webservice, didalam model biasanya 
+akan berisi class dan fungsi untuk mengambil serta 
+melakukan update dan menghapus data website, 
+ 
+301 Pemrograman 2  sebuah aplikasi web biasanya menggunakan basis 
+data untuk menyimpan data maka biasanya dalam 
+bagian model akan berkaitan  dengan perintah 
+perintah query sql. Komponen yang kedua adlah 
+view.  
+b. View, view adalah bagian yang berhubungan dengan 
+tampilan pengguna atau menangani presentation 
+logic, didalam suatu aplikasi web biasanya bagian ini 
+berupa file yang diatur oleh bagian co ntroller, view 
+juga berfungsi untuk menerima dan 
+mempresentasik an data hasil dari model dan 
+controller kepada pengguna atau user, view tidak 
+mempunyai akses langsung terhadap bagian model, 
+komponen terakhir adalan controller  
+c. Controller adalah bagian yang m engatur hubungan 
+antara bagian model dan bagian view, didalam 
+bagian controller berisi kelas -kelas dan fungsi -fungsi, 
+yang memproses permintaan dari view kedalam 
+struktur data didalam bagian model, pada bagian 
+controller juga tidak diperbolehkan berisi kod e-kode 
+untuk mengakses basis data karena tugas untuk 
+mengakses data telah diberikan kepada bagian 
+model, tugas controller adalah menyediakan berbagai 
+variabel yang akan ditampilkan pada bagian view, 
+memanggil model untuk melakukan akses ke basis 
+data menye diakan penanganan error atau kesalahan, 
+mengerjakan proses logika dari aplikasi, dan 
+melakukan validasi atau cek terhadap input.  
+ 
+302 Pemrograman 2  3. Arsitektur MVC Untuk Web : Arsitektur Model 2  
+Arstitektur MVC secara sederhana dirancang 
+dan diadaptasi dalam penggunaan di Web  Application. 
+Arsitektur yang dihasilkan kemudian disebut dengan 
+Model 2 Architecture. Aplikasi model 2 umumnya 
+mempunyai :  
+ Servlet Controller yang memberikan akses tunggal 
+untuk keseluruhan aplikasi. Controller ini 
+bertanggung jawab untuk memberikan admin istrasi 
+yang disatukan untuk perkembangan penggunaan 
+dan administrasi lain seperti penanganan security 
+dan user management.  
+ Controller Servlet pada umumny a menggunakan 
+desain XML untuk menentukan alur aplikasi dan 
+pemrose san perintah. Itu juga membuat helper 
+components yang berfungsi sebagai Command 
+objects. Ini b erarti helper components terasosiasikan 
+dengan user actions dan dibuat/dipanggil  untuk 
+menangani actions yang terjadi, memanggil 
+komponen Model  sebagaimana diperlukan. Hal ini 
+berfungsi untuk mem isahkan antara controller servlet 
+dari Model.  
+ 
+4. Model 2 Diagram  
+Implementasi sebuah pola dapat dibuat lebih 
+mudah d engan memanfaatkan third -party framework. 
+ 
+303 Pemrograman 2  Frameworks ini menyediakan detail terkait (request, 
+konfigurasi, dll) dengan tujuan agar kita dapat  fokus 
+pada hal lain yang lebih penting.  Frameworks ini juga 
+menyediakan fungsi - fungsi tambahan.  dalam 
+pembelajaran ini, akan dibatasi pada dua framework 
+yang terkenal, Struts dan JavaServerFaces (JSF). Struts 
+akan dibahas pada  bagian ini, sedangkan JS F pada  
+bagian selanjutnya.  
+ 
+5. STRUTS  
+Struts adalah aplikasi framework open source 
+yang didesain untuk membantu para developer dalam 
+membangun arsitektur aplikasi berdasarkan Model -
+View -Controller (MVC), dimana desain MVC sudah 
+merupakan standar umum dalam m embangun aplikasi 
+web dengan menggunakan servlet java dan Java Server 
+Pages ( JSP). framework yang dibuat oleh Apache 
+Software Foundation.  
+Berikut adalah gambar yang mendeskripsikan 
+bagaimana struts framework bekerja dalam aplikasi 
+web:  
+ 
+ 
+304 Pemrograman 2  
+ 
+Gambar 152. Struts Framework Bekerja  
+ 
+Pada saat web container mendeploy aplikasi, 
+ActionServlet akan membaca file struts -config.xml yang 
+berisi semua konfigurasi yang diperlukan untuk 
+menjalankan sistem ini. Ketika ada request dari browser, 
+langk ah-langkah berikut akan dijalankan:  
+a. Request data akan secara otomatis dibungkus ke 
+dalam sebuah object ActionForm.  
+b. ActionServlet akan mencari controller (Action class) 
+yang sesuai dengan path yang direquest oleh 
+browser.  
+c. Action class memiliki satu method u tama dengan 
+nama execute, yang akan dijalankan untuk melayani 
+request. Semua processing yang dibutuhkan seperti 
+akses database, perhitungan, dan lain lain dijalankan 
+ 
+305 Pemrograman 2  di dalam method ini. Di sini object model dimasukkan 
+ke dalam variable HTTP request atau H TTP session, 
+yang selanjutnya akan dipanggil dari halaman JSP.  
+d. Setelah processing selesai, method execute tersebut 
+akan mengembalikan return value yang akan 
+menunjukkan status dari processing.  
+e. Selanjutnya, status dari Action class tersebut akan 
+digunakan u ntuk menentukan halaman JSP mana 
+yang akan ditampilkan.  
+f. JSP dievaluasi, object model dirender ke dalam 
+halaman HTML, dan response dikirimkan ke browser.  
+Selanjutnya kita akan membuat contoh aplikasi 
+login menggunakan framework Struts.  
+Langkah -langkah :  
+Buka Netbeans IDE, lalu project baru, pilih pada 
+Categories java Web dan pada Project pilih Web 
+Application.  
+ 
+306 Pemrograman 2  
+ 
+Gambar 153. Project Baru  
+Klik Next,  
+ 
+ 
+Gambar 154. Membuat Nama Project  
+ 
+307 Pemrograman 2  Ubah Project Name menjadi  “loginstruts”, lalu Next.  
+ 
+Gambar 155. Memilih Server  
+ 
+Pilih Server yang digunakan dan pilih Java EE Version.  
+ 
+Gambar 156. Memilih Framework  
+ 
+308 Pemrograman 2  Ceklis Framework yang akan kita buat pada 
+“Struts  1.3.10” , da n pastikan ceklist pada Add Struts 
+TLDs, Lalu klik Finish.  
+ 
+ 
+Gambar 157. File JSP  
+ 
+ Pada Project “loginstruts” kita akan membuat file 
+JSP, klik kanan > New > JSP.  
+ 
+ 
+309 Pemrograman 2  
+ 
+Gambar 158. Nama File JSP  
+ 
+Berikan nama  “login” lalu pilih Option “JSP File” 
+klik Finish. Lalu buatlah file JSP kembali seperti tadi klik 
+kanan pada project “loginstruts” pilih New pilih JSP.  
+ 
+ 
+ 
+310 Pemrograman 2  
+ 
+Gambar 159. Nama File JSP  
+ 
+Beri nama success, pada options pilih “JSP File ” 
+lalu klik Finish. Lalu buat lagi file JSP, caranya sama 
+seperti diatas. Pada bagian File Name beri nama 
+“failure” klik Finish. Maka akan terbuat file -file seperti 
+berikut.  
+ 
+ 
+ 
+311 Pemrograman 2  
+ 
+Gambar 160. File JSP  
+ 
+Pada source login, ubah kode ny a seperti berikut.  
+ 
+<!DOCTYPE html>  
+<html>  
+    <head>  
+        <meta http -equiv="Content -Type" 
+content="text/html; charset=UTF -8"> 
+        <title>JSP Page</title>  
+    </head>  
+    <body>  
+        <h1>Login</h1>  
+    <from action="loginform.do" method="post">  
+ 
+312 Pemrograman 2          Username <input type="text" 
+name="uname"/><br/>  
+        Password <input type="password" 
+name="upass"/><br/>  
+        <input type="submit" value="OK"/>  
+    </from>  
+    </body>  
+</html>  
+ 
+ Pada source success, ubah kode nya seperti berikut.  
+ 
+<!DOCTYPE html>  
+<html>  
+    <head>  
+        <meta http -equiv="Content -Type" 
+content="text/html; charset=UTF -8"> 
+        <title>JSP Page</title>  
+    </head>  
+    <body>  
+        <h1>Success Page</h1>  
+    </body>  
+</html>  
+ 
+Pada source failure, ubah kode nya seperti berikut . 
+ 
+<html>  
+    <head>  
+ 
+313 Pemrograman 2          <meta http -equiv="Content -Type" 
+content="text/html; charset=UTF -8"> 
+        <title>JSP Page</title>  
+    </head>  
+    <body>  
+        <h1>Failure Page</h1>  
+    </body>  
+</html>  
+Kemudian klik kanan pada project “loginstruts” pilih New 
+> Other.  
+ 
+ 
+Gambar 161. Menambahkan Struts  
+ 
+ 
+314 Pemrograman 2  Pada Categoris pilih Struts, lalu File Types pilih 
+“Struts ActionForm Bean”, klik Next.  
+ 
+ 
+Gambar 162. Nama Class  
+ 
+Ganti Class Name menjadi “loginbean” lalu p ilih 
+Package “com.myapp.struts” klik Finish.  
+ 
+ 
+315 Pemrograman 2  
+ 
+Gambar 163. Insert Code  
+ 
+Pada Default loginbean klin kanan pilih Insert 
+Code lalu pilih Getters and Setters.  
+ 
+ 
+316 Pemrograman 2  
+ 
+Gambar 164. Item Getters and Setters  
+ 
+Ceklist  semua item, lalu klik Generate. Lalu ubah kode 
+seperti berikut.  
+ 
+ 
+public class loginbean extends 
+org.apache.struts.action.ActionForm {  
+   
+    private String uname;  
+    private String upass;  
+ 
+317 Pemrograman 2   
+    public String getUname() {  
+        return uname;  
+    } 
+    public void setUname(String uname) {  
+        this.uname = uname;  
+    } 
+    public String getUpass() {  
+        return upass;  
+    } 
+    public void setUpass(String upass) {  
+        this.upass = upass;  
+   
+  } 
+    public loginbean() {  
+        super();  
+        // TODO Auto -generated constructor stub  
+    } 
+    public ActionErrors validate(ActionMapping mapping, 
+HttpServletRequest request) {  
+        ActionErrors errors = new ActionErrors();  
+        /*if (getName() == null || getName().length() < 1) {  
+            errors.add("name", new 
+ActionMessage("error.name.required"));  
+            // TODO: add 'error.name.required' key to your 
+resources  
+        }*/ 
+        return errors;  
+ 
+318 Pemrograman 2      } 
+} 
+ 
+Kemudian klik kanan pada project “login struts” New > 
+Other.  
+ 
+ 
+Gambar 165. Menambahkan Struts Action  
+ 
+Pilih Struts lalu pilih Struts Action, klik Next.  
+ 
+ 
+ 
+319 Pemrograman 2  
+ 
+Gambar 166. Nama Class  
+ 
+Ubah Class Name “loginform” lalu pilih Package, 
+isi Action Path “/loginform” lalu klik Next.  
+ 
+ 
+320 Pemrograman 2  
+ 
+Gambar 167. Menambahkan Action  
+ 
+Hapus isi Input Resource, lalu pada Scope 
+ceklist Request, lalu hapus tanda ceklist dari Validate 
+ActionForm Bean, klik Finish. Lalu tambahkan kode 
+seperti berikut.  
+ 
+public class loginform extends 
+org.apache.s truts.action.Action {  
+ 
+    /* forward name="success" path="" */  
+    private static final String SUCCESS = "success";  
+    private static final String FAILURE = "failure";  
+ 
+ 
+321 Pemrograman 2      public ActionForward execute(ActionMapping 
+mapping, ActionForm form,  
+            HttpServletRequest request, 
+HttpServletResponse response)  
+            throws Exception {  
+        loginbean lb = (loginbean)form;  
+        
+if(lb.getUname().equals("abc")&&lb.getUpass().equals("x
+yz")) 
+            return mapping.findForward(SUCCESS);  
+        else 
+            return mapping.findForward(FAILURE);  
+    } 
+} 
+ 
+ 
+ 
+322 Pemrograman 2  
+ 
+Gambar 168. Configuration Files  
+ 
+Pada source Configuration files klik kanan pilih Struts 
+lalu Add Forward.  
+ 
+ 
+323 Pemrograman 2  
+ 
+Gambar 169. Pilih Browser  
+ 
+Ubah Forward name menjadi “Success” klik pada 
+Browse lalu pilih success.jsp.  
+ 
+ 
+324 Pemrograman 2  
+ 
+Gambar 170. Add Forward  
+ 
+Tampilannya akan seperti diatas, lalu klik Add. 
+Kemudian masukkan juga Failure, caranya seperti 
+diatas.  
+ 
+ 
+325 Pemrograman 2  
+ 
+Gambar 171. Mengganti Nama Pages  
+ 
+Pada web.xml ganti nama pages dengan login. 
+Kemudian pada project klik kanan, pilih Build lalu Run.  
+ 
+ 
+Gambar 172. Halaman Web Server  
+ 
+326 Pemrograman 2  Maka akan muncul login di halaman Web Server 
+kita, jika k ita mengisi Username dan password dengan 
+benar akan muncul halaman Success page, Namun 
+sebaliknya jika mengisi username dan password yang 
+salah akan muncul Failure page.  
+ 
+ 
+C. Latihan  
+Buat aplikasi sederhana lainnya menggunakan Struts!  
+ 
+ 
+D. Referensi  
+Budiharto, W . (2004). Pemrograman Web Mneggunakan 
+J2EE. Jakarta: Elexmedia Komputindo. JENI, T. P. 
+(2007). JENI 1 -6. 
+Wijono, S. H., Suharto, B. H., & Wijono, M. S. (2006). 
+Pemrograman Java Servlet dan JSP dengan 
+Netbeans. Yogyakarta: C.V ANDI OFFSET.  

@@ -1,0 +1,299 @@
+ 
+20 Pemrograman 2   
+ 
+ 
+BAB II  
+MEMBUAT  FORM KARYAWAN  
+ 
+A. Capaian Pembelajaran  
+Pada pertemuan ini akan dij elaskan mengenai 
+Membuat Project, Mengatur Desain Form, Menambahkan 
+Source Code, Mengeksekusi Aplikasi (Project).  
+ 
+B. Materi  
+1. Membuat Form Karyawan  
+Untuk menambahkan Form Karyawan dapat 
+dilakukan dengan cara:  
+a. Mengklik package view, pilih New JInternalFrame 
+Form… 
+b. Mengklik package view, pilih New Other…, pada 
+Categories pilih Swing GUI Forms, pada File Types 
+pilih JInternalFrame Form, dan klik tombol Next  
+c. Ubah nama class menjadi FormKaryawan  
+d. Pastikan package -nya view  
+e. Akhiri dengan mengklik tombol Finish 
+ 
+21 Pemrograman 2  
+ 
+Gambar 2. 1 Membuat Form Karyawan  
+ 
+f. Ubah properti title menjadi “Master Data Karyawan”.  
+g. Tambahkan 2 panel dari Palette grup Swing 
+Containers, atur, dan ubah warna background.  
+ 
+Gambar 2. 2 Mengubah Title  
+ 
+22 Pemrograman 2  h. Ubah  properti border dari panel1 (atas), dengan cara 
+klik tombol […] di properti border  
+ 
+ 
+Gambar 2. 3 Mengubah Title Border  
+ 
+i. Pilih Titled Border, dan ubah judul (Title) menjadi 
+“Data Karyawan”  
+ 
+ 
+ 
+Gambar 2. 4 Mengubah Title Panel  
+ 
+ 
+23 Pemrograman 2  j. Di dalam panel1 (atas) tambahkan 4 Label dari 
+Palette grup Swing Controls  
+k. Atur seperti gambar di Bawah, agar rata kanan, garis 
+putus -putus di sebelah kanan (boleh sebaliknya, 
+sesuai keinginan)  
+ 
+ 
+Gambar 2. 5 Menambahkan Label  
+ 
+l. Klik kanan pada setiap Label, pilih Edit Text, ubah 
+teks menjadi KTP, Nama, Ruang, dan Password  
+ 
+ 
+24 Pemrograman 2  
+ 
+Gambar 2. 6 Mengubah Nama Label  
+m. Tambahkan 2 TextField, 2 ComboBox, 
+PasswordField, dan 4 Button dari Pa lette grup Swing 
+Controls  
+n. Atur seperti gambar di samping, agar rata Kiri, garis 
+putus -putus di bawah ini  
+ 
+ 
+Gambar 2. 7 Menambahkan Button  
+ 
+25 Pemrograman 2  o. Klik kanan pada setiap TextField, dan PasswordField, 
+pilih Edit Text, hapus teksnya  
+p. Klik kanan pada setiap Button, pilih Edit Text, ubah 
+menjadi Lihat, Simpan, Hapus, dan Tutup  
+q. Klik kanan pada setiap komponen, pilih Change 
+Variable Name …, ubah sesuai teks/fungsinya, yaitu:  
+1) Untuk TextField ubah menjadi ktpTextField, dan 
+namaTextField  
+2) Untuk Co mboBox ubah menjadi ruangComboBox  
+3) Untuk PasswordField ubah menjadi passwordField  
+4) Untuk Button ubah menjadi lihatButton, 
+simpanButton, hapusButton, dan tutupButon  
+ 
+r. Sehingga seperti pada gambar di slide berikut ini  
+ 
+Gambar 2. 8 Mengubah Nama Button  
+ 
+ 
+26 Pemrograman 2  2. Menambahkan Source Code Form Karyawan  
+a. Tambahkan source code pada event 
+actionPerformed dari Button Tutup dengan cara:  
+b. Klik kanan pada Button Tutup, pilih 
+EventsActionactionPerformed,  
+c. Atau dengan cara double klik pada Button Tutup  
+d. Setelah tampil source code, ketik dispose(); seperti 
+gambar  
+ 
+ 
+Gambar 2. 9 Menambahkan Source Code  
+ 
+e. Di bawah Generated Code tambahkan 2 baris 
+kosong (tekan tombol Enter 2 kali)  
+f. Jika tidak tampil Generated Code, klik tanda minus [ -] 
+di bawah @SuppressWarnings("unchecked")  
+ 
+ 
+Gambar 2. 10 Menambahkan Source Code  
+ 
+ 
+27 Pemrograman 2  
+ 
+Gambar 2. 11 Menambahkan Source Code  
+ 
+g. Di bawah Generated Code tambahkan source code 
+berikut ini:  
+ 
+ 
+ 
+28 Pemrograman 2  
+ 
+Gambar 2. 12 Menambahkan Source Code  
+ 
+h. Di dalam konstruktor FormKaryawan tambahkan 
+source code untuk memanggil metode 
+setItemComboBox  
+ 
+ 
+Gambar 2. 13 Menambahkan Source Code  
+ 
+3. Menambahkan dan Mendesain Form Lihat Ka ryawan  
+Untuk menambahkan Form Lihat Karyawan dapat 
+dilakukan dengan cara:  
+a. Mengklik package view, pilih New JDialog Form…  
+ 
+29 Pemrograman 2  b. Mengklik package view, pilih New Other…, pada 
+Categories pilih Swing GUI Forms, pada File Types 
+pilih JDialog Form, dan klik tombol Nex t 
+c. Ubah nama class menjadi FormLihatKaryawan  
+d. Pastikan package -nya view  
+e. Akhiri dengan mengklik tombol Finish 
+ 
+ 
+Gambar 2. 14 Menambahkan Form Lihat Karyawan  
+f. Ubah properti title menjadi “Data Karyawan”  
+g. Ubah properti Form Size Polic y di tab Code menjadi 
+Generate Resize Code, dan pastikan Generate 
+Center diberi tanda checklist agar ketika aplikasi 
+dieksekusi Form (JDialog) ditampilkan di tengah layar  
+ 
+30 Pemrograman 2  
+ 
+Gambar 2. 15 Mengubah Title Data Karyawan  
+ 
+h. Tambahkan 2 panel dari Palette grup Swing 
+Containers, atur, dan ubah warna background seperti 
+gambar di bawah:  
+ 
+Gambar 2. 16 Menambahkan Panel  
+i. Ubah properti border dari panel1 (atas), dengan cara, 
+klik tombol […] di properti border  
+ 
+31 Pemrograman 2  
+ 
+Gamba r 2. 17 Mengubah Title Panel  
+ 
+j. Pilih Titled Border, dan ubah judul (Title) menjadi 
+“Data Karyawan”  
+ 
+ 
+Gambar 2. 18 Mengubah Title Border  
+ 
+32 Pemrograman 2  k. Tambahkan Tabel dari Palette grup Swing Controls di 
+dalam panel1  (atas)  
+l. Atur seperti gambar di samping  
+m. Ubah nama tabel menjadi karyawanTable, dengan 
+cara klik kanan pada Tabel, pilih Change Variable 
+Name  
+ 
+ 
+Gambar 2. 19 Menambahkan Table  
+ 
+n. Klik kanan pada Tabel, pilih Table Contents …  
+o. Klik ta b Rows, ubah nilai Count menjadi 0  
+p. Klik tab Columns, ubah nilai Count menjadi 2  
+ 
+33 Pemrograman 2  q. Ubah Title menjadi KTP dan Nama Karyawan  
+r. Kosongkan tanda checklist di kolom Editable  
+s. Ubah Pref., Min., dan Max. Width menjadi 90 untuk 
+KTP, biarkan tetap Default untuk Nama Kar yawan  
+t. Akhiri dengan mengklik tombol Close  
+ 
+ 
+Gambar 2. 20 Mengubah Fount Table  
+u. Atur ukuran Tabel  
+ 
+34 Pemrograman 2  v. Tambahkan 2 Button di dalam Panel2 (bawah)  
+w. Ubah properti Text dari Button menjadi Pilih dan 
+Tutup  
+x. Ubah nama variabel kedua Button m enjadi 
+pilihButton, dan tutupButton  
+y. Desain Form Lihat Karyawan seperti pada gambar di 
+slide berikut ini  
+ 
+ 
+Gambar 2. 21 Mengubah Ukuran Table  
+ 
+z. Tambahkan source code pada event 
+actionPerformed dari Button Tutup dengan cara:  
+ 
+35 Pemrograman 2   Klik kanan pada Button Tutup, pilih 
+EventsActionactionPerformed,  
+ Atau dengan cara double klik pada Button Tutup  
+aa. Setelah tampil source code, ketik dispose();  
+seperti gambar:  
+ 
+ 
+Gambar 2. 22 Menambahkan Source Code  
+ 
+bb. Di bawah public class FormLihatMahasiswa… 
+tambahkan source code:  
+ 
+ 
+Gambar 2. 23 Menambahkan Source Code  
+ 
+cc. Di dalam konstruktor FormLihatMahasiswa 
+tambahkan source code:  
+ 
+ 
+ 
+36 Pemrograman 2  Gambar 2. 24 Menambahkan Source Code  
+ 
+ 
+dd. Di ba wah Generated Code tambahkan 2 baris 
+kosong (tekan tombol Enter 2 kali)  
+ee. Jika tidak tampil Generated Code, klik tanda minus 
+[-] di bawah @SuppressWarnings("unchecked")  
+ 
+ 
+ 
+Gambar 2. 25 Menambahkan Source Code  
+ 
+ 
+ff. Di bawah Generate d Code tambahkan source code 
+berikut ini:  
+ 
+ 
+37 Pemrograman 2  
+ 
+Gambar 2. 26 Menambahkan Source Code  
+gg. Tambahkan source code pada event 
+windowActivated dari JDialog dengan cara:  
+ Klik kanan pada JDialog (form, bukan panel), 
+pilih Events Window windo wActivated  
+ Klik kanan pada JDialog (di navigator/inspector), 
+pilih Events Window windowActivated  
+hh. Setelah tampil source code, tambahkan source 
+code seperti gambar berikut:  
+ 
+ 
+38 Pemrograman 2  
+ 
+ 
+Gambar 2. 27 Menambahkan Source Code  
+ 
+39 Pemrograman 2  ii. Tambahkan sou rce code pada event 
+actionPerformed dari Button Pilih dengan cara:  
+ Klik kanan pada Button Pilih, pilih 
+EventsActionactionPerformed,  
+ Atau dengan cara double klik pada Button Pilih  
+jj. Setelah tampil source code, tambahkan source 
+code sehingga seperti gambar di bawah ini:  
+ 
+Gambar 2. 28 Menambahkan Source Code  
+ 
+kk. Eksekusi Project  
+ 
+ 
+40 Pemrograman 2  
+ 
+Gambar 2. 29 Eksekusi Project  
+ 
+C. Latihan  
+Buat program console dengan IDE Netbeans untuk 
+menampilkan ouput data penjualan barang ! Gunakan Class, 
+Method, dan objek . 
+ 
+D. Referensi   
+Budiharto, W. (2004). Pemrograman  Web Mneggunakan 
+J2EE. Jakarta:Elexmedia Komputindo. JENI, T. P. 
+(2007). JENI 1 -6. 
+Wijono, S. H., Suharto, B. H., & Wijono, M. S. (2006). 
+Pemrograman Java  
+ 
+41 Pemrograman 2  Servlet dan JSP denga n Netbeans. Yogyakarta: C.V ANDI 
+OFFSET.  

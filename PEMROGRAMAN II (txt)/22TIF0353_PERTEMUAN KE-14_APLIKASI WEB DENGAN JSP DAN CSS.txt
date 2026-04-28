@@ -1,0 +1,157 @@
+ 
+367 Pemrograman 2   
+ 
+ 
+BAB XIV  
+APLIKASI WEB  DENGAN JSP DAN CSS  
+ 
+A. Tujuan Pembelajaran  
+Pada pertemuan ini akan dijelaskan mengenai cara 
+membuat aplikasi web menggunakan  JSP dan file CSS.  
+ 
+B. Materi  
+1. Pembuatan Form Utama pada Aplikasi Web  
+Langkah -langkah membuat Form Utama Aplikasi Web  
+Buka Netbeans IDE, lalu buat project baru, pilih 
+pada categories Java Web dan pada Project pilih Web 
+Application.  
+ 
+ 
+368 Pemrograman 2  
+ 
+Gambar 210. Project Baru  
+  Klik Next.  
+ 
+ 
+Gambar 211. Membuat Nama Project  
+ 
+369 Pemrograman 2  Silahkan ubah nama project nya menjadi 
+AplikasiGajiKaryawanPTSintoryWeb, lalu tentukan 
+lokasi penyimpanan project (Project Location), untuk 
+melanjutkan klik Next.  
+ 
+ 
+Gambar 212. Pengaturan Server  
+ 
+Pilih server yang terinstal atau yang kita gunakan, 
+lalu pilih java EE Version, misalnya Java EE 7 Web, lalu 
+klik Finish.  
+ 
+ 
+ 
+370 Pemrograman 2  
+ 
+Gambar 213. Menghapus File Index  
+ 
+Hapus file index nya jika bernama index.html, klik 
+kanan > Delete.  
+ 
+ 
+371 Pemrograman 2  
+ 
+Gambar 214. Menghapus File  
+ 
+Kemudian tambahkan File JSP.  
+ 
+ 
+ 
+Gambar 215. Membuat File JSP  
+ 
+372 Pemrograman 2  Klik kanan pada project, lalu pilih New > JSP.  
+ 
+ 
+Gambar 216. Nama File dan lokasi  
+ 
+2. Mengubah Source Code  
+Ubah nama File Name menjadi index, lalu untuk 
+melanjutkan klik Finish.  
+ 
+ 
+373 Pemrograman 2  
+ 
+Gambar 217. Source Code Awal  
+ 
+ Lalu ubah Source Code index.jsp menjadi seperti berikut 
+: 
+ 
+ 
+374 Pemrograman 2  
+ 
+ 
+ 
+375 Pemrograman 2  
+ 
+ 
+376 Pemrograman 2  
+ 
+ 
+ 
+377 Pemrograman 2  
+ 
+ 
+378 Pemrograman 2  
+ 
+Gambar 218. Mengubah Source Code Index.jsp  
+ Klik kanan pada project > New > Other.  
+ 
+ 
+379 Pemrograman 2  
+ 
+Gambar 219. Menambahkan CSS  
+ 
+Pada Categories pilih Web, lalu pada File Types 
+pilih Ca scading Styl e Sheet, klik Next.  
+ 
+380 Pemrograman 2  
+ 
+Gambar 220. Menambahkan CSS  
+ 
+ Ubah nama CSS File Name menjadi style.  
+ 
+381 Pemrograman 2  
+ 
+Gambar 221. Mengubah Nama CSS  
+ 
+ Klik Finish.  
+ 
+ 
+Gambar 222. Tampilan CSS  
+ 
+382 Pemrograman 2   Tambahkan Scri pt sebagai berikut.  
+ 
+ 
+383 Pemrograman 2  
+ 
+ 
+384 Pemrograman 2  
+  
+ 
+385 Pemrograman 2  
+ 
+ 
+386 Pemrograman 2  
+  
+ 
+Gambar 223.  Script CSS  
+ 
+Kemudian kita eksekusi (run), maka akan muncul 
+seperti gambar dibawah ini, akan tetapi menunya belum 
+ada yang bisa dioperasikan.  
+ 
+ 
+387 Pemrograman 2  
+ 
+Gambar 224. Tampilan Awal Menu Utama  
+ 
+C. Latihan  
+Buat master/homepage untuk penjualan barang dagang! 
+(desain sesuai kreasi masing -masing)!  
+ 
+D. Referensi  
+Budiharto, W. (2004). Pemrograman  Web Menggunakan 
+J2EE. Jakarta:Elexmedia Komputindo. JENI, T. P. 
+(2007). JENI 1 -6. 
+Wijono, S . H., Suharto, B. H., & Wijono , M. S. (2006) 
+Pemrograman Java Servlet dan JSP dengan 
+Netbeans. Yogyakarta: C.V ANDI OFFSET.  
+ 

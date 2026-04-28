@@ -1,0 +1,215 @@
+ 
+68 Pemrograman 2   
+ 
+ 
+BAB IV  
+MEMBUAT FORM GAJI  
+ 
+A. Capaian Pembelajaran  
+Pada pertemuan ini akan dijelaskan mengenai cara 
+membuat Form JInternalFrame form, dan JDialog form  
+ 
+B. Materi  
+1.  Membuat Form Gaji  
+Untuk menambahkan Form Gaji dapat dilakukan 
+dengan cara:  
+a. Mengklik package view, pilih New JInternalFrame 
+Form…  
+b. Mengklik package view, pilih New Other…, pada 
+Categories pilih Swing GUI Forms, pada File Types 
+pilih JInternalFrame Form, dan klik tombol Next  
+c. Ubah nama class menjadi FormGaji  
+d. Pastikan package -nya view  
+e. Akhiri d engan mengklik tombol Finish 
+ 
+ 
+69 Pemrograman 2  
+ 
+Gambar 4. 1 Membuat Form Gaji  
+ 
+Gambar 4. 2 Membuat Form Gaji  
+ 
+70 Pemrograman 2  f. Ubah properti title menjadi “Mengelola Gaji 
+Karyawan”.  
+g. tambahkan 3 Label dari Palette grup Swing Controls  
+h. Klik kanan pada setiap Label, pilih Edit Text, ubah 
+teks sesuai kebutuhan  
+i. Tambahkan 2 TextField, 1 ComboBox, dan 2 Button 
+dari Palette grup Swing Controls  
+j. Klik kanan pada setiap TextField, pilih Edit Text, dan 
+hapus teksnya  
+k. Klik kanan pada setiap Button, p ilih Edit Text, ubah 
+Simpan dan Tutup  
+l. Klik kanan pada setiap komponen, pilih Change 
+Variable Name …, ubah sesuai teks/fungsinya  
+m. Sehingga seperti pada gambar di bawah berikut ini  
+ 
+Gambar 4. 3 Menambahkan Label, Text Field dan Bu tton 
+ 
+71 Pemrograman 2  n. Tambahkan Popup Menu dari Palette grup Swing 
+Menus ke dalam FormGaji di mana saja karena akan 
+masuk ke Other Components . 
+ 
+ 
+Gambar 4. 4 Menambahkan Popup Menu  
+ 
+o. Ubah nama Popup Menu yang telah ditambahkan 
+menjadi pekerjaanPo pupMenu  
+p. Caranya klik kanan, pilih Change Variable Name…  
+ 
+ 
+Gambar 4. 5 Mengubah Variable Name Popup Menu  
+ 
+72 Pemrograman 2  q. Tambahkan 2 menu item di pekerjaanPopupMenu  
+r. Caranya klik kanan panan pekerjaanPopupMenu, 
+pilih Add From Palette Menu Item  
+s. Ubah nama Menu Item menjadi tambahMenuItem 
+dan hapusMenuItem  
+t. Ubah properti text -nya menjadi Tambah dan Hapus  
+ 
+ 
+Gambar 4. 6 Menambahkan Menu Item  
+ 
+u. Klik kanan pada tabel gaji (gajiTable), pilih 
+EventsMousemouseReleased  
+ 
+Gambar 4. 7 Edit Table Gaji  
+ 
+73 Pemrograman 2  v. Kembali ke mode Design, klik kanan pada 
+jScrolPane1 yang ada di Navigator/Inspector, pilih 
+EventsMousemouseReleased  
+ 
+ 
+Gambar 4. 8 Edit Panel  
+ 
+w. Kembali ke mode Design, klik kanan  pada tabel gaji 
+(gajiTable), pilih Events KeyKeyPressed  
+ 
+Gambar 4. 9 Edit Table Gaji  
+ 
+74 Pemrograman 2  x. Kembali ke mode Design, klik kanan pada tabel gaji 
+(gajiTable), pilih Events PropertyChange  
+propertyChange  
+ 
+ 
+Gambar 4. 10 Edit Table Gaji  
+ 
+y. Di bawah public class FormGaji … dan di dalam 
+konstruktor tambahkan source code, seperti gambar 
+di bawah ini  
+z. Klik lampu indikator kesalahan, pilih Add import for 
+javax.swing.table.DefaultTableModel, dan Add import 
+for controlle r.GajiController  
+ 
+ 
+75 Pemrograman 2  
+ 
+Gambar 4. 11 Menambahkan Source Code  
+aa. Di bawah Generated Code tambahkan 2 baris 
+kosong (tekan Enter 2 kali)  
+bb. Kemudian tambahkan source code yang ada di 
+bawah berikut ini  
+ 
+ 
+ 
+ 
+76 Pemrograman 2  
+ 
+ 
+ 
+ 
+Gambar 4. 12 Menambahkan Source Code  
+ 
+77 Pemrograman 2  cc. Di dalam metode nilaiTableMouseReleased 
+tambahkan source code ini  
+dd. Klik lampu indikator kesalahan, pilih Add import for 
+java.awt.Point, dan Add import for 
+javax.swing.ListSelectionModel  
+ 
+ 
+Gambar 4. 13 Menambahkan Source Code  
+ 
+ee. Di dalam metode jScrollPane1MouseReleased 
+tambahkan klikKananTabel(evt);  
+ff. Di dalam metode gajiTableKeyPressed tambahkan 
+source code ini  
+gg. Klik lampu indikator kesalahan, pilih Add import for 
+java.awt.event.KeyEvent  
+ 
+ 
+78 Pemrograman 2  
+ 
+Gambar 4. 14 Menambahkan Source Code  
+ 
+hh. Di dalam metode nilaiTablePropertyChange 
+tambahkan source code ini  
+ 
+Gambar 4. 15 Menambahkan Source Code  
+ 
+ii. Kembali ke mode Design, klik kanan pada button 
+Simpan, pilih E vents ActionactionPerformed 
+(atau double klik)  
+ 
+79 Pemrograman 2  jj. Tambahkan source code seperti pada gambar  
+ 
+ 
+ 
+ 
+Gambar 4. 16 Menambahkan Source Code  
+kk. Kembali ke mode Design, klik kanan pada button 
+Lihat, pilih Events Action actionPerformed 
+(atau double klik)  
+ll. Tambahkan source code seperti pada gambar  
+ 
+ 
+ 
+ 
+80 Pemrograman 2  
+ 
+Gambar 4. 17 Menambahkan Source Code  
+ 
+mm. Kembali ke mode Design, klik kanan pada 
+nimTextField, pilih Events  Key keyPressed  
+nn. Tambahkan source code seperti pada gambar  
+ 
+ 
+ 
+Gambar 4. 18 Menambahkan Source Code  
+ 
+ 
+81 Pemrograman 2  oo. Kembali ke mode Design, klik kanan pada 
+tambahMenuItem, pilih Events Action 
+actionPerformed (atau double klik)  
+pp. Tambahkan source code seperti pada gambar  
+ 
+ 
+ 
+ 
+Gambar 4. 19 Menambahkan Source Code  
+ 
+qq. Kembali ke mode Design, klik kanan pada 
+tambahMenuItem, pilih Events Action 
+actionPerformed (atau double klik)  
+rr. Tambahkan source code seperti pada gambar  
+ 
+ 
+82 Pemrograman 2  
+ 
+ 
+ 
+Gambar 4. 20 Menambahkan So urce Code  
+ 
+C. Latihan  
+Buat desainlah dan pengolahannya untuk membuat 
+aplikasi berikut.  
+ 
+ 
+83 Pemrograman 2  D. Referensi  
+Budiharto, W. (2004). Pemrograman Web Mneggunakan 
+J2EE. Jakarta:  
+Elexmedia Komputindo.  
+JENI, T. P. (2007). JENI 1 -6. 
+Wijono, S. H., Suharto, B. H., & Wijono, M.  S. (2006). 
+Pemrograman Java  
+Servlet dan JSP dengan Netbeans. Yogyakarta: C.V ANDI 
+OFFSET.  

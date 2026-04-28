@@ -1,0 +1,351 @@
+ 
+42 Pemrograman 2   
+ 
+ 
+BAB  III 
+MEMBUAT FORM PEKERJAAN  
+ 
+A. Capaian Pembelajaran  
+Pada pertemuan ini akan dijelaskan mengenai 
+pembuatan desain interface Form Pekerjaan.  
+ 
+B. Materi  
+1. Membuat Form Pekerjaan  
+Untuk menambahkan Form Pekerjaan dapat 
+dilakukan dengan cara:  
+a. Mengklik package view, pilih New JInternalFrame 
+Form…  
+b. Mengklik package view, pilih New Other…, pada 
+Categories pilih Swing GUI Forms, pada File Types 
+pilih JInternalFrame Form, dan klik tombol Next  
+c. Ubah nama class menjadi FormPekerja an 
+d. Pastikan package -nya view  
+e. Akhiri dengan mengklik tombol Finish 
+ 
+ 
+43 Pemrograman 2  
+ 
+Gambar 3. 1 Membuat Form Pekerjaan \ 
+ 
+ 
+Gambar 3. 2 Membuat Form Pekerjaan  
+ 
+44 Pemrograman 2  f. Ubah properti title menjadi “Master Data Pekerjaan”.  
+g. Tamb ahkan 2 panel dari Palette grup Swing 
+Containers, atur, dan ubah warna background.  
+ 
+ 
+Gambar 3. 3 Membuat Panel Pekerjaan  
+ 
+h. Ubah properti border dari panel1 (atas), dengan cara 
+klik tombol […] di properti border  
+ 
+ 
+45 Pemrograman 2  
+ 
+Gambar 3. 4 Mengubah Title Border  
+ 
+i. Pilih Titled Border, dan ubah judul (Title) menjadi 
+“Data Pekerjaan”  
+ 
+Gambar 3. 5 Mengubah Title Border  
+ 
+46 Pemrograman 2  j. Di dalam panel1 (atas) tambahkan 3 Label dari 
+Palette grup Swing Controls  
+k. Atur seperti gambar di samping, agar rata kanan, 
+garis putus -putus di sebelah kanan (boleh 
+sebaliknya, sesuai keinginan)  
+ 
+ 
+Gambar 3. 6 Menambahkan Label  
+ 
+l. Klik kanan pada setiap Label, pilih Edit Text, ubah 
+teks menjadi Kode Pek erjaan, Nama Pekerjaan, dan 
+Jumlah Tugas  
+ 
+ 
+47 Pemrograman 2  
+ 
+Gambar 3. 7 Mengubah Label  
+ 
+m. Tambahkan 2 TextField, 1 ComboBox, dan 4 Button 
+dari Palette grup Swing Controls  
+n. Atur seperti gambar di bawah, agar rata Kiri, garis 
+putus -putus di sebelah kiri 
+ 
+ 
+Gambar 3. 8 Menambahkan Text Field dan Button  
+ 
+48 Pemrograman 2  o. Klik kanan pada setiap TextField, pilih Edit Text, dan 
+hapus teksnya  
+p. Klik kanan pada setiap Button, pilih Edit Text, ubah 
+menjadi Lihat, Simpan, Hapus, dan Tutup  
+q. Klik kanan p ada setiap komponen, pilih Change 
+Variable Name …, ubah sesuai teks/fungsinya, yaitu:  
+ Untuk TextField ubah menjadi 
+kodePekerjaanTextField, dan 
+namaPekerjaanTextField  
+ Untuk ComboBox ubah menjadi 
+jumlahTugasComboBox  
+ Untuk Button ubah menjadi lihatButton, 
+simpanButton, hapusButton, dan tutupButon  
+r. Sehingga seperti pada gambar di bawah berikut ini  
+ Gambar 3. 9 Mengubah Text Field dan Button  
+ 
+49 Pemrograman 2  2.  Menambahkan Source Code Form Pekerjaan  
+a. Tambahkan source code pada event 
+actionPerformed dari  Button Tutup dengan cara:  
+ Klik kanan pada Button Tutup, pilih 
+EventsActionactionPerformed,  
+ Atau dengan cara double klik pada Button Tutup  
+b. Setelah tampil source code, ketik dispose(); seperti 
+gambar  
+ 
+ 
+Gambar 3. 10 Menambahka n Source Code  
+ 
+c. Di bawah Generated Code tambahkan 2 baris 
+kosong (tekan tombol Enter 2 kali)  
+d. Jika tidak tampil Generated Code, klik tanda minus 
+[-] di bawah @SuppressWarnings("unchecked")  
+ 
+ 
+50 Pemrograman 2  
+ 
+Gambar 3. 11 Menambahkan Source Code  
+ 
+e. Di bawah Generated Code tambahkan source code 
+berikut ini:  
+ 
+ Gambar 3. 12 Menambahkan Source Code  
+ 
+51 Pemrograman 2  f. Di dalam konstruktor FormPekerjaan tambahkan 
+source code untuk memanggil metode 
+setItemComboBox  
+ 
+Gambar 3. 13 Menambahkan Source Code  
+ 
+3. Menambahkan dan Mendesain Form Lihat Pekerjaan  
+Untuk menambahkan Form Lihat Pekerjaan dapat 
+dilakukan dengan cara:  
+a. Mengklik package view, pilih New JDialog Form…  
+b. Mengklik package view, pilih New Other…, pada 
+Categories pilih Swing GUI Forms, pada File Types 
+pilih JDialog Form, dan klik tombol Next  
+c. Ubah nama class menjadi FormLihatPekerjaan  
+d. Pastikan package -nya view  
+e. Akhiri dengan mengklik tombol Finish 
+ 
+ 
+52 Pemrograman 2  
+ 
+Gambar 3. 14 Membuat Form Lihat Pekerja an 
+ 
+ 
+Gambar 3. 15 Membuat Form Lihat Pekerjaan  
+ 
+53 Pemrograman 2  f. Ubah properti title menjadi “Data Pekerjaan”  
+g. Ubah properti Form Size Policy di tab Code menjadi 
+Generate Resize Code, dan pastikan Generate 
+Center diberi tanda checklist agar ketik a aplikasi 
+dieksekusi Form (JDialog) ditampilkan di tengah layar  
+ 
+Gambar 3. 16 Mengubah Title  
+ 
+h. Tambahkan 2 panel dari Palette grup Swing 
+Containers, atur, dan ubah warna background seperti 
+gambar di bawah  
+ 
+54 Pemrograman 2  
+ 
+Gambar 3. 17 Menambahkan P anel 
+ 
+i. Ubah properti border dari panel1 (atas), dengan cara, 
+klik tombol […] di properti border  
+ 
+ 
+Gambar 3. 18 Mengubah Title Border  
+ 
+j. Pilih Titled Border, dan ubah judul (Title) menjadi 
+“Data Pe kerjaan”  
+ 
+55 Pemrograman 2  
+ 
+Gambar 3. 19 Mengubah Title Border  
+ 
+k. Tambahkan Tabel dari Palette grup Swing Controls di 
+dalam panel1 (atas)  
+l. Atur seperti gambar di bawah  
+m. Ubah nama tabel menjadi pekerjaanTable, dengan 
+cara klik kanan pada Tabel, pilih  Change Variable 
+Name  
+ 
+ 
+56 Pemrograman 2  
+ 
+Gambar 3. 20 Menambahkan Tabel  
+ 
+n. Klik kanan pada Tabel, pilih Table Contents …  
+o. Klik tab Rows, ubah nilai Count menjadi 0  
+p. Klik tab Columns, ubah nilai Count menjadi 2  
+q. Ubah Title menjadi Kode, dan Nama Peke rjaan  
+r. Kosongkan tanda checklist di kolom Editable  
+s. Ubah Pref., Min., dan Max. Width menjadi 70 untuk 
+Kode, biarkan tetap Default untuk Nama Pekerjaan  
+t. Akhiri dengan mengklik tombol Close  
+ 
+ 
+57 Pemrograman 2  
+ 
+Gambar 3. 21 Mengatur Kolom Tabel  
+ 
+u. Atur ukuran Tabel  
+v. Tambahkan 2 Button di dalam Panel2 (bawah)  
+w. Ubah properti Text dari Button menjadi Pilih dan 
+Tutup  
+x. Ubah nama variabel kedua Button menjadi 
+pilihButton, dan tutupButton  
+y. Desain Form Lihat Mata Kuliah seperti pada gambar 
+di slide berikut ini  
+ 
+58 Pemrograman 2  
+ 
+Gam bar 3. 22 Mengatur Ukuran Tabel  
+ 
+z. Tambahkan source code pada event 
+actionPerformed dari Button Tutup dengan cara:  
+ Klik kanan pada Button Tutup, pilih 
+EventsActionactionPerformed,  
+ Atau dengan cara double klik pada Button Tutup  
+aa. Setelah tampil source code, ketik dispose(); seperti 
+gambar  
+ 
+Gambar 3. 23 Menambahkan Source Code  
+ 
+59 Pemrograman 2  bb. Di bawah public class FormLihatMataKuliah… 
+tambahkan source code:  
+ 
+ 
+Gambar 3. 24 Menambahkan Source Code  
+ 
+cc. Di dalam konstruktor FormLihatMataKuliah 
+tambahkan source code:  
+ 
+Gambar 3. 25 Menambahkan Source Code  
+ 
+dd. Di bawah Generated Code tambahkan 2 baris 
+kosong (tekan tombol Enter 2 kali)  
+ee. Jika tidak tampil Generated Code, klik ta nda minus 
+[-] di bawah @SuppressWarnings("unchecked")  
+ 
+ 
+ 
+60 Pemrograman 2   
+ 
+Gambar 3. 26 Menambahkan Source Code  
+ 
+ff. Di bawah Generated Code tambahkan source code 
+berikut ini:  
+ 
+ 
+Gambar 3. 27 Menambahkan Source Code  
+gg. Tambahkan source code pada event 
+windowActivated dari JDialog dengan cara:  
+ 
+61 Pemrograman 2   Klik kanan pada JDialog (form, bukan panel), 
+pilih Events Window windowActivated  
+ Klik kanan pada JDialog (di navigator/inspector), 
+pilih Events Window windowActivated  
+ 
+ 
+Gambar 3. 28 Menambahkan Source Code  
+ 
+hh. Setelah tampil source code, tambahkan source 
+code seperti gambar dibawah ini  
+ 
+ 
+62 Pemrograman 2  
+ 
+ 
+ 
+Gambar 3. 29 Menambahkan Source Code  
+ 
+ii. Tambahkan source code pada event 
+actionPerformed dar i Button Pilih dengan cara:  
+ Klik kanan pada Button Pilih, pilih 
+EventsActionactionPerformed,  
+ Atau dengan cara double klik pada Button Pilih  
+jj. Setelah tampil source code, tambahkan source 
+code sehingga seperti gambar di bawah ini  
+ 
+63 Pemrograman 2  
+ 
+Gambar 3. 30 Menambahkan Source Code  
+ 
+4. Menambahkan Source Code di Form Utama  
+a. Di bawah public class FormUtama… tambahkan 
+source code untuk membuat object FormMahasiswa 
+dan FormMatakuliah, sehingga menjadi seperti 
+gambar di bawah ini  
+ 
+ 
+Gambar 3. 31 Menambahkan Source Code  
+ 
+b. Agar ketika menu item Karyawan di menu Master 
+Data diklik dapat menampilkan Form Karyawan, 
+tambahkan source code pada event actionPerformed 
+dari menu item Karyawan  
+c. Caranya klik kanan pada menu item Karyawan d i 
+Menu Master Data, pilih 
+ 
+64 Pemrograman 2  EventsActionactionPerformed seperti gambar di 
+bawah ini  
+ 
+Gambar 3. 32 Menambahkan Source Code  
+ 
+d. Tambahkan source code di dalam metode 
+mahasiswaMenuItemActionPerformed, sehingga 
+seperti gambar di bawah  ini 
+ 
+ 
+Gambar 3. 33 Menambahkan Source Code  
+ 
+e. Agar ketika menu item Pekerjaan di menu Master 
+Data diklik dapat menampilkan Form Pekerjaan, 
+tambahkan source code pada event actionPerformed 
+dari menu item Pekerjaan  
+ 
+65 Pemrograman 2  f. Caranya klik ka nan pada menu item Pekerjaan di 
+Menu Master Data, pilih 
+EventsActionactionPerformed seperti gambar di 
+bawah ini  
+ 
+Gambar 3. 34 Menambahkan Source Code  
+ 
+g. Tambahkan source code di dalam metode 
+mataKuliahMenuItemActionPerformed, s ehingga 
+seperti gambar di bawah ini  
+ 
+ 
+Gambar 3. 35 Menambahkan Source Code  
+h. Eksekusi project  
+ 
+66 Pemrograman 2  
+ 
+Gambar 3. 36 Mengeksekusi Project  
+ 
+C. Latihan   
+Buatlah desain dan source codenya untuk tampilan di 
+bawah ini ! 
+ 
+ 
+ 
+67 Pemrograman 2  D. Referensi  
+Budiharto, W. (2004). Pemrograman Web Mneggunakan 
+J2EE. Jakarta:  
+Elexmedia Komputindo.  
+JENI, T. P. (2007). JENI 1 -6. 
+Wijono, S. H., Suharto, B. H., & Wijono, M. S. (2006). 
+Pemrograman Java  
+Servlet dan JSP dengan Netbeans. Yogyakarta: C.V AND I 
+OFFSET.  

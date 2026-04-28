@@ -1,0 +1,392 @@
+ 
+186 Pemrograman 2   
+ 
+ 
+BAB  VII 
+PEMBUATAN LAPORAN  
+ 
+A. Capaian  Pembelajaran  
+Pada pertemuan ini akan dijelaskan mengenai cara 
+instalasi plug -in untuk membentuk report (Laporan), 
+memahami cara membuat desaign report menggunakan 
+iReport,  menggunakan report (laporan) pada aplikasi.  
+ 
+B. Materi  
+1. Pengertian iReport  
+iReport adalah utilitas (perkakas) pelaporan, yang 
+dikembangkan di lingkungan java guna membantu user 
+dan develover (pengembang/programmer) mendesain 
+laporan secara visual. Melalui ant armuka yang simple 
+namun kaya akan fitur. iReport menyediakan fungsi 
+yang paling penting untuk membuat laporan yang 
+kompleks dengan mudah, sehingga akan menghemat 
+untuk membuat laporan. jasperReports dalam hal ini 
+adalah inti dari iReport. jasperReports ad alah utilitas 
+pelaporan open seorce yang paling populer didalam 
+ 
+187 Pemrograman 2  teknologi java, dan iReport adalah report designer visual 
+untuk JasperReports.  
+Sebelum kita melakukan pembuatan laporan, kita 
+terlebih dahulu harus memperhatikan/memeriksa 
+terlebih dahulu apak ah aplikasi kita sudah tersedia 
+fasilitas untuk pembuatan laporan. Untuk pembuatan 
+desain laporan iReport juga tersedia dalam bentuk 
+plugin untuk NetBeans dan selain itu diperlukan juga 
+library  pendukung plugin iReport. Plugin iReport dan  
+library -nya dapat  di akses di 
+https://www.mediafire.com/file/1g6m24utmgrv5f3/PLUGI
+N. 
+ 
+2. Install Plugin iReport  
+Jika kita telah mendownload plugin iReport maka 
+akan didapatkan file sebagai berikut:  
+a. iReport -4.5.0.nbm  
+b. jasperreports -components -plugin -4.5.0.nbm  
+c. jasperreports -extensions -plugin -4.5.0.nbm  
+d. jasperserver -plugin -4.5.0.nbm  
+Cara menginstall plugin iReport ke Netbeans:  
+Ekstrak file plugin iReport yang sudah di 
+download, lalu aktifkan Netbeans, pilih menu Tool > 
+Plugin.  
+ 
+188 Pemrograman 2  
+ 
+Gambar 32. Membuka tools plu gin 
+ 
+Lalu Pilih Tab Downloaded, kemudian pilih tombol 
+Add Plugins.  
+ 
+Gambar 33. Kotak dialog plugins  
+ 
+189 Pemrograman 2  Pilih file yang sudah di ekstrak, kemudian seleksi 
+semua file dalam folder tersebut lalu pilih Open.  
+ 
+ 
+Gambar 34. Menambahkan file plugin  
+ 
+Checklist semua pilihan file plugin, lalu klik tombol 
+Install, maka akan tampil seperti gambar di bawah ini:  
+ 
+ 
+190 Pemrograman 2  
+ 
+Gambar 35. Menginstall file plugin  
+ 
+Setelah klik tombol install, maka akan tampil ko tak 
+dialog seperti ini lalu pilih Next.  
+ 
+ 
+191 Pemrograman 2  
+ 
+Gambar 36. Kotak dialog install plugin  
+ 
+Lalu ceklis pilihan persetujuan lisensi, kemudian 
+klik install.  
+ 
+ 
+192 Pemrograman 2  
+ 
+Gambar 37. Kotak persetujuan lisensi  
+ 
+Jika muncul kotak dialog Validation Warning saat 
+berlangsungnya proses instalasi, pilih Continue  seperti 
+gambar di bawah ini.  
+ 
+ 
+ 
+193 Pemrograman 2  
+ 
+Gambar 38. Proses install plugin  
+ 
+Lalu pilih restart IDE now, dan klik Finish.  
+ 
+ 
+194 Pemrograman 2  
+ 
+Gambar 39. Proses akhir install plugin  
+ 
+ 
+3. Pembuatan iReport  
+Pada langkah ini kita akan membuat koneksi dan 
+desain report (laporan), tapi kita harus membuat project 
+baru untuk file iReport nya. Caranya buatlah New 
+Project pilih Java lalu Java Application pilih Next. 
+Buatlah Project Name sesuai yang kita ingin buat.  
+ 
+ 
+195 Pemrograman 2  
+ 
+Gambar 40. New project  
+ 
+Di project yang telah kita buat tadi pilih New > 
+Other maka akan tampil seperti gambar berikut.  
+ 
+ 
+196 Pemrograman 2  
+ 
+Gambar 41. Menambah Report Wizard  
+ 
+Pilih Report lalu Report Wizard dan pilih Next, 
+maka akan tampil layout  untuk membuat laporan. Pilih 
+Cherry lalu klik Next.  
+ 
+ 
+197 Pemrograman 2  
+ 
+Gambar 42. Memilih Layout Laporan  
+ 
+Berikan nama file untuk Report lalu Next.  
+ 
+ 
+198 Pemrograman 2  
+ 
+Gambar 43. Nama File Report  
+ 
+Sehingga akan tampil kotak dialog setting  koneksi 
+seperti gambar berikut.  
+ 
+ 
+199 Pemrograman 2  
+ 
+Gambar 44. Setting Koneksi  
+ 
+Klik tombol New untuk membuat koneksi baru ke 
+database, maka akan tampil pilihan data source.  
+ 
+ 
+ 
+200 Pemrograman 2  
+ 
+Gambar 45. Memilih Datasource Type  
+ 
+Pilih Database JDBC connection dan klik tombol 
+Next..  
+ 
+ 
+ 
+201 Pemrograman 2  
+ 
+Gambar 46. Setting Database JDBC Connetion  
+ 
+Pada kotak Name diisi dengan nama database 
+yang kita buat, pada JDBC Driver pilih driver database 
+yang kita gunakan, yaitu MySQL 
+(com.mysql.jdbc.Driver). Pada JDBC URL ganti nama 
+database nya sesuai yang kita buat, lalu pada Server 
+Address isi dengan localhost, dikolom Database isi lagi 
+dengan database yang kita buat, lalu Username bisa 
+ 
+202 Pemrograman 2  kita isi dengan root, lalu beri tanda checklist pada save 
+password.  
+Klik tombol Test untuk melakukan tes koneksi, jika 
+koneksi berhasil maka dapat dilanjutkan ketahap 
+berikutnya dengan klik tombol Save.  
+ 
+ 
+Gambar 47. Query SQL  
+ 
+Pada kolom Query (SQL) isi dengan select * from 
+(isi dengan nama tabel database sesuai yang kita buat) 
+lalu klik tombol Next.  
+ 
+ 
+203 Pemrograman 2  
+ 
+Gambar 48. Field -Field Dalam Laporan  
+ 
+Pindahkan Field yang ada dikiri ke kanan lalu pilih 
+Next. Akan muncul gambar seperti berikut.  
+ 
+ 
+204 Pemrograman 2  
+ 
+Gambar 49. Tampilan Pengaturan Group  
+ 
+Klik tombol Next, sehingga tampil kotak dialog 
+Finish.  
+ 
+ 
+205 Pemrograman 2  
+ 
+Gambar 50. Tampilan Akhir Report Wizard  
+ 
+Klik tombol Finish  untuk mengakhiri Report 
+Wizard. Maka akan muncul desain laporan pada layout 
+yang telah kita pilih tadi seperti gambar berikut.  
+ 
+ 
+Gambar 51. Tampilan Desain Laporan  
+ 
+206 Pemrograman 2  Klik Tab Preview untuk melihat hasilnya, lalu klik 
+Designer untuk  mengedit atau mendesain, jika sudah di 
+esit maka akan tampil seperti gambar berikut.  
+ 
+Gambar 52. Preview Laporan  
+ 
+Buatlah jInternalFrame dengan nama class 
+Koneksi, untuk mengkoneksikan dengan database yang 
+kita buat.  
+ 
+Gambar 53. From Koneksi  
+ 
+207 Pemrograman 2  4. Desain Form Laporan  
+Di dalam package view buatlah jInternalFrame 
+dengan nama class From Cetak > Finish.  
+ 
+ 
+Gambar 54. Form Class  
+ 
+Buatlah desain seperti gambar berikut untuk 
+desain Form lapora n menggunakan pallete Button dan 
+Label.  
+  
+ 
+Gambar 55. Desain From Laporan  
+ 
+208 Pemrograman 2  5. Memasukkan Library Jasper Report  
+Agar kita dapat menggunakan pernyataan -
+pernyataan Jasper Report didalam project yang kita 
+buat, maka tambahkan Library Jasp er Report dengan 
+cara Klik kanan pada Libraries dalam jendela project 
+kita, kemudian pilih Add JAR/Folder, sehingga tampil 
+jendela dialog seperti berikut.  
+ 
+ 
+Gambar 56. Menambahkan Library Jasper Report  
+ 
+Pilih semua file yang ada p ada Library > Open. 
+Maka akan muncul di libraries.  
+ 
+ 
+209 Pemrograman 2  
+ 
+Gambar 57. Data Libraries  
+ 
+Lalu setelah semua ada di libraries klik kanan lagi 
+pada libraries pilih Add Library, lalu pilih MySQL JDBC 
+Driver klik tombol Add Library.  
+ 
+ 
+ 
+ 
+210 Pemrograman 2  
+ 
+Gamba r 58. Data Libraries  
+ 
+6. Menambahkan Script  
+Di dalam Class From Cetak, buatlah metode cetak 
+laporan dengan script berikut ini. Agar saat kita klik 
+tombol cetak Form Laporan bisa muncul saat di Run 
+File. Ubah nama Report dan Class Kone ksi sesuai 
+dengan yang kita buat.  
+ 
+ 
+ 
+ 
+211 Pemrograman 2   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Di dalam Class Koneksi, tambahkan script berikut 
+untuk mengkoneksikan dengan database yang kita buat.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ try { 
+        JasperPrint jp = 
+JasperFillManag er.fillReport(getClass().getResourceAsStream("rep
+ortSembako.jasper"), null, Koneksi.getConnection());  
+        JasperViewer.viewReport(jp, false);  
+        } catch(Exception e) {  
+            JOptionPane.showMessageDialog(rootPane, e);  
+        } 
+ 
+public stat ic Connection getConnection() {  
+        Connection connection = null;  
+        String driver = "com.mysql.jdbc.Driver";  
+        String url = "jdbc:mysql://localhost:3306/db_belajar"; 
+//ganti dengan database mu  
+        String user = "root";  
+        String pa ssword = "";  
+        if (connection == null) {  
+            try { 
+                Class.forName(driver);  
+                connection = DriverManager.getConnection(url, 
+user, password);  
+            } catch (ClassNotFoundException | SQLException error) 
+{ 
+               System.exit(0);  
+            } 
+ 
+        } 
+        return connection;  
+    } 
+ 
+ 
+212 Pemrograman 2  Di dalam Project Report yang kita buat tambahkan 
+script berikut untuk memanggil Form Ceta k dan 
+jalankan.  
+ 
+ 
+ 
+ 
+ Jangan lupa tambahkan pernyataan import berikut ini:  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  new FormCetak ().setVisible (true);  
+} 
+Add import for net.sf.jasperreports.engine.JasperFilManager  
+Add import for net.sf.jasperreports.engine.JasperPrint  
+Add import for net.sf.jasperreports.view.JasperViewer  
+Add import for javax.swing.JOptionPane  
+Add import for java.sql.DriverManager  
+Add import for java.sql.SQLException  
+ 
+ 
+213 Pemrograman 2  C. Latihan  
+Buat desain report dan tampilkan dengan menggunakan 
+program untuk tampilan di bawah ini!  
+ 
+Gambar 59. Latihan  
+ 
+D. Referensi  
+Haqi, B ay., (2019). Aplikasi SPK Pemilihan Dosen Terbaik 
+Metode Simple Additive Weigthing (SAW) Dengan 
+Java, Yogyakarta. Grup Penerbitan CV Budi Utama.  
+Putra, Herzi Widyan., (2019). “Cara Membuat Dan Contoh 
+Laporan Dengan iReport Java Netbeans”, 
+http://gilacoding.com/read/cara -membuat -dan-
+contoh -sederhana -laporan -dengan -ireport -java-
+netbeans,  diakses pada 20 juli 2022 pukul 20.00.  

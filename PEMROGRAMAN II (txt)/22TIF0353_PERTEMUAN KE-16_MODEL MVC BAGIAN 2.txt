@@ -1,0 +1,254 @@
+ 
+416 Pemrograman 2   
+ 
+ 
+BAB XVI  
+MODEL MVC BAGIAN 2  
+ 
+A. Tujuan Pembelajaran  
+Pada pertemuan ini akan dijelaskan mengenai 
+pembuatan aplikasi web dan pengolahannya dengan 
+menggunakan model MVC (Model – View Controller).  
+ 
+B. Materi  
+Melanjutkan mat eri dari pertemuan sebelumnya.  
+ 
+1. Menambahkan Servlet untuk Controller  
+Buatlah servlet KaryawanController di package 
+com.unpam.controller, klik kanan pilih New > Servlet.  
+ 
+ 
+417 Pemrograman 2  
+ 
+Gambar 244. Membuat Servlet  
+ 
+Ubah nama class menjadi KaryawanController, 
+lalu klik Finish.  
+ 
+ 
+Gambar 245. Class Name  
+ 
+ 
+418 Pemrograman 2  Hapus source code berikut.  
+ 
+Gambar 246. Menghapus Source Code  
+ 
+Silahkan tambahkan source code berikut didalam 
+metode processRequest dibawah pernyataan 
+response.setContentType pada KaryawanController.  
+ 
+ 
+ 
+419 Pemrograman 2  
+ 
+ 
+ 
+420 Pemrograman 2  
+ 
+ 
+ 
+421 Pemrograman 2  
+ 
+ 
+ 
+422 Pemrograman 2  
+ 
+ 
+ 
+423 Pemrograman 2  
+ 
+ 
+Gambar 247. Menambahkan Source Code  
+ 
+424 Pemrograman 2  Klik semua lampu indikator kesalahan (lampu 
+merah), dan pilih dengan Add Import….  
+ 
+ 
+ 
+ 
+Gambar 248. Memperbaiki Indikator Kesalahan  
+ 
+Buatlah servlet PekerjaanCon troller di package 
+com.unpam.controller, klik kanan pilih New > Servlet.  
+ 
+ 
+Gambar 249. Membuat Servlet  
+ 
+425 Pemrograman 2  Ubah nama class menjadi PekerjaanController, 
+kemudian klik Finish.  
+ 
+ 
+Gambar 250. Mengubah Nama Class  
+ 
+Hapuslah source code berikut.  
+ 
+ 
+Gambar 251. Menghapus Source Code  
+ 
+426 Pemrograman 2  Silahkan tambahkan source code berikut didalam 
+metode processRequest dibawah pernyataan 
+response.setContentType pada PekerjaanController.  
+ 
+ 
+ 
+427 Pemrograman 2  
+ 
+ 
+428 Pemrograman 2  
+ 
+ 
+429 Pemrograman 2  
+ 
+ 
+430 Pemrograman 2  
+ 
+ 
+431 Pemrograman 2  
+ 
+ 
+ 
+432 Pemrograman 2  
+ 
+ 
+Gambar 252. Menambahkan Source Code  
+ 
+433 Pemrograman 2  Klik semua lampu indikator kesalahan (lampu 
+merah), dan pilih dengan Add Import….  
+ 
+ 
+ 
+ 
+Gambar 253. Memperbaiki Indikator Kesalahan  
+ 
+Buatlah servlet LoginController di package 
+com.unpam.controller, klik kanan pilih New > Servlet.  
+ 
+ 
+Gambar 254. Membuat Servlet  
+ 
+434 Pemrograman 2  Ubah nama class menjadi LoginController, kemudian 
+klik Finish.  
+ 
+ 
+ 
+Gambar 255. Mengubah Nama Class  
+ 
+Hapuslah source code berikut.  
+ 
+ 
+Gambar 256. Menghapus Source Code  
+ 
+435 Pemrograman 2  Silahkan tambahkan source code berikut didalam 
+metode processRequest dibawah pernyataan 
+response.setContentType pada LoginController.  
+ 
+ 
+436 Pemrograman 2  
+ 
+ 
+437 Pemrograman 2  
+ 
+ 
+Gambar 257. Menamb ahkan Source Code  
+ 
+Klik semua lampu indikator kesalahan (lampu 
+merah ), dan pilih dengan Add Import  
+ 
+ 
+ 
+ 
+438 Pemrograman 2  
+ 
+ 
+ 
+ 
+Gambar 258. Memperbaiki Indikator Kesalahan  
+ 
+Buatlah servlet LogoutController di package 
+com.unpam.controller, klik kanan  pilih New > Servlet.  
+ 
+ 
+Gambar 259. Membuat Servlet  
+ 
+439 Pemrograman 2  Ubah nama class menjadi LogoutController, 
+kemudian klik Finish.  
+ 
+ 
+Gambar 260. Mengubah Nama Class  
+ 
+Hapuslah source code berikut.  
+ 
+ 
+Gambar 261. Menghapus Source Code  
+ 
+440 Pemrograman 2  Silahkan tambahkan source code berikut didalam 
+metode processRequest dibawah pernyataan 
+response.setContentType pada LogoutController.  
+ 
+ 
+Gambar 262. Menambahkan Source Code  
+ 
+Klik lampu indika tor kesalahan pada HttpSession, 
+lalu pilih ”Add import for javax.servlet.http.HttpSession”.  
+ 
+ 
+Gambar 263. Memperbaiki Kesalahan Indikator  
+ 
+ 
+441 Pemrograman 2  2. Menambahkan  MySQL JDBC Driver  
+Klik kanan pada Libraries, pilih Add Library.  
+ 
+Gambar 264. Memilih Library  
+  
+Lalu pilih MySQL JDBC Driver dan klik Add Library  
+ 
+Gambar 265. Memilih Library  
+ 
+442 Pemrograman 2  Silahkan coba untuk dieksekusi (run), maka akan 
+tampil seperti pada gambah dibawah ini tapi menunya 
+belum ad a yang bisa dioperasikan.  
+ 
+Gambar 266. Tampilan Menu awal  
+Klik menu Login, maka akan tampil form login, lalu 
+isi user ID dan Password sesuai data yang tersimpan.  
+ 
+Gambar 267. Form Login  
+ 
+443 Pemrograman 2  Jika lupa User ID dan Password, maka buka 
+http://localhost/phpmyadmin  pada browser lalu buka 
+tabel tbkaryawan dan klik menu Insert, kemudian isi ktp, 
+nama, ruang, dan password, lalu pada password di 
+kolom function pilih MD5, kemud ian klik tombol Go.   
+ 
+ 
+Gambar 268. Mengisi Database  
+ 
+Jika berhasil Login maka akan muncul seperti gambar 
+berikut.  
+ 
+ 
+444 Pemrograman 2  
+ 
+Gambar 269. Tampilan Form Login  
+ 
+Klik menu Karyawan maka akan muncul Form 
+Karyawan, cob alah semua menu yang ada.  
+ 
+Gambar 270. Tampilan Form Karyawan  
+ 
+445 Pemrograman 2  Klik menu Pekerjaan maka akan muncul Form 
+Pekerjaan, cobalah semua menu yang ada.  
+ 
+Gambar 271. Tampilan Form Pekerjaan  
+ 
+C. Latihan  
+Buat file -file yang dibutuhkan untuk form data barang, 
+customer, transaksi penjualan! (gunakan database).  
+ 
+D. Referensi  
+Budiharto, W. (2004). Pemrograman Web Menggunakan 
+J2EE. Jakarta:Elexmedia Komputindo.JENI, T. P. 
+(2007). JENI 1 -6. 
+Wijono, S. H., Suharto, B. H., & Wijon o, M. S. (2006) 
+Pemrograman Java Servlet dan JSP dengan 
+Netbeans. Yogyakarta: C.V ANDI OFFSET.  
