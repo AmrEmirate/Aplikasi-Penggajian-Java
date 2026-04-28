@@ -5,57 +5,98 @@
               name="GajiReport" 
               pageWidth="595" pageHeight="842" 
               columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+    
     <queryString>
-        <![select * from tbgaji]>
+        <![CDATA[SELECT tbkaryawan.`ktp` AS tbkaryawan_ktp, tbkaryawan.`nama` AS tbkaryawan_nama, tbkaryawan.`ruang` AS tbkaryawan_ruang, tbpekerjaan.`kodepekerjaan` AS tbpekerjaan_kodepekerjaan, tbpekerjaan.`namapekerjaan` AS tbpekerjaan_namapekerjaan, tbgaji.`gajikotor` AS tbgaji_gajikotor, tbgaji.`tunjangan` AS tbgaji_tunjangan, tbgaji.`gajibersih` AS tbgaji_gajibersih FROM `tbkaryawan` tbkaryawan INNER JOIN `tbgaji` tbgaji ON tbkaryawan.`ktp` = tbgaji.`ktp` INNER JOIN `tbpekerjaan` tbpekerjaan ON tbgaji.`kodepekerjaan` = tbpekerjaan.`kodepekerjaan`]]>
     </queryString>
-    <field name="id" class="java.lang.Integer"/>
-    <field name="nik" class="java.lang.String"/>
-    <field name="kode_pekerjaan" class="java.lang.String"/>
-    <field name="gaji_bersih" class="java.lang.Double"/>
+    
+    <field name="tbkaryawan_ktp" class="java.lang.String"/>
+    <field name="tbkaryawan_nama" class="java.lang.String"/>
+    <field name="tbpekerjaan_namapekerjaan" class="java.lang.String"/>
+    <field name="tbgaji_gajibersih" class="java.lang.Double"/>
     
     <title>
-        <band height="50">
+        <band height="70">
             <staticText>
-                <reportElement x="0" y="0" width="555" height="30"/>
+                <reportElement x="0" y="10" width="555" height="30"/>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font size="16" isBold="true"/>
+                    <font size="18" isBold="true"/>
                 </textElement>
-                <text><![CDATA[Laporan Gaji Karyawan PT Sintory]]></text>
+                <text><![CDATA[LAPORAN GAJI KARYAWAN PT SINTORY]]></text>
             </staticText>
+            <line>
+                <reportElement x="0" y="50" width="555" height="1"/>
+            </line>
         </band>
     </title>
     
     <columnHeader>
-        <band height="20">
+        <band height="30">
             <staticText>
                 <reportElement x="0" y="0" width="100" height="20"/>
-                <text><![CDATA[NIK]]></text>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[KTP]]></text>
             </staticText>
             <staticText>
-                <reportElement x="100" y="0" width="100" height="20"/>
-                <text><![CDATA[Kode Pekerjaan]]></text>
+                <reportElement x="100" y="0" width="150" height="20"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[NAMA KARYAWAN]]></text>
             </staticText>
             <staticText>
-                <reportElement x="200" y="0" width="150" height="20"/>
-                <text><![CDATA[Gaji Bersih]]></text>
+                <reportElement x="250" y="0" width="150" height="20"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[PEKERJAAN]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="400" y="0" width="155" height="20"/>
+                <textElement textAlignment="Right">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[GAJI BERSIH]]></text>
             </staticText>
         </band>
     </columnHeader>
     
     <detail>
-        <band height="20">
+        <band height="25">
             <textField>
                 <reportElement x="0" y="0" width="100" height="20"/>
-                <textFieldExpression><![CDATA[$F{nik}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{tbkaryawan_ktp}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="100" y="0" width="100" height="20"/>
-                <textFieldExpression><![CDATA[$F{kode_pekerjaan}]]></textFieldExpression>
+                <reportElement x="100" y="0" width="150" height="20"/>
+                <textFieldExpression><![CDATA[$F{tbkaryawan_nama}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="200" y="0" width="150" height="20"/>
-                <textFieldExpression><![CDATA[$F{gaji_bersih}]]></textFieldExpression>
+                <reportElement x="250" y="0" width="150" height="20"/>
+                <textFieldExpression><![CDATA[$F{tbpekerjaan_namapekerjaan}]]></textFieldExpression>
+            </textField>
+            <textField pattern="¤ #,##0.00">
+                <reportElement x="400" y="0" width="155" height="20"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA[$F{tbgaji_gajibersih}]]></textFieldExpression>
             </textField>
         </band>
     </detail>
+    
+    <pageFooter>
+        <band height="30">
+            <textField>
+                <reportElement x="435" y="10" width="80" height="20"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement x="515" y="10" width="40" height="20"/>
+                <textElement/>
+                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
 </jasperReport>

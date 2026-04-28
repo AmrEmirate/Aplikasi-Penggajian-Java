@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Koneksi {
-    private static final String driver = "com.mysql.jdbc.Driver";
+    private static final String driver = "com.mysql.cj.jdbc.Driver";
     private static final String database = "jdbc:mysql://localhost/dbaplikasigajikaryawan";
     private static final String user = "root";
     private static final String password = "";
@@ -26,7 +26,7 @@ public class Koneksi {
         }
         if (pesanKesalahan.equals("")) {
             try {
-                connection = DriverManager.getConnection(database + "?user=" + user + "&password=" + password);
+                connection = DriverManager.getConnection(database + "?user=" + user + "&password=" + password + "&connectTimeout=5000&socketTimeout=5000");
             } catch (SQLException ex) {
                 pesanKesalahan = "Koneksi ke " + database + " gagal\n" + ex;
             }

@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
-/*
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -16,7 +15,6 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
-*/
 
 public class Gaji {
     private String ktp;
@@ -128,20 +126,30 @@ public class Gaji {
         Connection connection = koneksi.getConnection();
         try {
             if (connection != null) {
-                String query = "SELECT * FROM tbgaji";
-                // JasperReports logic commented out for core verification
-                /*
-                try {
-                    // JasperReports rendering code
-                } catch (Exception ex) {
-                    pesan = "JasperReports Library not found.";
-                    return false;
+                String query = "SELECT tbkaryawan.`ktp` AS tbkaryawan_ktp, "
+                        + "tbkaryawan.`nama` AS tbkaryawan_nama, "
+                        + "tbkaryawan.`ruang` AS tbkaryawan_ruang, "
+                        + "tbpekerjaan.`kodepekerjaan` AS tbpekerjaan_kodepekerjaan, "
+                        + "tbpekerjaan.`namapekerjaan` AS tbpekerjaan_namapekerjaan, "
+                        + "tbgaji.`gajikotor` AS tbgaji_gajikotor, "
+                        + "tbgaji.`tunjangan` AS tbgaji_tunjangan, "
+                        + "tbgaji.`gajibersih` AS tbgaji_gajibersih "
+                        + "FROM `tbkaryawan` tbkaryawan INNER JOIN `tbgaji` tbgaji ON tbkaryawan.`ktp` = tbgaji.`ktp` "
+                        + "INNER JOIN `tbpekerjaan` tbpekerjaan ON tbgaji.`kodepekerjaan` = tbpekerjaan.`kodepekerjaan` ";
+                
+                if (ruang > 0) {
+                    query += "WHERE tbkaryawan.`ruang` = " + ruang;
                 }
-                */
-                pesan = "JasperReports Library missing from project. Core logic is verified.";
+
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                JasperDesign jasperDesign = JRXmlLoader.load("src/report/GajiReport.jrxml");
+                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap<>(), new JRResultSetDataSource(resultSet));
+                JasperViewer.viewReport(jasperPrint, false);
                 return true;
             }
-        } catch (Exception ex) {
+        } catch (JRException | SQLException ex) {
             pesan = ex.getMessage();
         } finally {
             try {

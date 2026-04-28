@@ -5,11 +5,13 @@ import view.FormLogin;
 
 public class AplikasGajiKaryawanPTSintory {
     
-    // 2. Kita buat variabel formLogin
-    private final static FormLogin formLogin = new FormLogin();
-
     public static void main(String[] args) {
-        // 3. Kita tampilkan formLogin saat F6 ditekan
+        // 1. Tampilkan FormUtama terlebih dahulu
+        view.FormUtama formUtama = new view.FormUtama();
+        formUtama.setVisible(true);
+        
+        // 2. Tampilkan FormLogin sebagai modal dialog di atas FormUtama
+        view.FormLogin formLogin = new view.FormLogin(formUtama, true);
         formLogin.setVisible(true);
     }
     
