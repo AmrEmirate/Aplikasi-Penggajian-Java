@@ -13,6 +13,8 @@ public class FormPekerjaan extends javax.swing.JInternalFrame {
     /**
      * Creates new form FormPekerjaan
      */
+    private final controller.PekerjaanController pekerjaanController = new controller.PekerjaanController();
+
     public FormPekerjaan() {
         initComponents();
     }
@@ -70,6 +72,13 @@ public class FormPekerjaan extends javax.swing.JInternalFrame {
         jLabel1.setText("Kode Pekerjaan");
 
         kodeTextField.addActionListener(this::kodeTextFieldActionPerformed);
+        kodeTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    pekerjaanController.cari(kodeTextField);
+                }
+            }
+        });
 
         jLabel2.setText("Nama Pekerjaan");
 
@@ -174,9 +183,8 @@ public class FormPekerjaan extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_kodeTextFieldActionPerformed
 
     private void simpanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanButtonActionPerformed
-// Memanggil Controller Pekerjaan (Gaji Pokok akan otomatis masuk ke kolom Jumlah Tugas di database)
-        controller.PekerjaanController pc = new controller.PekerjaanController();
-        pc.simpan(kodeTextField, namaPekerjaanTextField, gajiTextField);
+        javax.swing.JComboBox<String> dummyCombo = new javax.swing.JComboBox<>(new String[]{gajiTextField.getText().isEmpty() ? "0" : gajiTextField.getText()});
+        pekerjaanController.simpan(kodeTextField, namaPekerjaanTextField, dummyCombo);
 
         // Memasukkan data ke tabel UI
         String kode = kodeTextField.getText();
@@ -208,8 +216,7 @@ public class FormPekerjaan extends javax.swing.JInternalFrame {
             javax.swing.JTextField dummyKode = new javax.swing.JTextField(kode);
             
             // Menghapus dari database
-            controller.PekerjaanController pc = new controller.PekerjaanController();
-            pc.hapus(dummyKode);
+            pekerjaanController.hapus(dummyKode);
             
             // Menghapus dari UI
             javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
@@ -219,6 +226,18 @@ public class FormPekerjaan extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_hapusButtonActionPerformed
 
+
+    public void setKodePekerjaan(String text) {
+        kodeTextField.setText(text);
+    }
+    
+    public void setNamaPekerjaan(String text) {
+        namaPekerjaanTextField.setText(text);
+    }
+    
+    public void setJumlahTugas(int jumlah) {
+        gajiTextField.setText(String.valueOf(jumlah));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton batalButton;

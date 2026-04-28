@@ -1,42 +1,174 @@
 package controller;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
 import model.Karyawan;
+import model.Pekerjaan;
+import model.Gaji;
+import view.FormLihatKaryawan;
+import view.FormLihatPekerjaan;
+import view.FormUtama;
 
 public class GajiController {
-    
     private final Karyawan karyawan = new Karyawan();
+    private final Pekerjaan pekerjaan = new Pekerjaan();
+    private final Gaji gaji = new Gaji();
+    private FormLihatKaryawan formLihatKaryawan;
+    private FormLihatPekerjaan formLihatPekerjaan;
 
-    // 1. Fungsi untuk tombol Simpan (Menyimpan data dari Tabel)
-    public void simpan(JTextField ktpTextField, JTable gajiTable) {
-        if (!ktpTextField.getText().isEmpty() && gajiTable.getRowCount() > 0) {
-            // (Nanti di sini kita buat logika simpan ke database-nya)
-            JOptionPane.showMessageDialog(null, "Data Gaji untuk KTP: " + ktpTextField.getText() + " Berhasil Disimpan!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-            
-            // Otomatis mengosongkan tabel setelah berhasil disimpan
-            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) gajiTable.getModel();
-            model.setRowCount(0);
-            ktpTextField.setText("");
-        } else {
-            JOptionPane.showMessageDialog(null, "KTP atau Tabel Gaji tidak boleh kosong!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        }
-    }
-
-    // 2. Fungsi saat tombol Enter ditekan di kotak KTP
-    public void cariKaryawan(JTextField ktpTextField) {
-        if (!ktpTextField.getText().isEmpty()) {
-            if (karyawan.baca(ktpTextField.getText())) {
-                JOptionPane.showMessageDialog(null, "Karyawan Ditemukan: " + karyawan.getNama(), "Informasi", JOptionPane.INFORMATION_MESSAGE);
+    public void cariKaryawan(javax.swing.JTextField ktp){
+        if (!ktp.getText().equals("")){
+            if (karyawan.baca(ktp.getText())){
+                FormUtama.formGaji.setNama(karyawan.getNama());
+                FormUtama.formGaji.setRuang(Integer.toString(karyawan.getRuang()));
+                FormUtama.formGaji.clearGajiTable();
+                
+                int jumlahGaji=0;
+                if (gaji.baca(ktp.getText())){
+                    Object[][] listGaji = gaji.getListGaji();
+                    FormUtama.formGaji.clearGajiTable();
+                    
+                    if (listGaji.length>0){
+                        for (int i=0; i<listGaji.length;i++){
+                            if (!((String)listGaji[i][0]).equals("")){
+                                String namaPekerjaan="";
+                                if (pekerjaan.baca((String) listGaji[i][0])){
+                                    namaPekerjaan = pekerjaan.getNamaPekerjaan();
+                                }
+                                FormUtama.formGaji.setTambahGaji(new Object[]{listGaji[i][0],namaPekerjaan,listGaji[i][1],listGaji[i][2],listGaji[i][3]});
+                                jumlahGaji++;
+                            }
+                        }
+                    }
+                }
+                
+                if (jumlahGaji==0) {
+                    FormUtama.formGaji.setTambahGaji(new Object[]{});
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Karyawan dengan KTP " + ktpTextField.getText() + " tidak ditemukan!", "Error", JOptionPane.ERROR_MESSAGE);
+                FormUtama.formGaji.setNama("");
+                FormUtama.formGaji.setRuang("");
+                FormUtama.formGaji.clearGajiTable();
+                FormUtama.formGaji.setTambahGaji(new Object[]{});
+                
+                JOptionPane.showMessageDialog(null, karyawan.getPesan(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(null,"ktp tidak boleh kosong \n","Kesalahan",JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    // 3. Fungsi untuk tombol Lihat
-    public void tampilkanFormLihatKaryawan() {
-        JOptionPane.showMessageDialog(null, "Membuka daftar karyawan...", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+    public void tampilkanFormLihatKaryawan(){
+        formLihatKaryawan = new FormLihatKaryawan(null, true);
+        if (karyawan.bacaData()){
+            formLihatKaryawan.tampilkanData(karyawan.getList());
+            formLihatKaryawan.setVisible(true);
+            
+            if (!formLihatKaryawan.getKtpDipilih().equals("")) {
+                if (karyawan.baca(formLihatKaryawan.getKtpDipilih())) {
+                    FormUtama.formGaji.setKtp(karyawan.getKtp());
+                    FormUtama.formGaji.setNama(karyawan.getNama());
+                    FormUtama.formGaji.setRuang(Integer.toString(karyawan.getRuang()));
+                    FormUtama.formGaji.clearGajiTable();
+                    
+                    int jumlahGaji=0;
+                    if (gaji.baca(formLihatKaryawan.getKtpDipilih())){
+                        Object[][] listGaji = gaji.getListGaji();
+                        FormUtama.formGaji.clearGajiTable();
+                        
+                        if (listGaji.length>0){
+                            for (int i=0; i<listGaji.length;i++){
+                                if (!((String)listGaji[i][0]).equals("")){
+                                    String namaPekerjaan="";
+                                    if (pekerjaan.baca((String)listGaji[i][0])){
+                                        namaPekerjaan = pekerjaan.getNamaPekerjaan();
+                                    }
+                                    FormUtama.formGaji.setTambahGaji(new Object[]{listGaji[i][0],namaPekerjaan,listGaji[i][1],listGaji[i][2],listGaji[i][3]});
+                                    jumlahGaji++;
+                                }
+                            }
+                        }
+                    }
+                    if (jumlahGaji==0) {
+                        FormUtama.formGaji.setTambahGaji(new Object[]{});
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, karyawan.getPesan());
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, karyawan.getPesan());
+        }
+    }
+
+    public void tampilkanFormLihatPekerjaan(){
+        formLihatPekerjaan = new FormLihatPekerjaan(null,true);
+        if (pekerjaan.bacaData()){
+            formLihatPekerjaan.tampilkanData(pekerjaan.getList());
+            formLihatPekerjaan.setVisible(true);
+            if (!formLihatPekerjaan.getKodePekerjaanDipilih().equals("")){
+                if (pekerjaan.baca(formLihatPekerjaan.getKodePekerjaanDipilih())){
+                    FormUtama.formGaji.setTambahGaji(new Object[]{pekerjaan.getKodePekerjaan(),pekerjaan.getNamaPekerjaan(),"","",""});
+                } else {
+                    FormUtama.formGaji.setTambahGaji(new Object[]{formLihatPekerjaan.getKodePekerjaanDipilih(),"","","",""});
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, pekerjaan.getPesan());
+        }
+    }
+
+    public void cariPekerjaan(String kodePekerjaan){
+        if (pekerjaan.baca(kodePekerjaan)){
+            FormUtama.formGaji.setNamaPekerjaan(pekerjaan.getNamaPekerjaan());
+        } else {
+            FormUtama.formGaji.setNamaPekerjaan("");
+            FormUtama.formGaji.hapusGaji();
+            JOptionPane.showMessageDialog(null, pekerjaan.getPesan(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void simpan(javax.swing.JTextField ktp, javax.swing.JTable gajiTable){
+        if (!ktp.getText().equals("")){
+            gaji.setKtp(ktp.getText());
+            Object[][] listGaji = new Object[gajiTable.getRowCount()][4];
+            
+            for (int i=0; i<gajiTable.getRowCount();i++){
+                listGaji[i][0] = gajiTable.getValueAt(i, 0);
+                listGaji[i][1] = gajiTable.getValueAt(i, 2);
+                listGaji[i][2] = gajiTable.getValueAt(i, 3);
+                listGaji[i][3] = gajiTable.getValueAt(i, 4);
+            }
+            
+            gaji.setListGaji(listGaji);
+            
+            if (gaji.simpan()){
+                FormUtama.formGaji.setKtp("");
+                FormUtama.formGaji.setNama("");
+                FormUtama.formGaji.setRuang("");
+                FormUtama.formGaji.clearGajiTable();
+                FormUtama.formGaji.setTambahGaji(new Object[]{});
+            } else {
+                JOptionPane.showMessageDialog(null, gaji.getPesan());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null,"ktp tidak boleh kosong \n","Kesalahan",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void cetakLaporan(javax.swing.JComboBox ruangComboBox){
+        int ruang=0;
+        if (ruangComboBox != null && ruangComboBox.getSelectedIndex()>0){
+            ruang = Integer.parseInt(ruangComboBox.getSelectedItem().toString());
+        }
+        
+        if (!gaji.cetakLaporan(ruang)) {
+            JOptionPane.showMessageDialog(null,gaji.getPesan(),"Kesalahan",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void cetakLaporan(){
+        if (!gaji.cetakLaporan(0)) {
+            JOptionPane.showMessageDialog(null,gaji.getPesan(),"Kesalahan",JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

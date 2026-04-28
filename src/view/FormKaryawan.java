@@ -13,6 +13,8 @@ public class FormKaryawan extends javax.swing.JInternalFrame {
     /**
      * Creates new form FormKaryawan
      */
+    private final controller.KaryawanController karyawanController = new controller.KaryawanController();
+
     public FormKaryawan() {
         initComponents();
     }
@@ -34,7 +36,9 @@ public class FormKaryawan extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         nikTextField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
         namaTextField = new javax.swing.JTextField();
         jabatanComboBox = new javax.swing.JComboBox<>();
         simpanButton = new javax.swing.JButton();
@@ -87,6 +91,23 @@ public class FormKaryawan extends javax.swing.JInternalFrame {
         jLabel3.setText("Nama Karyawan");
 
         jLabel4.setText("Jabatan");
+        jLabel5.setText("Password");
+
+        nikTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    karyawanController.cari(nikTextField);
+                }
+            }
+        });
+
+        passwordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    karyawanController.cari(nikTextField);
+                }
+            }
+        });
 
         namaTextField.addActionListener(this::namaTextFieldActionPerformed);
 
@@ -112,6 +133,7 @@ public class FormKaryawan extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4)
+                    .addComponent(jLabel5)
                     .addComponent(simpanButton))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,7 +144,8 @@ public class FormKaryawan extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(nikTextField)
                         .addComponent(namaTextField)
-                        .addComponent(jabatanComboBox, 0, 171, Short.MAX_VALUE)))
+                        .addComponent(jabatanComboBox, 0, 171, Short.MAX_VALUE)
+                        .addComponent(passwordField)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -140,6 +163,10 @@ public class FormKaryawan extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jabatanComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(simpanButton)
@@ -199,8 +226,7 @@ public class FormKaryawan extends javax.swing.JInternalFrame {
             javax.swing.JTextField dummyNik = new javax.swing.JTextField(nik);
             
             // Menghapus dari database
-            controller.KaryawanController kc = new controller.KaryawanController();
-            kc.hapus(dummyNik);
+            karyawanController.hapus(dummyNik);
             
             // Menghapus dari UI
             javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) karyawanTable.getModel();
@@ -218,15 +244,12 @@ public class FormKaryawan extends javax.swing.JInternalFrame {
 // Trik: Menerjemahkan Jabatan menjadi Angka (Ruang)
         int ruangAngka = jabatanComboBox.getSelectedIndex() + 1; 
         
-        // Memanggil Controller Karyawan
-        controller.KaryawanController kc = new controller.KaryawanController();
-        
-        // Trik: Membuat kotak isian bayangan untuk Ruang dan Password agar sesuai modul
-        javax.swing.JTextField dummyRuang = new javax.swing.JTextField(String.valueOf(ruangAngka));
-        javax.swing.JPasswordField dummyPassword = new javax.swing.JPasswordField("12345"); // Password default
+        // Trik: Membuat combobox bayangan untuk Ruang agar sesuai modul
+        javax.swing.JComboBox<String> dummyRuang = new javax.swing.JComboBox<>(new String[]{String.valueOf(ruangAngka)});
+        dummyRuang.setSelectedIndex(0);
         
         // Menyimpan ke database (NIK dianggap sebagai KTP)
-        kc.simpan(nikTextField, namaTextField, dummyRuang, dummyPassword);
+        karyawanController.simpan(nikTextField, namaTextField, dummyRuang, passwordField);
 
         // Memasukkan data ke tabel UI
         String nik = nikTextField.getText();
@@ -247,11 +270,34 @@ public class FormKaryawan extends javax.swing.JInternalFrame {
         nikTextField.setText("");
         namaTextField.setText("");
         jabatanComboBox.setSelectedIndex(0);
+        passwordField.setText("");
 
         // Mengembalikan kursor (fokus) agar siap mengetik lagi di kotak NIK
         nikTextField.requestFocus();
     }//GEN-LAST:event_batalButtonActionPerformed
 
+
+    public void setKtp(String text) {
+        nikTextField.setText(text);
+    }
+    
+    public void setNama(String text) {
+        namaTextField.setText(text);
+    }
+    
+    public void setRuang(int ruang) {
+        if (ruang > 0 && ruang <= jabatanComboBox.getItemCount()) {
+            jabatanComboBox.setSelectedIndex(ruang - 1);
+        } else {
+            jabatanComboBox.setSelectedIndex(0);
+        }
+    }
+    
+    public void setPassword(String text) {
+        if (passwordField != null) {
+            passwordField.setText(text);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton batalButton;
@@ -270,5 +316,7 @@ public class FormKaryawan extends javax.swing.JInternalFrame {
     private javax.swing.JTextField namaTextField;
     private javax.swing.JTextField nikTextField;
     private javax.swing.JButton simpanButton;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPasswordField passwordField;
     // End of variables declaration//GEN-END:variables
 }

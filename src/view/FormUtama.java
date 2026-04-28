@@ -6,6 +6,10 @@ package view;
 public class FormUtama extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormUtama.class.getName());
+    
+    public static FormKaryawan formKaryawan;
+    public static FormPekerjaan formPekerjaan;
+    public static FormGaji formGaji;
 
     /**
      * Creates new form FormUtama
@@ -13,6 +17,7 @@ public class FormUtama extends javax.swing.JFrame {
     public FormUtama() {
         initComponents();
         setUkuranLokasiFrame(0.8, true);
+        setEnableMenu(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -137,32 +142,42 @@ public class FormUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_keluarMenuItemActionPerformed
 
     private void aksesMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aksesMenuItemActionPerformed
-        // TODO add your handling code here:
+        FormLogin formLogin = new FormLogin(this, true);
+        formLogin.setVisible(true);
     }//GEN-LAST:event_aksesMenuItemActionPerformed
 
-    private void gajiLaporanMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gajiLaporanMenuItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_gajiLaporanMenuItemActionPerformed
+    private void gajiLaporanMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
+        FormCetak formCetak = new FormCetak();
+        mdiDesktopPane.add(formCetak);
+        formCetak.setVisible(true);
+        formCetak.toFront();
+    }
 
     private void karyawanMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_karyawanMenuItemActionPerformed
-        // TODO add your handling code here:
-        FormKaryawan fk = new FormKaryawan();
-        mdiDesktopPane.add(fk);
-        fk.setVisible(true);
+        if (formKaryawan == null || !formKaryawan.isVisible()) {
+            formKaryawan = new FormKaryawan();
+            mdiDesktopPane.add(formKaryawan);
+        }
+        formKaryawan.setVisible(true);
+        formKaryawan.toFront();
     }//GEN-LAST:event_karyawanMenuItemActionPerformed
 
     private void pekerjaanMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pekerjaanMenuItemActionPerformed
-        // TODO add your handling code here:
-        FormPekerjaan fp = new FormPekerjaan();
-mdiDesktopPane.add(fp);
-fp.setVisible(true);
+        if (formPekerjaan == null || !formPekerjaan.isVisible()) {
+            formPekerjaan = new FormPekerjaan();
+            mdiDesktopPane.add(formPekerjaan);
+        }
+        formPekerjaan.setVisible(true);
+        formPekerjaan.toFront();
     }//GEN-LAST:event_pekerjaanMenuItemActionPerformed
 
     private void gajiMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gajiMenuItemActionPerformed
-        // TODO add your handling code here:
-        FormGaji fg = new FormGaji();
-mdiDesktopPane.add(fg);
-fg.setVisible(true);
+        if (formGaji == null || !formGaji.isVisible()) {
+            formGaji = new FormGaji();
+            mdiDesktopPane.add(formGaji);
+        }
+        formGaji.setVisible(true);
+        formGaji.toFront();
     }//GEN-LAST:event_gajiMenuItemActionPerformed
 
     /**
@@ -190,6 +205,22 @@ fg.setVisible(true);
         java.awt.EventQueue.invokeLater(() -> new FormUtama().setVisible(true));
     }
 
+    public void setEnableMenu(boolean aktif) {
+        masterDataMenu.setEnabled(aktif);
+        transaksiMenu.setEnabled(aktif);
+        laporanMenu.setEnabled(aktif);
+    }
+
+    private void setUkuranLokasiFrame(double skala, boolean tengah) {
+        java.awt.Dimension dimensi = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setSize((int) (skala * dimensi.getWidth()), (int) (skala * dimensi.getHeight()));
+
+        if (tengah) {
+            setLocation((int) ((dimensi.getWidth() - getWidth()) / 2),
+                    (int) ((dimensi.getHeight() - getHeight()) / 2));
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aksesMenuItem;
     private javax.swing.JMenu aplikasiMenu;
@@ -211,21 +242,4 @@ fg.setVisible(true);
     private javax.swing.JMenuItem pekerjaanMenuItem;
     private javax.swing.JMenu transaksiMenu;
     // End of variables declaration//GEN-END:variables
-
-private void setEnableMenu(boolean aktif) {
-        masterDataMenu.setEnabled(aktif);
-        transaksiMenu.setEnabled(aktif);
-        laporanMenu.setEnabled(aktif);
-    }
-
-    private void setUkuranLokasiFrame(double skala, boolean tengah) {
-        java.awt.Dimension dimensi = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setSize((int) (skala * dimensi.getWidth()), (int) (skala * dimensi.getHeight()));
-
-        if (tengah) {
-            setLocation((int) ((dimensi.getWidth() - getWidth()) / 2),
-                    (int) ((dimensi.getHeight() - getHeight()) / 2));
-        }
-    }
 }
-

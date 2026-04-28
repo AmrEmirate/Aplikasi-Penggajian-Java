@@ -19,8 +19,7 @@ public class FormGaji extends javax.swing.JInternalFrame {
         // --- 2. TAMBAHKAN 1 BARIS INI DI DALAM SINI ---
         gajiDefaultTableModel = (javax.swing.table.DefaultTableModel) gajiTable.getModel();
     }
-    @SuppressWarnings("unchecked")
-    
+
     public void setKtp(String ktp) {
         ktpTextField.setText(ktp);
     }
@@ -72,6 +71,8 @@ public class FormGaji extends javax.swing.JInternalFrame {
             pekerjaanPopupMenu.show(evt.getComponent(), evt.getX(), evt.getY());
         }
     }
+
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -214,10 +215,7 @@ public class FormGaji extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tambahMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahMenuItemActionPerformed
-        // TODO add your handling code here:
-        FormPekerjaan fp = new FormPekerjaan();
-        this.getDesktopPane().add(fp);
-        fp.setVisible(true);
+        gajiController.tampilkanFormLihatPekerjaan();
     }//GEN-LAST:event_tambahMenuItemActionPerformed
 
     private void hapusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusMenuItemActionPerformed

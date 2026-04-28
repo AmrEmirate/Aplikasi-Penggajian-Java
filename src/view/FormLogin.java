@@ -12,6 +12,7 @@ public class FormLogin extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormLogin.class.getName());
 
+    public static String tipe = "";
     /**
      * Creates new form FormLogin
      * @param parent
@@ -20,10 +21,26 @@ public class FormLogin extends javax.swing.JDialog {
     public FormLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
     }
 
     public FormLogin() {
         initComponents();
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
+    }
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {
+        usernameTextField.setText("");
+        passwordField.setText("");
+        usernameTextField.requestFocus();
     }
 
     /**
@@ -99,23 +116,18 @@ public class FormLogin extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordFieldActionPerformed
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-
-        String username = usernameTextField.getText();
-        String password = new String(passwordField.getPassword());
-        
-        // 2. Memanggil controller untuk mengecek ke database
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
         controller.LoginController loginController = new controller.LoginController();
-        boolean valid = loginController.validasiLogin(username, password);
+        boolean valid = loginController.validasi(usernameTextField, passwordField);
         
-        // 3. Jika benar, buka FormUtama dan tutup FormLogin
         if (valid) {
-            FormUtama fu = new FormUtama();
-            fu.setVisible(true);
+            java.awt.Window win = javax.swing.SwingUtilities.getWindowAncestor(this);
+            if (win instanceof FormUtama) {
+                ((FormUtama) win).setEnableMenu(true);
+            }
             this.dispose();
         }
-
-    }//GEN-LAST:event_loginButtonActionPerformed
+    }
 
     /**
      * @param args the command line arguments

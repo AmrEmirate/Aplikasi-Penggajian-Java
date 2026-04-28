@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
+import view.PesanDialog;
 
 public class Karyawan {
     private String ktp, nama, password;
@@ -12,177 +12,238 @@ public class Karyawan {
     private String pesan;
     private Object[][] list;
     private final Koneksi koneksi = new Koneksi();
+    private final PesanDialog pesanDialog = new PesanDialog();
 
-    public String getKtp() { return ktp; }
-    public void setKtp(String ktp) { this.ktp = ktp; }
-    public String getNama() { return nama; }
-    public void setNama(String nama) { this.nama = nama; }
-    public int getRuang() { return ruang; }
-    public void setRuang(int ruang) { this.ruang = ruang; }
-    public String getPesan() { return pesan; }
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
-    public Object[][] getList() { return list; }
-    public void setList(Object[][] list) { this.list = list; }
+    public String getKtp() {
+        return ktp;
+    }
 
-    public boolean simpan() {
+    public void setKtp(String ktp) {
+        this.ktp = ktp;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public int getRuang() {
+        return ruang;
+    }
+
+    public void setRuang(int ruang) {
+        this.ruang = ruang;
+    }
+
+    public String getPesan() {
+        return pesan;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Object[][] getList() {
+        return list;
+    }
+
+    public void setList(Object[][] list) {
+        this.list = list;
+    }
+    
+    public boolean simpan(){
         boolean adaKesalahan = false;
         Connection connection;
-        if ((connection = koneksi.getConnection()) != null) {
-            int jumlahSimpan = 0;
+        
+        if ((connection = koneksi.getConnection()) != null){
+            int jumlahSimpan=0;
             boolean simpan = false;
-            String SQLStatemen = "";
-            PreparedStatement preparedStatement = null;
-            ResultSet rset = null;
+            String SQLStatemen="";
+            PreparedStatement preparedStatement;
+            ResultSet rset;
+            
             try {
                 SQLStatemen = "select * from tbkaryawan where ktp=?";
+                
                 preparedStatement = connection.prepareStatement(SQLStatemen);
                 preparedStatement.setString(1, ktp);
                 rset = preparedStatement.executeQuery();
                 
-                if (rset.next()) { 
-                    if (JOptionPane.showConfirmDialog(null, "KTP sudah ada\nApakah data diperbaharui?", "Konfirmasi", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                rset.next();
+                if (rset.getRow()>0){
+                    if (pesanDialog.tampilkanPilihan("KTP sudah ada \nApakah data diperbaharui?","Konfirmasi", new Object[]{"Ya","Tidak"}) == 0){
                         simpan = true;
                         SQLStatemen = "update tbkaryawan set nama=?, ruang=?, password=? where ktp=?";
-                        preparedStatement = connection.prepareStatement(SQLStatemen);
+                        
+                        preparedStatement = connection.prepareStatement(SQLStatemen);  
                         preparedStatement.setString(1, nama);
                         preparedStatement.setInt(2, ruang);
                         preparedStatement.setString(3, password);
                         preparedStatement.setString(4, ktp);
+                        
                         jumlahSimpan = preparedStatement.executeUpdate();
                     }
                 } else {
                     simpan = true;
                     SQLStatemen = "insert into tbkaryawan(ktp, nama, ruang, password) values (?,?,?,?)";
-                    preparedStatement = connection.prepareStatement(SQLStatemen);
+                    
+                    preparedStatement = connection.prepareStatement(SQLStatemen);  
                     preparedStatement.setString(1, ktp);
                     preparedStatement.setString(2, nama);
                     preparedStatement.setInt(3, ruang);
                     preparedStatement.setString(4, password);
+                    
                     jumlahSimpan = preparedStatement.executeUpdate();
                 }
+                
                 if (simpan) {
-                    if (jumlahSimpan < 1) {
+                    if (jumlahSimpan < 1){
                         adaKesalahan = true;
                         pesan = "Gagal menyimpan data karyawan";
                     }
                 }
+                
                 preparedStatement.close();
                 rset.close();
-                connection.close();
-            } catch (SQLException ex) {
+                connection.close();                
+            } catch (SQLException ex){
                 adaKesalahan = true;
-                pesan = "Tidak dapat membuka tabel tbkaryawan\n" + ex + "\n" + SQLStatemen;
-            }
+                pesan = "Tidak dapat membuka tabel tbkaryawan \n"+ex+" \n"+SQLStatemen;
+            }            
         } else {
             adaKesalahan = true;
-            pesan = "Tidak dapat melakukan koneksi ke server\n" + koneksi.getPesanKesalahan();
+            pesan = "Tidak dapat melakukan koneksi ke server \n"+koneksi.getPesanKesalahan();
         }
+        
         return !adaKesalahan;
     }
-
-    public boolean baca(String ktp) {
-        boolean adaKesalahan = false;
+  
+    public boolean baca(String ktp){
+        boolean adaKesalahan = false; 
         Connection connection;
+        
         this.ktp = "";
         this.nama = "";
         this.ruang = 0;
         this.password = "";
-        if ((connection = koneksi.getConnection()) != null) {
+        
+        if ((connection = koneksi.getConnection()) != null){
             PreparedStatement preparedStatement;
             ResultSet rset;
+                    
             try {
                 String SQLStatemen = "select * from tbkaryawan where ktp=?";
                 preparedStatement = connection.prepareStatement(SQLStatemen);
                 preparedStatement.setString(1, ktp);
                 rset = preparedStatement.executeQuery();
                 
-                if (rset.next()) {
+                rset.next();
+                if (rset.getRow()>0){
                     this.ktp = rset.getString("ktp");
                     this.nama = rset.getString("nama");
                     this.ruang = rset.getInt("ruang");
                     this.password = rset.getString("password");
                 } else {
                     adaKesalahan = true;
-                    pesan = "KTP \"" + ktp + "\" tidak ditemukan";
+                    pesan = "KTP \""+ktp+"\" tidak ditemukan";
                 }
+                
                 preparedStatement.close();
                 rset.close();
                 connection.close();
-            } catch (SQLException ex) {
+            } catch (SQLException ex){
                 adaKesalahan = true;
-                pesan = "Tidak dapat membuka tabel tbkaryawan\n" + ex;
+                pesan = "Tidak dapat membuka tabel tbkaryawan \n"+ex;
             }
         } else {
             adaKesalahan = true;
-            pesan = "Tidak dapat melakukan koneksi ke server\n" + koneksi.getPesanKesalahan();
+            pesan = "Tidak dapat melakukan koneksi ke server \n"+koneksi.getPesanKesalahan();
         }
+        
         return !adaKesalahan;
     }
-
-    public boolean bacaData() {
+    
+    public boolean bacaData(){
         boolean adaKesalahan = false;
         Connection connection;
         list = new Object[0][0];
-        if ((connection = koneksi.getConnection()) != null) {
+        
+        if ((connection = koneksi.getConnection()) != null){
             String SQLStatemen;
             PreparedStatement preparedStatement;
             ResultSet rset;
+            
             try {
                 SQLStatemen = "select ktp, nama from tbkaryawan";
                 preparedStatement = connection.prepareStatement(SQLStatemen, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 rset = preparedStatement.executeQuery();
                 
+                rset.next();
                 rset.last();
                 list = new Object[rset.getRow()][2];
-                if (rset.getRow() > 0) {
+                
+                if (rset.getRow()>0){
                     rset.first();
-                    int i = 0;
+                    int i=0;
                     do {
                         list[i] = new Object[]{rset.getString("ktp"), rset.getString("nama")};
                         i++;
                     } while (rset.next());
                 }
+                
                 preparedStatement.close();
                 rset.close();
                 connection.close();
-            } catch (SQLException ex) {
+            } catch (SQLException ex){
                 adaKesalahan = true;
-                pesan = "Tidak dapat membaca data\n" + ex.getMessage();
+                pesan = "Tidak dapat membaca data\n"+ex.getMessage();
             }
         } else {
             adaKesalahan = true;
-            pesan = "Tidak dapat melakukan koneksi ke server\n" + koneksi.getPesanKesalahan();
+            pesan = "Tidak dapat melakukan koneksi ke server \n"+koneksi.getPesanKesalahan();
         }
+        
         return !adaKesalahan;
     }
-
-    public boolean hapus(String ktp) {
-        boolean adaKesalahan = false;
+    
+    public boolean hapus(String ktp){
+        boolean adaKesalahan = false; 
         Connection connection;
-        if ((connection = koneksi.getConnection()) != null) {
+        
+        if ((connection = koneksi.getConnection()) != null){
             int jumlahHapus;
             String SQLStatemen;
             PreparedStatement preparedStatement;
+            
             try {
                 SQLStatemen = "delete from tbkaryawan where ktp=?";
                 preparedStatement = connection.prepareStatement(SQLStatemen);
                 preparedStatement.setString(1, ktp);
                 jumlahHapus = preparedStatement.executeUpdate();
-                if (jumlahHapus < 1) {
-                    pesan = "Data karyawan dengan KTP " + ktp + " tidak ditemukan";
+                
+                if (jumlahHapus < 1){
+                    pesan = "Data karyawan dengan KTP "+ktp+" tidak ditemukan";
                     adaKesalahan = true;
                 }
+                
                 preparedStatement.close();
                 connection.close();
-            } catch (SQLException ex) {
+            } catch (SQLException ex){
                 adaKesalahan = true;
-                pesan = "Tidak dapat membuka tabel tbkaryawan\n" + ex;
+                pesan = "Tidak dapat membuka tabel tbkaryawan \n"+ex;
             }
         } else {
             adaKesalahan = true;
-            pesan = "Tidak dapat melakukan koneksi ke server\n" + koneksi.getPesanKesalahan();
+            pesan = "Tidak dapat melakukan koneksi ke server \n"+koneksi.getPesanKesalahan();
         }
+        
         return !adaKesalahan;
     }
 }

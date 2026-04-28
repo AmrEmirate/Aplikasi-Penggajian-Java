@@ -1,51 +1,62 @@
 package controller;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import model.Pekerjaan;
+import view.FormLihatPekerjaan;
+import view.FormUtama;
 
 public class PekerjaanController {
     private final Pekerjaan pekerjaan = new Pekerjaan();
+    private FormLihatPekerjaan formLihatPekerjaan;
 
-    // Fungsi untuk tombol Simpan
-    public void simpan(JTextField kode, JTextField nama, JTextField tugas) {
-        if (!kode.getText().isEmpty()) {
-            pekerjaan.setKodePekerjaan(kode.getText());
-            pekerjaan.setNamaPekerjaan(nama.getText());
-            pekerjaan.setJumlahTugas(Integer.parseInt(tugas.getText().isEmpty() ? "0" : tugas.getText()));
+    public void simpan(javax.swing.JTextField kodePekerjaanTextField,
+            javax.swing.JTextField namaPekerjaanTextField,
+            javax.swing.JComboBox jumlahTugasComboBox){
+        if (!kodePekerjaanTextField.getText().equals("")){
+            pekerjaan.setKodePekerjaan(kodePekerjaanTextField.getText());
+            pekerjaan.setNamaPekerjaan(namaPekerjaanTextField.getText());
+            pekerjaan.setJumlahTugas(Integer.parseInt(jumlahTugasComboBox.getSelectedItem().toString()));
             
-            if (pekerjaan.simpan()) {
-                JOptionPane.showMessageDialog(null, "Data Pekerjaan Berhasil Disimpan!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            if (pekerjaan.simpan()){
+                FormUtama.formPekerjaan.setKodePekerjaan("");
+                FormUtama.formPekerjaan.setNamaPekerjaan("");
+                FormUtama.formPekerjaan.setJumlahTugas(1);
             } else {
-                JOptionPane.showMessageDialog(null, pekerjaan.getPesan(), "Error", JOptionPane.ERROR_MESSAGE);
+                if (pekerjaan.getPesan().length() > 0){
+                    JOptionPane.showMessageDialog(null, pekerjaan.getPesan(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
+                }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Kode Pekerjaan tidak boleh kosong!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Kode pekerjaan tidak boleh kosong", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    // Fungsi untuk tombol Hapus
-    public void hapus(JTextField kode) {
-        if (!kode.getText().isEmpty()) {
-            if (pekerjaan.hapus(kode.getText())) {
-                JOptionPane.showMessageDialog(null, "Data Pekerjaan Berhasil Dihapus!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+    public void hapus(javax.swing.JTextField kodePekerjaanTextField){
+        if (!kodePekerjaanTextField.getText().equals("")){
+            if (pekerjaan.hapus(kodePekerjaanTextField.getText())){
+                FormUtama.formPekerjaan.setKodePekerjaan("");
+                FormUtama.formPekerjaan.setNamaPekerjaan("");
+                FormUtama.formPekerjaan.setJumlahTugas(1);
             } else {
-                JOptionPane.showMessageDialog(null, pekerjaan.getPesan(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, pekerjaan.getPesan(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Kode pekerjaan tidak boleh kosong", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    // Fungsi saat Enter ditekan di kotak Kode (Mencari data)
-    public void cari(JTextField kode, JTextField nama, JTextField tugas) {
-        if (!kode.getText().isEmpty()) {
-            if (pekerjaan.baca(kode.getText())) {
-                nama.setText(pekerjaan.getNamaPekerjaan());
-                tugas.setText(String.valueOf(pekerjaan.getJumlahTugas()));
+
+    public void cari(javax.swing.JTextField kodePekerjaanTextField){
+        if (!kodePekerjaanTextField.getText().equals("")){
+            if (pekerjaan.baca(kodePekerjaanTextField.getText())){
+                FormUtama.formPekerjaan.setNamaPekerjaan(pekerjaan.getNamaPekerjaan());
+                FormUtama.formPekerjaan.setJumlahTugas(pekerjaan.getJumlahTugas());
             } else {
-                JOptionPane.showMessageDialog(null, pekerjaan.getPesan(), "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                nama.setText("");
-                tugas.setText("");
+                FormUtama.formPekerjaan.setNamaPekerjaan("");
+                FormUtama.formPekerjaan.setJumlahTugas(1);
+                JOptionPane.showMessageDialog(null, pekerjaan.getPesan(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Kode pekerjaan tidak boleh kosong", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

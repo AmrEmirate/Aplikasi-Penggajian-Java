@@ -1,56 +1,82 @@
 package controller;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import model.Enkripsi;
 import model.Karyawan;
+import view.FormUtama;
 
 public class KaryawanController {
     private final Karyawan karyawan = new Karyawan();
+    private final Enkripsi enkripsi = new Enkripsi();
+    private boolean hashed = false;
 
-    // Fungsi untuk tombol Simpan
-    public void simpan(JTextField ktp, JTextField nama, JTextField ruang, JPasswordField password) {
-        if (!ktp.getText().isEmpty()) {
-            karyawan.setKtp(ktp.getText());
-            karyawan.setNama(nama.getText());
-            // Jika ruang kosong, otomatis diisi 0 agar tidak error
-            karyawan.setRuang(Integer.parseInt(ruang.getText().isEmpty() ? "0" : ruang.getText()));
-            karyawan.setPassword(new String(password.getPassword()));
+    public void setHashed(boolean hashed) {
+        this.hashed = hashed;
+    }
+
+    public void simpan(javax.swing.JTextField ktpTextField, javax.swing.JTextField namaTextField,
+            javax.swing.JComboBox ruangComboBox, javax.swing.JPasswordField passwordField){
+        if (!ktpTextField.getText().equals("")){
+            karyawan.setKtp(ktpTextField.getText());
+            karyawan.setNama(namaTextField.getText());
+            karyawan.setRuang(Integer.parseInt(ruangComboBox.getSelectedItem().toString()));
             
-            if (karyawan.simpan()) {
-                JOptionPane.showMessageDialog(null, "Data Karyawan Berhasil Disimpan!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            if (hashed){
+                karyawan.setPassword(new String(passwordField.getPassword()));
             } else {
-                JOptionPane.showMessageDialog(null, karyawan.getPesan(), "Error", JOptionPane.ERROR_MESSAGE);
+                try {
+                    karyawan.setPassword(enkripsi.hashMD5(new String(passwordField.getPassword())));
+                } catch (Exception ex){
+                    karyawan.setPassword("");
+                }
+            }
+            
+            if (karyawan.simpan()){
+                FormUtama.formKaryawan.setKtp("");
+                FormUtama.formKaryawan.setNama("");
+                FormUtama.formKaryawan.setRuang(1);
+                FormUtama.formKaryawan.setPassword("");
+            } else {
+                if (karyawan.getPesan().length() > 0){
+                    JOptionPane.showMessageDialog(null, karyawan.getPesan(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
+                }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "KTP tidak boleh kosong!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "KTP tidak boleh kosong", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    // Fungsi untuk tombol Hapus
-    public void hapus(JTextField ktp) {
-        if (!ktp.getText().isEmpty()) {
-            if (karyawan.hapus(ktp.getText())) {
-                JOptionPane.showMessageDialog(null, "Data Karyawan Berhasil Dihapus!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+    public void hapus(javax.swing.JTextField ktpTextField){
+        if (!ktpTextField.getText().equals("")){
+            if (karyawan.hapus(ktpTextField.getText())){
+                FormUtama.formKaryawan.setKtp("");
+                FormUtama.formKaryawan.setNama("");
+                FormUtama.formKaryawan.setRuang(1);
+                FormUtama.formKaryawan.setPassword("");
             } else {
-                JOptionPane.showMessageDialog(null, karyawan.getPesan(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, karyawan.getPesan(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "KTP tidak boleh kosong", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    // Fungsi saat Enter ditekan di kotak KTP (Mencari data)
-    public void cari(JTextField ktp, JTextField nama, JTextField ruang, JPasswordField password) {
-        if (!ktp.getText().isEmpty()) {
-            if (karyawan.baca(ktp.getText())) {
-                nama.setText(karyawan.getNama());
-                ruang.setText(String.valueOf(karyawan.getRuang()));
-                password.setText(karyawan.getPassword());
+
+    public void cari(javax.swing.JTextField ktpTextField){
+        if (!ktpTextField.getText().equals("")){
+            if (karyawan.baca(ktpTextField.getText())){
+                FormUtama.formKaryawan.setNama(karyawan.getNama());
+                FormUtama.formKaryawan.setRuang(karyawan.getRuang());
+                FormUtama.formKaryawan.setPassword(karyawan.getPassword());
+                setHashed(true);
             } else {
-                JOptionPane.showMessageDialog(null, karyawan.getPesan(), "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                nama.setText("");
-                ruang.setText("");
-                password.setText("");
+                FormUtama.formKaryawan.setNama("");
+                FormUtama.formKaryawan.setRuang(1);
+                FormUtama.formKaryawan.setPassword("");
+                setHashed(false);
+                JOptionPane.showMessageDialog(null, karyawan.getPesan(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "KTP tidak boleh kosong", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
