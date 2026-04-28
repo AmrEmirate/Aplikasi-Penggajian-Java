@@ -1,0 +1,12 @@
+CARA MENJALANKAN APLIKASI DI KOMPUTER LAIN:
+==========================================
+
+1. Pastikan komputer sudah terinstal JAVA (JRE/JDK).
+2. Nyalakan XAMPP (Apache & MySQL).
+3. Buka phpMyAdmin, buat database: dbaplikasigajikaryawan
+4. Import file SQL database Anda ke dalam database tersebut.
+5. Klik dua kali file "JALANKAN_APLIKASI.bat" di folder ini.
+
+PENTING:
+Jangan pindahkan file "AplikasiGaji.jar" keluar dari folder ini, 
+karena ia membutuhkan folder "lib" dan "src" agar bisa berjalan sempurna.
